@@ -45,3 +45,6 @@ models/*.ckpt
 # OS files
 .DS_Store
 Thumbs.db
+*.md
+!README.md
+!readme.md
