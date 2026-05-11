@@ -2,10 +2,15 @@ flask==3.0.0
 flask-sqlalchemy==3.1.1
 flask-babel==4.0.0
 flask-session==0.5.0
+
+tensorflow-cpu==2.16.1
 keras==3.3.3
-pillow==10.1.0
+
+numpy==1.26.4
+pillow==10.3.0
+
 huggingface-hub>=0.27.0
 requests==2.31.0
 python-dotenv==1.0.0
+
 gunicorn==21.2.0
-tensorflow-cpu==2.16.1
