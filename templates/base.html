@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ _('Plant Disease Detector') }}{% endblock %}</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        'primary-dark': '#388E3C',
+                        'primary-light': '#81C784',
+                        secondary: '#8BC34A',
+                        accent: '#2196F3',
+                        warning: '#FF9800',
+                        danger: '#F44336',
+                        dark: {
+                            bg: '#1A1A1A',
+                            card: '#2C2C2C',
+                            text: '#E0E0E0'
+                        }
+                    },
+                    fontFamily: {
+                        'arabic': ['Cairo', 'sans-serif'],
+                        'english': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: {{ "'Cairo', sans-serif" if lang == 'ar' else "'Inter', sans-serif" }};
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 2s infinite;
+        }
+
+        /* Dark mode styles */
+        .dark body {
+            background-color: #1A1A1A;
+            color: #E0E0E0;
+        }
+
+        .dark .card {
+            background-color: #2C2C2C;
+            border-color: #3C3C3C;
+        }
+
+        /* Chat widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            {{ 'left' if lang == 'ar' else 'right' }}: 20px;
+            z-index: 1000;
+        }
+
+        .chat-window {
+            width: 350px;
+            height: 500px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Image upload zone */
+        .upload-zone {
+            border: 3px dashed #4CAF50;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .upload-zone:hover {
+            border-color: #388E3C;
+            background-color: rgba(76, 175, 80, 0.05);
+        }
+
+        .upload-zone.dragover {
+            border-color: #2196F3;
+            background-color: rgba(33, 150, 243, 0.1);
+        }
+
+        /* Confidence meter */
+        .confidence-meter {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: conic-gradient(var(--color) var(--percentage), #e0e0e0 0);
+        }
+
+        .confidence-meter::before {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .dark .confidence-meter::before {
+            background: #2C2C2C;
+        }
+
+        /* Report card */
+        .report-card {
+            border-right: 4px solid #4CAF50;
+            transition: transform 0.2s;
+        }
+
+        .report-card:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Loading spinner */
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-gray-50 min-h-screen transition-colors duration-300">
+    {% include 'includes/header.html' %}
+
+    <main class="container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'includes/footer.html' %}
+
+    <!-- Chat Widget -->
+    {% include 'includes/chat_widget.html' %}
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

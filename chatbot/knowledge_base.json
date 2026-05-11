@@ -1,0 +1,856 @@
+{
+  "diseases": {
+    "Apple___Apple_scab": {
+      "ar": {
+        "name": "جرب التفاح",
+        "description": "مرض فطري يصيب أشجار التفاح بسبب الفطر Venturia inaequalis. يظهر على الأوراق والثمار على شكل بقع زيتونية داكنة.",
+        "symptoms": "بقع زيتونية داكنة على الأوراق، تشققات على الثمار، تساقط الأوراق المبكر.",
+        "treatment": "رش مبيدات تحتوي على الكبريت، إزالة الأوراق المصابة، تقليم الأشجار لتحسين التهوية.",
+        "prevention": "اختيار أصناف مقاومة، تطبيق رش وقائي في الربيع، إزالة بقايا الأوراق المتساقطة.",
+        "products": [
+          "مبيد الكبريت",
+          " captan",
+          "mancozeb"
+        ]
+      },
+      "en": {
+        "name": "Apple Scab",
+        "description": "A fungal disease caused by Venturia inaequalis affecting apple trees. Appears as olive-brown spots on leaves and fruits.",
+        "symptoms": "Olive-brown spots on leaves, fruit cracking, early leaf drop.",
+        "treatment": "Apply sulfur-based fungicides, remove infected leaves, prune trees for better ventilation.",
+        "prevention": "Choose resistant varieties, apply preventive spraying in spring, remove fallen leaf debris.",
+        "products": [
+          "Sulfur Fungicide",
+          "Captan",
+          "Mancozeb"
+        ]
+      }
+    },
+    "Apple___Black_rot": {
+      "ar": {
+        "name": "التعفن الأسود في التفاح",
+        "description": "مرض فطري يصيب ثمار التفاح بسبب الفطر Botryosphaeria obtusa. يسبب بقع داكنة وتعفن الثمار.",
+        "symptoms": "بقع بنية داكنة على الثمار مع حلقات متحدة المركز، تعفن وتقلص الثمار.",
+        "treatment": "إزالة الثمار المصابة فوراً، رش مبيدات فطرية، تقليم الأجزاء المصابة من الشجرة.",
+        "prevention": "تدوير المحاصيل، تجنب الرطوبة الزائدة، إزالة بقايا الثمار المتساقطة.",
+        "products": [
+          " captan",
+          "thiophanate-methyl",
+          "mancozeb"
+        ]
+      },
+      "en": {
+        "name": "Apple Black Rot",
+        "description": "A fungal disease caused by Botryosphaeria obtusa affecting apple fruits. Causes dark spots and fruit rot.",
+        "symptoms": "Dark brown spots on fruits with concentric rings, fruit rot and shriveling.",
+        "treatment": "Remove infected fruits immediately, apply fungicides, prune infected parts of the tree.",
+        "prevention": "Crop rotation, avoid excess moisture, remove fallen fruit debris.",
+        "products": [
+          "Captan",
+          "Thiophanate-methyl",
+          "Mancozeb"
+        ]
+      }
+    },
+    "Apple___Cedar_apple_rust": {
+      "ar": {
+        "name": "صدأ الأرز والتفاح",
+        "description": "مرض فطري يتطلب مضيفين: الأرز والتفاح. يسبب بقع صفراء-برتقالية على أوراق التفاح.",
+        "symptoms": "بقع صفراء-برتقالية على الأوراق العلوية، نتوءات صغيرة برتقالية على السطح السفلي.",
+        "treatment": "رش مبيدات تحتوي على الكبريت، إزالة الأشجار المصابة بالقرب من أشجار الأرز.",
+        "prevention": "إزالة أشجار الأرز القريبة (إن أمكن)، اختيار أصناف مقاومة، رش وقائي.",
+        "products": [
+          "مبيد الكبريت",
+          "myclobutanil",
+          "mancozeb"
+        ]
+      },
+      "en": {
+        "name": "Cedar Apple Rust",
+        "description": "A fungal disease requiring two hosts: cedar and apple. Causes yellow-orange spots on apple leaves.",
+        "symptoms": "Yellow-orange spots on upper leaf surface, small orange pustules on lower surface.",
+        "treatment": "Apply sulfur-based fungicides, remove infected trees near cedar trees.",
+        "prevention": "Remove nearby cedar trees if possible, choose resistant varieties, preventive spraying.",
+        "products": [
+          "Sulfur Fungicide",
+          "Myclobutanil",
+          "Mancozeb"
+        ]
+      }
+    },
+    "Apple___healthy": {
+      "ar": {
+        "name": "تفاح سليم",
+        "description": "الورقة سليمة ولا توجد علامات مرضية.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "متابعة الرعاية الجيدة والري المنتظم.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Apple",
+        "description": "The leaf is healthy with no disease signs.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Continue good care and regular watering.",
+        "products": []
+      }
+    },
+    "Blueberry___healthy": {
+      "ar": {
+        "name": "توت أزرق سليم",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Blueberry",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Cherry___Powdery_mildew": {
+      "ar": {
+        "name": "البياض الدقيقي في الكرز",
+        "description": "مرض فطري يظهر على شكل طبقة بيضاء مسحوقية على الأوراق والسيقان.",
+        "symptoms": "طبقة بيضاء مسحوقية على الأوراق، تشوه الأوراق الجديدة، تساقط الأزهار.",
+        "treatment": "رش مبيدات الكبريت، إزالة الأجزاء المصابة، تحسين التهوية.",
+        "prevention": "تقليم الأشجار للتهوية، تجنب الري العلوي، رش وقائي.",
+        "products": [
+          "مبيد الكبريت",
+          "myclobutanil",
+          "sulfur"
+        ]
+      },
+      "en": {
+        "name": "Cherry Powdery Mildew",
+        "description": "A fungal disease appearing as white powdery layer on leaves and stems.",
+        "symptoms": "White powdery coating on leaves, distortion of new leaves, flower drop.",
+        "treatment": "Apply sulfur fungicides, remove infected parts, improve ventilation.",
+        "prevention": "Prune trees for air circulation, avoid overhead watering, preventive spraying.",
+        "products": [
+          "Sulfur Fungicide",
+          "Myclobutanil",
+          "Sulfur"
+        ]
+      }
+    },
+    "Cherry___healthy": {
+      "ar": {
+        "name": "كرز سليم",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Cherry",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Corn___Cercospora_leaf_spot Gray_leaf_spot": {
+      "ar": {
+        "name": "لفحة سيركسبورا / اللفحة الرمادية في الذرة",
+        "description": "مرض فطري يصيب أوراق الذرة بسبب Cercospora zeae-maydis. يسبب بقع رمادية طويلة.",
+        "symptoms": "بقع رمادية طويلة موازية للعروق، تتحول إلى بني ثم تموت الأوراق.",
+        "treatment": "رش مبيدات مانكوزيب، إزالة بقايا المحصول، تدوير المحاصيل.",
+        "prevention": "اختيار أصناف مقاومة، تدوير المحاصيل، إزالة بقايا النباتات المصابة.",
+        "products": [
+          "mancozeb",
+          "chlorothalonil",
+          "azoxystrobin"
+        ]
+      },
+      "en": {
+        "name": "Corn Cercospora Leaf Spot / Gray Leaf Spot",
+        "description": "A fungal disease caused by Cercospora zeae-maydis affecting corn leaves. Causes long gray spots.",
+        "symptoms": "Long gray spots parallel to veins, turning brown then causing leaf death.",
+        "treatment": "Apply mancozeb fungicides, remove crop residues, crop rotation.",
+        "prevention": "Choose resistant varieties, crop rotation, remove infected plant debris.",
+        "products": [
+          "Mancozeb",
+          "Chlorothalonil",
+          "Azoxystrobin"
+        ]
+      }
+    },
+    "Corn___Common_rust_": {
+      "ar": {
+        "name": "الصدأ الشائع في الذرة",
+        "description": "مرض فطري يسبب بقع صدأ برتقالية-بنية على أوراق الذرة.",
+        "symptoms": "بقع صدأ برتقالية-بنية على الأوراق العلوية والسفلى، نتوءات صغيرة.",
+        "treatment": "رش مبيدات مانكوزيب، إزالة الأوراق المصابة.",
+        "prevention": "اختيار أصناف مقاومة، تجنب الري العلوي.",
+        "products": [
+          "mancozeb",
+          "chlorothalonil"
+        ]
+      },
+      "en": {
+        "name": "Corn Common Rust",
+        "description": "A fungal disease causing orange-brown rust spots on corn leaves.",
+        "symptoms": "Orange-brown rust spots on upper and lower leaves, small pustules.",
+        "treatment": "Apply mancozeb fungicides, remove infected leaves.",
+        "prevention": "Choose resistant varieties, avoid overhead watering.",
+        "products": [
+          "Mancozeb",
+          "Chlorothalonil"
+        ]
+      }
+    },
+    "Corn___Northern_Leaf_Blight": {
+      "ar": {
+        "name": "اللفحة الشمالية في الذرة",
+        "description": "مرض فطري يسبب بقع كبيرة رمادية-خضراء على أوراق الذرة.",
+        "symptoms": "بقع كبيرة رمادية-خضراء على الأوراق، تتحول إلى بني مع حلقات متحدة المركز.",
+        "treatment": "رش مبيدات فطرية، إزالة بقايا المحصول.",
+        "prevention": "تدوير المحاصيل، اختيار أصناف مقاومة.",
+        "products": [
+          "mancozeb",
+          "chlorothalonil",
+          "azoxystrobin"
+        ]
+      },
+      "en": {
+        "name": "Corn Northern Leaf Blight",
+        "description": "A fungal disease causing large gray-green spots on corn leaves.",
+        "symptoms": "Large gray-green spots on leaves, turning brown with concentric rings.",
+        "treatment": "Apply fungicides, remove crop residues.",
+        "prevention": "Crop rotation, choose resistant varieties.",
+        "products": [
+          "Mancozeb",
+          "Chlorothalonil",
+          "Azoxystrobin"
+        ]
+      }
+    },
+    "Corn___healthy": {
+      "ar": {
+        "name": "ذرة سليمة",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Corn",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Grape___Black_rot": {
+      "ar": {
+        "name": "التعفن الأسود في العنب",
+        "description": "مرض فطري يصيب ثمار العنب بسبب Guignardia bidwellii. يسبب بقع داكنة وتعفن.",
+        "symptoms": "بقع بنية داكنة على الثمار، تتحول إلى أسود مع نقاط سوداء صغيرة.",
+        "treatment": "رش مبيدات captan، إزالة الثمار المصابة، تقليم الأجزاء المصابة.",
+        "prevention": "إزالة بقايا الثمار، رش وقائي، تحسين التهوية.",
+        "products": [
+          "captan",
+          "mancozeb",
+          "myclobutanil"
+        ]
+      },
+      "en": {
+        "name": "Grape Black Rot",
+        "description": "A fungal disease caused by Guignardia bidwellii affecting grape fruits. Causes dark spots and rot.",
+        "symptoms": "Dark brown spots on fruits, turning black with small black dots.",
+        "treatment": "Apply captan fungicides, remove infected fruits, prune infected parts.",
+        "prevention": "Remove fruit debris, preventive spraying, improve ventilation.",
+        "products": [
+          "Captan",
+          "Mancozeb",
+          "Myclobutanil"
+        ]
+      }
+    },
+    "Grape___Esca_(Black_Measles)": {
+      "ar": {
+        "name": "مرض إسكا (الحصبة السوداء) في العنب",
+        "description": "مرض فطري معقد يصيب جذوع العنب. يسبب بقع داكنة على الخشب.",
+        "symptoms": "بقع داكنة على جذع الكرمة، أوراق مصفرة، ثمار صغيرة ومتشققة.",
+        "treatment": "لا يوجد علاج فعال، إزالة الكروم المصابة.",
+        "prevention": "تعقيم أدوات التقليم، تجنب جروح الجذع، اختيار أصناف مقاومة.",
+        "products": []
+      },
+      "en": {
+        "name": "Grape Esca (Black Measles)",
+        "description": "A complex fungal disease affecting grapevine trunks. Causes dark spots on wood.",
+        "symptoms": "Dark spots on vine trunk, yellowing leaves, small and cracked fruits.",
+        "treatment": "No effective treatment, remove infected vines.",
+        "prevention": "Sterilize pruning tools, avoid trunk wounds, choose resistant varieties.",
+        "products": []
+      }
+    },
+    "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+      "ar": {
+        "name": "لفحة أوراق العنب",
+        "description": "مرض فطري يسبب بقع داكنة على أوراق العنب.",
+        "symptoms": "بقع بنية داكنة على الأوراق، تساقط الأوراق المبكر.",
+        "treatment": "رش مبيدات فطرية، إزالة الأوراق المصابة.",
+        "prevention": "تحسين التهوية، إزالة بقايا الأوراق.",
+        "products": [
+          "mancozeb",
+          "captan"
+        ]
+      },
+      "en": {
+        "name": "Grape Leaf Blight",
+        "description": "A fungal disease causing dark spots on grape leaves.",
+        "symptoms": "Dark brown spots on leaves, early leaf drop.",
+        "treatment": "Apply fungicides, remove infected leaves.",
+        "prevention": "Improve ventilation, remove leaf debris.",
+        "products": [
+          "Mancozeb",
+          "Captan"
+        ]
+      }
+    },
+    "Grape___healthy": {
+      "ar": {
+        "name": "عنب سليم",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Grape",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Orange___Haunglongbing_(Citrus_greening)": {
+      "ar": {
+        "name": "مرض الاصفرار الخبيث (الليونة الخضراء) في البرتقال",
+        "description": "مرض بكتيري خطير ينتقل عبر حشرة البسيلة. يصيب جميع أنواع الحمضيات.",
+        "symptoms": "أوراق غير منتظمة الشكل، أصفرار غير متناظر، ثمار صغيرة وذات طعم مر.",
+        "treatment": "لا يوجد علاج، إزالة الأشجار المصابة.",
+        "prevention": "مكافحة حشرة البسيلة، استخدام شتلات معتمدة خالية من المرض.",
+        "products": []
+      },
+      "en": {
+        "name": "Citrus Greening (HLB)",
+        "description": "A serious bacterial disease transmitted by psyllid insects. Affects all citrus types.",
+        "symptoms": "Irregularly shaped leaves, asymmetrical yellowing, small and bitter fruits.",
+        "treatment": "No cure, remove infected trees.",
+        "prevention": "Control psyllid insects, use certified disease-free seedlings.",
+        "products": []
+      }
+    },
+    "Peach___Bacterial_spot": {
+      "ar": {
+        "name": "البقع البكتيرية في الخوخ",
+        "description": "مرض بكتيري يسبب بقع داكنة على أوراق الخوخ والثمار.",
+        "symptoms": "بقع داكنة صغيرة على الأوراق، تساقط الأوراق، بقع على الثمار.",
+        "treatment": "رش مبيدات النحاس، إزالة الأجزاء المصابة.",
+        "prevention": "اختيار أصناف مقاومة، تجنب الري العلوي، تقليم للتهوية.",
+        "products": [
+          "copper fungicide",
+          "mancozeb"
+        ]
+      },
+      "en": {
+        "name": "Peach Bacterial Spot",
+        "description": "A bacterial disease causing dark spots on peach leaves and fruits.",
+        "symptoms": "Small dark spots on leaves, leaf drop, spots on fruits.",
+        "treatment": "Apply copper fungicides, remove infected parts.",
+        "prevention": "Choose resistant varieties, avoid overhead watering, prune for ventilation.",
+        "products": [
+          "Copper Fungicide",
+          "Mancozeb"
+        ]
+      }
+    },
+    "Peach___healthy": {
+      "ar": {
+        "name": "خوخ سليم",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Peach",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Pepper,_bell___Bacterial_spot": {
+      "ar": {
+        "name": "البقع البكتيرية في الفلفل الحلو",
+        "description": "مرض بكتيري يسبب بقع مائية على أوراق الفلفل.",
+        "symptoms": "بقع مائية صغيرة على الأوراق، تتحول إلى بني مع هالو أصفر، تساقط الأوراق.",
+        "treatment": "رش مبيدات النحاس، إزالة الأوراق المصابة، تجنب العمل على النباتات الرطبة.",
+        "prevention": "استخدام بذور معتمدة، تجنب الري العلوي، تدوير المحاصيل.",
+        "products": [
+          "copper fungicide",
+          "mancozeb"
+        ]
+      },
+      "en": {
+        "name": "Pepper Bacterial Spot",
+        "description": "A bacterial disease causing water-soaked spots on pepper leaves.",
+        "symptoms": "Small water-soaked spots on leaves, turning brown with yellow halo, leaf drop.",
+        "treatment": "Apply copper fungicides, remove infected leaves, avoid working on wet plants.",
+        "prevention": "Use certified seeds, avoid overhead watering, crop rotation.",
+        "products": [
+          "Copper Fungicide",
+          "Mancozeb"
+        ]
+      }
+    },
+    "Pepper,_bell___healthy": {
+      "ar": {
+        "name": "فلفل حلو سليم",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Pepper",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Potato___Early_blight": {
+      "ar": {
+        "name": "اللفحة المبكرة في البطاطس",
+        "description": "مرض فطري شائع يسببه Alternaria solani. يصيب الأوراق والسيقان والثمار.",
+        "symptoms": "بقع بنية داكنة على الأوراق السفلية مع حلقات متحدة المركز تشبه الهدف.",
+        "treatment": "إزالة الأوراق المصابة، رش مبيدات مانكوزيب أو الكلوروثالونيل.",
+        "prevention": "تدوير المحاصيل كل 2-3 سنوات، الري عند مستوى التربة، التغطية بالمهاد.",
+        "products": [
+          "mancozeb",
+          "chlorothalonil",
+          "copper fungicide"
+        ]
+      },
+      "en": {
+        "name": "Potato Early Blight",
+        "description": "A common fungal disease caused by Alternaria solani. Affects leaves, stems, and tubers.",
+        "symptoms": "Dark brown spots on lower leaves with concentric target-like rings.",
+        "treatment": "Remove infected leaves, apply mancozeb or chlorothalonil fungicides.",
+        "prevention": "Rotate crops every 2-3 years, water at soil level, use mulch.",
+        "products": [
+          "Mancozeb",
+          "Chlorothalonil",
+          "Copper Fungicide"
+        ]
+      }
+    },
+    "Potato___Late_blight": {
+      "ar": {
+        "name": "اللفحة المتأخرة في البطاطس",
+        "description": "مرض فطري مدمر يسببه Phytophthora infestans. أدى إلى مجاعة البطاطس الأيرلندية.",
+        "symptoms": "بقع مائية داكنة على الأوراق تنتشر بسرعة، بياض على الجانب السفلي، تعفن الدرنات.",
+        "treatment": "إزالة النباتات المصابة فوراً، رش مبيدات النحاس، تجنب الرطوبة.",
+        "prevention": "اختيار أصناف مقاومة، إزالة بقايا البطاطس، تجنب الري العلوي.",
+        "products": [
+          "copper fungicide",
+          "mancozeb",
+          "metalaxyl"
+        ]
+      },
+      "en": {
+        "name": "Potato Late Blight",
+        "description": "A devastating fungal disease caused by Phytophthora infestans. Caused the Irish Potato Famine.",
+        "symptoms": "Water-soaked dark spots on leaves spreading rapidly, white growth on underside, tuber rot.",
+        "treatment": "Remove infected plants immediately, apply copper fungicides, avoid moisture.",
+        "prevention": "Choose resistant varieties, remove potato debris, avoid overhead watering.",
+        "products": [
+          "Copper Fungicide",
+          "Mancozeb",
+          "Metalaxyl"
+        ]
+      }
+    },
+    "Potato___healthy": {
+      "ar": {
+        "name": "بطاطس سليمة",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Potato",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Raspberry___healthy": {
+      "ar": {
+        "name": "توت العليق سليم",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Raspberry",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Soybean___healthy": {
+      "ar": {
+        "name": "فول صويا سليم",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Soybean",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Squash___Powdery_mildew": {
+      "ar": {
+        "name": "البياض الدقيقي في القرع",
+        "description": "مرض فطري شائع يظهر على شكل طبقة بيضاء على أوراق القرع.",
+        "symptoms": "طبقة بيضاء مسحوقية على الأوراق، تشوه الأوراق، تساقط مبكر.",
+        "treatment": "رش مبيدات الكبريت، إزالة الأوراق المصابة، تحسين التهوية.",
+        "prevention": "زراعة في أماكن مشمسة، التهوية الجيدة، رش وقائي.",
+        "products": [
+          "sulfur fungicide",
+          "potassium bicarbonate",
+          "neem oil"
+        ]
+      },
+      "en": {
+        "name": "Squash Powdery Mildew",
+        "description": "A common fungal disease appearing as white powdery layer on squash leaves.",
+        "symptoms": "White powdery coating on leaves, leaf distortion, early drop.",
+        "treatment": "Apply sulfur fungicides, remove infected leaves, improve ventilation.",
+        "prevention": "Plant in sunny locations, good ventilation, preventive spraying.",
+        "products": [
+          "Sulfur Fungicide",
+          "Potassium Bicarbonate",
+          "Neem Oil"
+        ]
+      }
+    },
+    "Strawberry___Leaf_scorch": {
+      "ar": {
+        "name": "حرق أوراق الفراولة",
+        "description": "مرض فطري يسبب بقع بنية داكنة على أوراق الفراولة.",
+        "symptoms": "بقع بنية داكنة على الأوراق، تتحول إلى بني فاتح في المركز، تساقط الأوراق.",
+        "treatment": "رش مبيدات captan، إزالة الأوراق المصابة، تجنب الري العلوي.",
+        "prevention": "إزالة بقايا الأوراق، التهوية الجيدة، تدوير المحاصيل.",
+        "products": [
+          "captan",
+          "mancozeb",
+          "chlorothalonil"
+        ]
+      },
+      "en": {
+        "name": "Strawberry Leaf Scorch",
+        "description": "A fungal disease causing dark brown spots on strawberry leaves.",
+        "symptoms": "Dark brown spots on leaves, turning light brown in center, leaf drop.",
+        "treatment": "Apply captan fungicides, remove infected leaves, avoid overhead watering.",
+        "prevention": "Remove leaf debris, good ventilation, crop rotation.",
+        "products": [
+          "Captan",
+          "Mancozeb",
+          "Chlorothalonil"
+        ]
+      }
+    },
+    "Strawberry___healthy": {
+      "ar": {
+        "name": "فراولة سليمة",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Strawberry",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    },
+    "Tomato___Bacterial_spot": {
+      "ar": {
+        "name": "البقع البكتيرية في الطماطم",
+        "description": "مرض بكتيري يسببه Xanthomonas spp. يصيب الأوراق والسيقان والثمار.",
+        "symptoms": "بقع مائية صغيرة على الأوراق، تتحول إلى بني داكن مع هالو أصفر، ثقوب في الأوراق.",
+        "treatment": "رش مبيدات النحاس، إزالة الأجزاء المصابة، تجنب العمل على النباتات الرطبة.",
+        "prevention": "استخدام بذور معتمدة، تجنب الري العلوي، تدوير المحاصيل كل سنة.",
+        "products": [
+          "copper fungicide",
+          "mancozeb"
+        ]
+      },
+      "en": {
+        "name": "Tomato Bacterial Spot",
+        "description": "A bacterial disease caused by Xanthomonas spp. affecting leaves, stems, and fruits.",
+        "symptoms": "Small water-soaked spots on leaves, turning dark brown with yellow halo, holes in leaves.",
+        "treatment": "Apply copper fungicides, remove infected parts, avoid working on wet plants.",
+        "prevention": "Use certified seeds, avoid overhead watering, rotate crops annually.",
+        "products": [
+          "Copper Fungicide",
+          "Mancozeb"
+        ]
+      }
+    },
+    "Tomato___Early_blight": {
+      "ar": {
+        "name": "اللفحة المبكرة في الطماطم",
+        "description": "مرض فطري شائع يسببه Alternaria solani. يصيب الأوراق والسيقان والثمار.",
+        "symptoms": "بقع بنية داكنة على الأوراق السفلية مع حلقات متحدة المركز تشبه الهدف، تساقط الأوراق.",
+        "treatment": "إزالة الأوراق المصابة، رش مبيدات مانكوزيب أو الكلوروثالونيل.",
+        "prevention": "تدوير المحاصيل كل 2-3 سنوات، الري عند مستوى التربة، التغطية بالمهاد.",
+        "products": [
+          "mancozeb",
+          "chlorothalonil",
+          "copper fungicide"
+        ]
+      },
+      "en": {
+        "name": "Tomato Early Blight",
+        "description": "A common fungal disease caused by Alternaria solani. Affects leaves, stems, and fruits.",
+        "symptoms": "Dark brown spots on lower leaves with concentric target-like rings, leaf drop.",
+        "treatment": "Remove infected leaves, apply mancozeb or chlorothalonil fungicides.",
+        "prevention": "Rotate crops every 2-3 years, water at soil level, use mulch.",
+        "products": [
+          "Mancozeb",
+          "Chlorothalonil",
+          "Copper Fungicide"
+        ]
+      }
+    },
+    "Tomato___Late_blight": {
+      "ar": {
+        "name": "اللفحة المتأخرة في الطماطم",
+        "description": "مرض فطري مدمر يسببه Phytophthora infestans. ينتشر بسرعة في الظروف الرطبة والباردة.",
+        "symptoms": "بقع مائية داكنة على الأوراق تنتشر بسرعة، بياض على الجانب السفلي، تعفن الثمار.",
+        "treatment": "إزالة النباتات المصابة فوراً، رش مبيدات النحاس، تجنب الرطوبة.",
+        "prevention": "اختيار أصناف مقاومة، إزالة بقايا الطماطم، تجنب الري العلوي.",
+        "products": [
+          "copper fungicide",
+          "mancozeb",
+          "metalaxyl"
+        ]
+      },
+      "en": {
+        "name": "Tomato Late Blight",
+        "description": "A devastating fungal disease caused by Phytophthora infestans. Spreads rapidly in cool, wet conditions.",
+        "symptoms": "Water-soaked dark spots on leaves spreading rapidly, white growth on underside, fruit rot.",
+        "treatment": "Remove infected plants immediately, apply copper fungicides, avoid moisture.",
+        "prevention": "Choose resistant varieties, remove tomato debris, avoid overhead watering.",
+        "products": [
+          "Copper Fungicide",
+          "Mancozeb",
+          "Metalaxyl"
+        ]
+      }
+    },
+    "Tomato___Leaf_Mold": {
+      "ar": {
+        "name": "عفن أوراق الطماطم",
+        "description": "مرض فطري يسببه Passalora fulva. يظهر في البيوت المحمية والأماكن الرطبة.",
+        "symptoms": "بقع صفراء على الأوراق العلوية، طبقة زيتونية على الجانب السفلي.",
+        "treatment": "تحسين التهوية، رش مبيدات الكبريت، إزالة الأوراق المصابة.",
+        "prevention": "التهوية الجيدة، تجنب الرطوبة الزائدة، رش وقائي.",
+        "products": [
+          "sulfur fungicide",
+          "chlorothalonil"
+        ]
+      },
+      "en": {
+        "name": "Tomato Leaf Mold",
+        "description": "A fungal disease caused by Passalora fulva. Appears in greenhouses and humid areas.",
+        "symptoms": "Yellow spots on upper leaf surface, olive-green layer on underside.",
+        "treatment": "Improve ventilation, apply sulfur fungicides, remove infected leaves.",
+        "prevention": "Good ventilation, avoid excess humidity, preventive spraying.",
+        "products": [
+          "Sulfur Fungicide",
+          "Chlorothalonil"
+        ]
+      }
+    },
+    "Tomato___Septoria_leaf_spot": {
+      "ar": {
+        "name": "بقع سيبتوريا في الطماطم",
+        "description": "مرض فطري شائع يسببه Septoria lycopersici. يبدأ على الأوراق السفلية.",
+        "symptoms": "بقع صغيرة رمادية مع حدود داكنة وحلقة صفراء، نقاط سوداء في المركز.",
+        "treatment": "إزالة الأوراق المصابة، رش مبيدات مانكوزيب أو الكلوروثالونيل.",
+        "prevention": "تدوير المحاصيل، إزالة بقايا النباتات، تجنب الري العلوي.",
+        "products": [
+          "mancozeb",
+          "chlorothalonil",
+          "copper fungicide"
+        ]
+      },
+      "en": {
+        "name": "Tomato Septoria Leaf Spot",
+        "description": "A common fungal disease caused by Septoria lycopersici. Starts on lower leaves.",
+        "symptoms": "Small gray spots with dark borders and yellow ring, black dots in center.",
+        "treatment": "Remove infected leaves, apply mancozeb or chlorothalonil fungicides.",
+        "prevention": "Crop rotation, remove plant debris, avoid overhead watering.",
+        "products": [
+          "Mancozeb",
+          "Chlorothalonil",
+          "Copper Fungicide"
+        ]
+      }
+    },
+    "Tomato___Spider_mites Two-spotted_spider_mite": {
+      "ar": {
+        "name": "سوس العنكبوت ذو البقعتين في الطماطم",
+        "description": "آفة حشرية تتغذى على الأوراق وتسبب بقع صفراء.",
+        "symptoms": "بقع صفراء صغيرة على الأوراق، شبكة عنكبوتية تحت الأوراق، أوراق جافة.",
+        "treatment": "رش ماء قوي لإزالة العث، استخدام زيت النيم، إطلاق مفترسات طبيعية.",
+        "prevention": "الري المنتظم، الرطوبة العالية، مراقبة دورية.",
+        "products": [
+          "neem oil",
+          "insecticidal soap",
+          "abamectin"
+        ]
+      },
+      "en": {
+        "name": "Tomato Two-Spotted Spider Mite",
+        "description": "A pest insect feeding on leaves causing yellow spots.",
+        "symptoms": "Small yellow spots on leaves, spider webbing under leaves, dry leaves.",
+        "treatment": "Spray strong water to remove mites, use neem oil, release natural predators.",
+        "prevention": "Regular watering, high humidity, periodic monitoring.",
+        "products": [
+          "Neem Oil",
+          "Insecticidal Soap",
+          "Abamectin"
+        ]
+      }
+    },
+    "Tomato___Target_Spot": {
+      "ar": {
+        "name": "البقع المستهدفة في الطماطم",
+        "description": "مرض فطري يسبب بقع داكنة على أوراق الطماطم.",
+        "symptoms": "بقع داكنة على الأوراق مع حلقات متحدة المركز، تساقط الأوراق.",
+        "treatment": "رش مبيدات فطرية، إزالة الأوراق المصابة.",
+        "prevention": "التهوية الجيدة، تجنب الرطوبة الزائدة.",
+        "products": [
+          "chlorothalonil",
+          "mancozeb"
+        ]
+      },
+      "en": {
+        "name": "Tomato Target Spot",
+        "description": "A fungal disease causing dark spots on tomato leaves.",
+        "symptoms": "Dark spots on leaves with concentric rings, leaf drop.",
+        "treatment": "Apply fungicides, remove infected leaves.",
+        "prevention": "Good ventilation, avoid excess humidity.",
+        "products": [
+          "Chlorothalonil",
+          "Mancozeb"
+        ]
+      }
+    },
+    "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+      "ar": {
+        "name": "فيروس تجعد أوراق الطماطم الصفراء",
+        "description": "مرض فيروسي ينتقل عبر الذبابة البيضاء. يسبب تجعد وتغير لون الأوراق.",
+        "symptoms": "أوراق صفراء وتجعد للأعلى، نمو متوقف، ثمار قليلة.",
+        "treatment": "لا يوجد علاج، إزالة النباتات المصابة.",
+        "prevention": "مكافحة الذبابة البيضاء، استخدام شبكات حماية، أصناف مقاومة.",
+        "products": [
+          "imidacloprid",
+          "pyriproxyfen"
+        ]
+      },
+      "en": {
+        "name": "Tomato Yellow Leaf Curl Virus",
+        "description": "A viral disease transmitted by whiteflies. Causes leaf curling and yellowing.",
+        "symptoms": "Yellow and curled upward leaves, stunted growth, few fruits.",
+        "treatment": "No cure, remove infected plants.",
+        "prevention": "Control whiteflies, use protective nets, resistant varieties.",
+        "products": [
+          "Imidacloprid",
+          "Pyriproxyfen"
+        ]
+      }
+    },
+    "Tomato___Tomato_mosaic_virus": {
+      "ar": {
+        "name": "فيروس موزاييك الطماطم",
+        "description": "مرض فيروسي ينتقل عبر الأدوات واليدين. يسبب تشوه الأوراق.",
+        "symptoms": "أوراق متموجة ومتعرجة، بقع فاتحة وداكنة (موزاييك)، نمو متوقف.",
+        "treatment": "لا يوجد علاج، إزالة النباتات المصابة.",
+        "prevention": "تعقيم الأدوات، غسل اليدين، استخدام بذور معتمدة.",
+        "products": []
+      },
+      "en": {
+        "name": "Tomato Mosaic Virus",
+        "description": "A viral disease transmitted through tools and hands. Causes leaf distortion.",
+        "symptoms": "Mottled and distorted leaves, light and dark patches (mosaic), stunted growth.",
+        "treatment": "No cure, remove infected plants.",
+        "prevention": "Sterilize tools, wash hands, use certified seeds.",
+        "products": []
+      }
+    },
+    "Tomato___healthy": {
+      "ar": {
+        "name": "طماطم سليمة",
+        "description": "الورقة سليمة.",
+        "symptoms": "لا توجد أعراض.",
+        "treatment": "لا يحتاج لعلاج.",
+        "prevention": "العناية المنتظمة.",
+        "products": []
+      },
+      "en": {
+        "name": "Healthy Tomato",
+        "description": "The leaf is healthy.",
+        "symptoms": "No symptoms.",
+        "treatment": "No treatment needed.",
+        "prevention": "Regular care.",
+        "products": []
+      }
+    }
+  }
+}

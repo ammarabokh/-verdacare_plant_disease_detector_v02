@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Plant Disease Detector') }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="text-center py-12 animate-fade-in">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">
+        {{ _('Detect Plant Diseases with AI') }}
+    </h1>
+    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        {{ _('Upload a photo of your plant leaf and our AI will diagnose the disease instantly.') }}
+    </p>
+</section>
+
+<!-- Upload Section -->
+<section class="max-w-2xl mx-auto mb-12">
+    <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg p-8">
+        <form id="upload-form" action="{{ url_for('diagnose') }}" method="POST" enctype="multipart/form-data">
+            <!-- Upload Zone -->
+            <div 
+                id="upload-zone"
+                class="upload-zone p-12 text-center cursor-pointer"
+                onclick="document.getElementById('file-input').click()"
+                ondrop="handleDrop(event)"
+                ondragover="handleDragOver(event)"
+                ondragleave="handleDragLeave(event)"
+            >
+                <input 
+                    type="file" 
+                    id="file-input" 
+                    name="image" 
+                    accept="image/*"
+                    class="hidden"
+                    onchange="handleFileSelect(event)"
+                >
+                <div id="upload-placeholder">
+                    <i class="fas fa-cloud-upload-alt text-6xl text-primary mb-4"></i>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-2">
+                        {{ _('Drag & drop your image here') }}
+                    </p>
+                    <p class="text-sm text-gray-400">
+                        {{ _('or click to browse') }}
+                    </p>
+                </div>
+                <div id="image-preview" class="hidden">
+                    <img id="preview-img" src="" alt="Preview" class="max-h-64 mx-auto rounded-lg shadow-md">
+                    <p id="file-name" class="mt-4 text-sm text-gray-500"></p>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="hidden mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                <p class="text-red-600 dark:text-red-400 text-sm">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <span id="error-text"></span>
+                </p>
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+                type="submit" 
+                id="submit-btn"
+                class="w-full mt-6 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+            >
+                <span id="btn-text">{{ _('Analyze Image') }}</span>
+                <span id="btn-loading" class="hidden">
+                    <i class="fas fa-spinner fa-spin mr-2"></i>
+                    {{ _('Analyzing...') }}
+                </span>
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="grid md:grid-cols-3 gap-6 mb-12">
+    <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md text-center">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-brain text-2xl text-primary"></i>
+        </div>
+        <h3 class="font-semibold text-gray-800 dark:text-white mb-2">{{ _('AI Powered') }}</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Deep learning model trained on thousands of plant images') }}</p>
+    </div>
+
+    <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md text-center">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-file-medical-alt text-2xl text-primary"></i>
+        </div>
+        <h3 class="font-semibold text-gray-800 dark:text-white mb-2">{{ _('Detailed Reports') }}</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Get comprehensive disease information and treatment advice') }}</p>
+    </div>
+
+    <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md text-center">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-robot text-2xl text-primary"></i>
+        </div>
+        <h3 class="font-semibold text-gray-800 dark:text-white mb-2">{{ _('Smart Chatbot') }}</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Ask our AI assistant for farming advice and disease information') }}</p>
+    </div>
+</section>
+
+<!-- Supported Plants -->
+<section class="bg-white dark:bg-dark-card rounded-2xl shadow-lg p-8 mb-12">
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+        {{ _('Supported Plants') }}
+    </h2>
+    <div class="flex flex-wrap justify-center gap-4">
+        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <i class="fas fa-apple-alt mr-1"></i> {{ _('Apple') }}
+        </span>
+        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <i class="fas fa-leaf mr-1"></i> {{ _('Corn') }}
+        </span>
+        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <i class="fas fa-grape mr-1"></i> {{ _('Grape') }}
+        </span>
+        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <i class="fas fa-lemon mr-1"></i> {{ _('Orange') }}
+        </span>
+        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <i class="fas fa-carrot mr-1"></i> {{ _('Potato') }}
+        </span>
+        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <i class="fas fa-pepper-hot mr-1"></i> {{ _('Tomato') }}
+        </span>
+        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+            <i class="fas fa-circle mr-1"></i> {{ _('And 32 more...') }}
+        </span>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file) {
+            displayPreview(file);
+        }
+    }
+
+    function handleDrop(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.getElementById('upload-zone').classList.remove('dragover');
+
+        const file = event.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            document.getElementById('file-input').files = event.dataTransfer.files;
+            displayPreview(file);
+        }
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.getElementById('upload-zone').classList.add('dragover');
+    }
+
+    function handleDragLeave(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.getElementById('upload-zone').classList.remove('dragover');
+    }
+
+    function displayPreview(file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('upload-placeholder').classList.add('hidden');
+            document.getElementById('image-preview').classList.remove('hidden');
+            document.getElementById('preview-img').src = e.target.result;
+            document.getElementById('file-name').textContent = file.name;
+            document.getElementById('submit-btn').disabled = false;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    document.getElementById('upload-form').addEventListener('submit', function(e) {
+        document.getElementById('btn-text').classList.add('hidden');
+        document.getElementById('btn-loading').classList.remove('hidden');
+        document.getElementById('submit-btn').disabled = true;
+    });
+</script>
+{% endblock %}
