@@ -2,6 +2,10 @@
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.crt
+kaggle.json
 
 # Python cache and compiled files
 __pycache__/
@@ -13,7 +17,10 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .coverage
+.coverage.*
 htmlcov/
+.tox/
+.nox/
 
 # Virtual environments
 .venv/
@@ -26,15 +33,20 @@ instance/
 flask_session/
 *.db
 *.sqlite3
+*.sqlite
+instance/*.db
 
 # Models and large binaries
 models/*.h5
 models/*.pt
 models/*.pth
 models/*.ckpt
+models/*.keras
+models/cache/
 
 # Logs
 *.log
+logs/
 
 # IDE / Editor
 .vscode/
@@ -45,6 +57,20 @@ models/*.ckpt
 # OS files
 .DS_Store
 Thumbs.db
+
+# Uploads
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Build/distribution artifacts
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Markdown docs (keep only main README)
 *.md
 !README.md
-!readme.md

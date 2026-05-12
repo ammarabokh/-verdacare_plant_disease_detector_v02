@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('Diagnosis History') }}{% endblock %}
+{% block content %}
+<div class="max-w-6xl mx-auto animate-fade-in">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ _('Diagnosis History') }}</h1>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">{{ _('Browse all your plant disease diagnoses') }}</p>
+        </div>
+        <div class="flex gap-3">
+            <a href="{{ url_for('dashboard.export_diagnoses') }}" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition text-sm">
+                <i class="fas fa-download mr-1"></i>{{ _('Export CSV') }}
+            </a>
+        </div>
+    </div>
+
+    <form method="GET" class="bg-white dark:bg-dark-card rounded-xl shadow-md p-4 mb-6">
+        <div class="grid md:grid-cols-4 gap-4">
+            <div>
+                <input type="text" name="search" value="{{ search }}" placeholder="{{ _('Search diseases...') }}" class="w-full px-4 py-2 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm">
+            </div>
+            <div>
+                <input type="date" name="date_from" value="{{ date_from }}" class="w-full px-4 py-2 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm">
+            </div>
+            <div>
+                <input type="date" name="date_to" value="{{ date_to }}" class="w-full px-4 py-2 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm">
+            </div>
+            <div class="flex gap-2">
+                <button type="submit" class="flex-1 px-4 py-2 bg-primary text-white rounded-lg text-sm hover:bg-primary-dark transition">{{ _('Filter') }}</button>
+                <a href="{{ url_for('dashboard.diagnoses') }}" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition">{{ _('Clear') }}</a>
+            </div>
+        </div>
+    </form>
+
+    <div class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden">
+        {% if diagnoses %}
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50 dark:bg-gray-800">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ _('Date') }}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ _('Disease') }}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ _('Confidence') }}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ _('Rating') }}</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{ _('Actions') }}</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y dark:divide-gray-700">
+                    {% for d in diagnoses %}
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition">
+                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">{{ d.timestamp }}</td>
+                        <td class="px-6 py-4">
+                            <p class="font-medium text-gray-800 dark:text-white text-sm">{{ d.disease_name }}</p>
+                            {% if d.location_name %}<p class="text-xs text-gray-500">{{ d.location_name }}</p>{% endif %}
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 text-xs font-medium rounded-full {{ 'bg-green-100 text-green-700' if d.confidence >= 0.8 else 'bg-yellow-100 text-yellow-700' }}">
+                                {{ "%.0f"|format(d.confidence * 100) }}%
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            {% if d.user_rating %}
+                            <span class="text-yellow-500">{{ '⭐' * d.user_rating }}</span>
+                            {% else %}
+                            <span class="text-gray-400 text-sm">-</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex gap-2">
+                                <a href="{{ url_for('result', diagnosis_id=d.id) }}" class="px-3 py-1 text-xs bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition">{{ _('View') }}</a>
+                                <form method="POST" action="{{ url_for('dashboard.delete_diagnosis', diagnosis_id=d.id) }}" onsubmit="return confirm('{{ _('Delete this diagnosis?') }}')">
+                                    <button type="submit" class="px-3 py-1 text-xs bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition">{{ _('Delete') }}</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if pagination.pages > 1 %}
+        <div class="px-6 py-4 flex justify-center gap-2">
+            {% for p in range(1, pagination.pages + 1) %}
+            <a href="{{ url_for('dashboard.diagnoses', page=p, search=search, date_from=date_from, date_to=date_to) }}"
+               class="px-3 py-1 text-sm rounded {{ 'bg-primary text-white' if p == pagination.page else 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200' }}">
+                {{ p }}
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="text-center py-12">
+            <i class="fas fa-search text-4xl text-gray-300 mb-4"></i>
+            <p class="text-gray-500">{{ _('No diagnoses found') }}</p>
+            <a href="{{ url_for('index') }}" class="inline-block mt-4 text-primary hover:underline">{{ _('Diagnose a plant now') }}</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

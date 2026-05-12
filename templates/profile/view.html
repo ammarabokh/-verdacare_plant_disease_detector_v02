@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('My Profile') }}{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto animate-fade-in">
+    <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg overflow-hidden">
+        <div class="bg-gradient-to-r from-primary to-primary-dark p-8 text-center">
+            <div class="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden border-4 border-white/50">
+                {% if current_user.profile_image %}
+                <img src="{{ url_for('static', filename='uploads/' + current_user.profile_image) }}" class="w-full h-full object-cover">
+                {% else %}
+                <div class="w-full h-full bg-white/20 flex items-center justify-center">
+                    <i class="fas fa-user text-4xl text-white"></i>
+                </div>
+                {% endif %}
+            </div>
+            <h1 class="text-2xl font-bold text-white">{{ current_user.full_name or current_user.username }}</h1>
+            <p class="text-white/80">@{{ current_user.username }}</p>
+        </div>
+        <div class="p-8">
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                    <p class="text-2xl font-bold text-primary">{{ diagnoses_count }}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Diagnoses') }}</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                    <p class="text-2xl font-bold text-primary">{{ plants_count }}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Plants') }}</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                    <p class="text-2xl font-bold text-primary">{{ chats_count }}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Chats') }}</p>
+                </div>
+            </div>
+            <div class="space-y-4 mb-8">
+                <div class="flex justify-between py-3 border-b dark:border-gray-700">
+                    <span class="text-gray-600 dark:text-gray-400">{{ _('Email') }}</span>
+                    <span class="font-medium text-gray-800 dark:text-white">{{ current_user.email }}</span>
+                </div>
+                <div class="flex justify-between py-3 border-b dark:border-gray-700">
+                    <span class="text-gray-600 dark:text-gray-400">{{ _('Phone') }}</span>
+                    <span class="font-medium text-gray-800 dark:text-white">{{ current_user.phone or '-' }}</span>
+                </div>
+                <div class="flex justify-between py-3 border-b dark:border-gray-700">
+                    <span class="text-gray-600 dark:text-gray-400">{{ _('Language') }}</span>
+                    <span class="font-medium text-gray-800 dark:text-white">{{ {'ar': 'العربية', 'en': 'English', 'de': 'Deutsch'}[current_user.language_preference] }}</span>
+                </div>
+                <div class="flex justify-between py-3 border-b dark:border-gray-700">
+                    <span class="text-gray-600 dark:text-gray-400">{{ _('Member Since') }}</span>
+                    <span class="font-medium text-gray-800 dark:text-white">{{ current_user.created_at.strftime('%Y-%m-%d') if current_user.created_at else '-' }}</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="{{ url_for('profile.edit') }}" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition">
+                    <i class="fas fa-edit mr-2"></i>{{ _('Edit Profile') }}
+                </a>
+                <a href="{{ url_for('dashboard.index') }}" class="px-6 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition">
+                    <i class="fas fa-chart-bar mr-2"></i>{{ _('Dashboard') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

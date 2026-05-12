@@ -24,6 +24,18 @@
           "Captan",
           "Mancozeb"
         ]
+      },
+      "de": {
+        "name": "Apfelschorf",
+        "description": "Eine durch Venturia inaequalis verursachte Pilzkrankheit, die Apfelbäume befällt. Erscheint als olivbraune Flecken auf Blättern und Früchten.",
+        "symptoms": "Olivbraune Flecken auf den Blättern, Fruchtrisse, früher Blattabfall.",
+        "treatment": "Wenden Sie Fungizide auf Schwefelbasis an, entfernen Sie infizierte Blätter und beschneiden Sie Bäume für eine bessere Belüftung.",
+        "prevention": "Wählen Sie resistente Sorten, sprühen Sie im Frühjahr vorbeugend und entfernen Sie abgefallene Blattreste.",
+        "products": [
+          "Schwefelfungizid",
+          "Kapitän",
+          "Mancozeb"
+        ]
       }
     },
     "Apple___Black_rot": {
@@ -48,6 +60,18 @@
         "products": [
           "Captan",
           "Thiophanate-methyl",
+          "Mancozeb"
+        ]
+      },
+      "de": {
+        "name": "Apfelschwarzfäule",
+        "description": "Eine durch Botryosphaeria obtusa verursachte Pilzkrankheit, die Apfelfrüchte befällt. Verursacht dunkle Flecken und Fruchtfäule.",
+        "symptoms": "Dunkelbraune Flecken auf Früchten mit konzentrischen Ringen, Fruchtfäule und Schrumpfung.",
+        "treatment": "Befallene Früchte sofort entfernen, Fungizide anwenden, befallene Teile des Baumes beschneiden.",
+        "prevention": "Fruchtfolge, übermäßige Feuchtigkeit vermeiden, abgefallene Fruchtreste entfernen.",
+        "products": [
+          "Kapitän",
+          "Thiophanat-Methyl",
           "Mancozeb"
         ]
       }
@@ -76,6 +100,18 @@
           "Myclobutanil",
           "Mancozeb"
         ]
+      },
+      "de": {
+        "name": "Zedern-Apfel-Rost",
+        "description": "Eine Pilzkrankheit, die zwei Wirte benötigt: Zeder und Apfel. Verursacht gelb-orangefarbene Flecken auf Apfelblättern.",
+        "symptoms": "Gelb-orangefarbene Flecken auf der Blattoberseite, kleine orangefarbene Pusteln auf der Blattunterseite.",
+        "treatment": "Wenden Sie Fungizide auf Schwefelbasis an und entfernen Sie infizierte Bäume in der Nähe von Zedern.",
+        "prevention": "Wenn möglich, entfernen Sie Zedern in der Nähe, wählen Sie resistente Sorten und sprühen Sie sie vorbeugend ein.",
+        "products": [
+          "Schwefelfungizid",
+          "Myclobutanil",
+          "Mancozeb"
+        ]
       }
     },
     "Apple___healthy": {
@@ -94,6 +130,14 @@
         "treatment": "No treatment needed.",
         "prevention": "Continue good care and regular watering.",
         "products": []
+      },
+      "de": {
+        "name": "Gesunder Apfel",
+        "description": "Das Blatt ist gesund und weist keine Anzeichen einer Krankheit auf.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Weiterhin gute Pflege und regelmäßiges Gießen.",
+        "products": []
       }
     },
     "Blueberry___healthy": {
@@ -111,6 +155,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunde Blaubeere",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     },
@@ -138,6 +190,18 @@
           "Myclobutanil",
           "Sulfur"
         ]
+      },
+      "de": {
+        "name": "Echter Mehltau der Kirsche",
+        "description": "Eine Pilzkrankheit, die als weiße, pudrige Schicht auf Blättern und Stängeln auftritt.",
+        "symptoms": "Weißer, pudriger Belag auf den Blättern, Verformung neuer Blätter, Blütenabfall.",
+        "treatment": "Schwefelfungizide anwenden, infizierte Teile entfernen, Belüftung verbessern.",
+        "prevention": "Beschneiden Sie Bäume, um die Luftzirkulation zu gewährleisten, vermeiden Sie Überkopfbewässerung und vorbeugendes Sprühen.",
+        "products": [
+          "Schwefelfungizid",
+          "Myclobutanil",
+          "Schwefel"
+        ]
       }
     },
     "Cherry___healthy": {
@@ -155,6 +219,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunde Kirsche",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     },
@@ -182,6 +254,18 @@
           "Chlorothalonil",
           "Azoxystrobin"
         ]
+      },
+      "de": {
+        "name": "Mais-Cercospora-Blattfleck / Grauer Blattfleck",
+        "description": "Eine durch Cercospora zeae-maydis verursachte Pilzkrankheit, die Maisblätter befällt. Verursacht lange graue Flecken.",
+        "symptoms": "Lange graue Flecken parallel zu den Adern, die braun werden und dann zum Absterben der Blätter führen.",
+        "treatment": "Mancozeb-Fungizide anwenden, Ernterückstände entfernen, Fruchtfolge.",
+        "prevention": "Wählen Sie resistente Sorten, wechseln Sie die Fruchtfolge und entfernen Sie infizierte Pflanzenreste.",
+        "products": [
+          "Mancozeb",
+          "Chlorthalonil",
+          "Azoxystrobin"
+        ]
       }
     },
     "Corn___Common_rust_": {
@@ -205,6 +289,17 @@
         "products": [
           "Mancozeb",
           "Chlorothalonil"
+        ]
+      },
+      "de": {
+        "name": "Maisrost",
+        "description": "Eine Pilzkrankheit, die orangebraune Rostflecken auf Maisblättern verursacht.",
+        "symptoms": "Orangebraune Rostflecken auf den oberen und unteren Blättern, kleine Pusteln.",
+        "treatment": "Wenden Sie Mancozeb-Fungizide an und entfernen Sie infizierte Blätter.",
+        "prevention": "Wählen Sie resistente Sorten und vermeiden Sie Überkopfbewässerung.",
+        "products": [
+          "Mancozeb",
+          "Chlorthalonil"
         ]
       }
     },
@@ -232,6 +327,18 @@
           "Chlorothalonil",
           "Azoxystrobin"
         ]
+      },
+      "de": {
+        "name": "Mais-Nördliche Blattfäule",
+        "description": "Eine Pilzkrankheit, die große graugrüne Flecken auf Maisblättern verursacht.",
+        "symptoms": "Große graugrüne Flecken auf den Blättern, die braun werden und konzentrische Ringe aufweisen.",
+        "treatment": "Fungizide anwenden, Ernterückstände entfernen.",
+        "prevention": "Fruchtfolge, wählen Sie resistente Sorten.",
+        "products": [
+          "Mancozeb",
+          "Chlorthalonil",
+          "Azoxystrobin"
+        ]
       }
     },
     "Corn___healthy": {
@@ -249,6 +356,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunder Mais",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     },
@@ -276,6 +391,18 @@
           "Mancozeb",
           "Myclobutanil"
         ]
+      },
+      "de": {
+        "name": "Traubenschwarzfäule",
+        "description": "Eine durch Guignardia bidwellii verursachte Pilzkrankheit, die Traubenfrüchte befällt. Verursacht dunkle Flecken und Fäulnis.",
+        "symptoms": "Dunkelbraune Flecken auf den Früchten, die sich schwarz verfärben und kleine schwarze Punkte aufweisen.",
+        "treatment": "Tragen Sie Captan-Fungizide auf, entfernen Sie infizierte Früchte und beschneiden Sie infizierte Teile.",
+        "prevention": "Fruchtreste entfernen, vorbeugendes Sprühen, Belüftung verbessern.",
+        "products": [
+          "Kapitän",
+          "Mancozeb",
+          "Myclobutanil"
+        ]
       }
     },
     "Grape___Esca_(Black_Measles)": {
@@ -293,6 +420,14 @@
         "symptoms": "Dark spots on vine trunk, yellowing leaves, small and cracked fruits.",
         "treatment": "No effective treatment, remove infected vines.",
         "prevention": "Sterilize pruning tools, avoid trunk wounds, choose resistant varieties.",
+        "products": []
+      },
+      "de": {
+        "name": "Trauben-Esca (Schwarze Masern)",
+        "description": "Eine komplexe Pilzkrankheit, die Weinrebenstämme befällt. Verursacht dunkle Flecken auf Holz.",
+        "symptoms": "Dunkle Flecken am Weinstamm, vergilbte Blätter, kleine und rissige Früchte.",
+        "treatment": "Keine wirksame Behandlung, infizierte Reben entfernen.",
+        "prevention": "Schnittwerkzeuge sterilisieren, Stammwunden vermeiden, resistente Sorten wählen.",
         "products": []
       }
     },
@@ -318,6 +453,17 @@
           "Mancozeb",
           "Captan"
         ]
+      },
+      "de": {
+        "name": "Weinblattfäule",
+        "description": "Eine Pilzkrankheit, die dunkle Flecken auf Weinblättern verursacht.",
+        "symptoms": "Dunkelbraune Flecken auf den Blättern, früher Blattabfall.",
+        "treatment": "Fungizide anwenden, infizierte Blätter entfernen.",
+        "prevention": "Belüftung verbessern, Laubreste entfernen.",
+        "products": [
+          "Mancozeb",
+          "Kapitän"
+        ]
       }
     },
     "Grape___healthy": {
@@ -336,6 +482,14 @@
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
         "products": []
+      },
+      "de": {
+        "name": "Gesunde Traube",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
+        "products": []
       }
     },
     "Orange___Haunglongbing_(Citrus_greening)": {
@@ -353,6 +507,14 @@
         "symptoms": "Irregularly shaped leaves, asymmetrical yellowing, small and bitter fruits.",
         "treatment": "No cure, remove infected trees.",
         "prevention": "Control psyllid insects, use certified disease-free seedlings.",
+        "products": []
+      },
+      "de": {
+        "name": "Citrus Greening (HLB)",
+        "description": "Eine schwere bakterielle Krankheit, die durch Flohblattinsekten übertragen wird. Betrifft alle Zitrusarten.",
+        "symptoms": "Unregelmäßig geformte Blätter, asymmetrische Gelbfärbung, kleine und bittere Früchte.",
+        "treatment": "Keine Heilung, infizierte Bäume entfernen.",
+        "prevention": "Bekämpfen Sie Blattlausinsekten und verwenden Sie zertifizierte, krankheitsfreie Sämlinge.",
         "products": []
       }
     },
@@ -378,6 +540,17 @@
           "Copper Fungicide",
           "Mancozeb"
         ]
+      },
+      "de": {
+        "name": "Pfirsichbakterieller Fleck",
+        "description": "Eine bakterielle Krankheit, die dunkle Flecken auf Pfirsichblättern und -früchten verursacht.",
+        "symptoms": "Kleine dunkle Flecken auf Blättern, Blatttropfen, Flecken auf Früchten.",
+        "treatment": "Kupferfungizide auftragen, infizierte Teile entfernen.",
+        "prevention": "Wählen Sie resistente Sorten, vermeiden Sie Überkopfbewässerung und beschneiden Sie sie zur Belüftung.",
+        "products": [
+          "Kupferfungizid",
+          "Mancozeb"
+        ]
       }
     },
     "Peach___healthy": {
@@ -395,6 +568,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunder Pfirsich",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     },
@@ -420,6 +601,17 @@
           "Copper Fungicide",
           "Mancozeb"
         ]
+      },
+      "de": {
+        "name": "Pfefferbakterieller Fleck",
+        "description": "Eine bakterielle Krankheit, die wassergetränkte Flecken auf Pfefferblättern verursacht.",
+        "symptoms": "Kleine wasserdurchtränkte Flecken auf den Blättern, die sich braun verfärben und einen gelben Halo aufweisen, Blattabfall.",
+        "treatment": "Tragen Sie Kupferfungizide auf, entfernen Sie infizierte Blätter und vermeiden Sie Arbeiten an nassen Pflanzen.",
+        "prevention": "Verwenden Sie zertifiziertes Saatgut, vermeiden Sie Überkopfbewässerung und Fruchtwechsel.",
+        "products": [
+          "Kupferfungizid",
+          "Mancozeb"
+        ]
       }
     },
     "Pepper,_bell___healthy": {
@@ -437,6 +629,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunder Pfeffer",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     },
@@ -464,6 +664,18 @@
           "Chlorothalonil",
           "Copper Fungicide"
         ]
+      },
+      "de": {
+        "name": "Frühe Kartoffelfäule",
+        "description": "Eine häufige Pilzkrankheit, die durch Alternaria solani verursacht wird. Betrifft Blätter, Stängel und Knollen.",
+        "symptoms": "Dunkelbraune Flecken auf den unteren Blättern mit konzentrischen, zielscheibenartigen Ringen.",
+        "treatment": "Entfernen Sie infizierte Blätter und wenden Sie Mancozeb- oder Chlorothalonil-Fungizide an.",
+        "prevention": "Pflanzen alle 2-3 Jahre wechseln, auf Bodenhöhe gießen, Mulch verwenden.",
+        "products": [
+          "Mancozeb",
+          "Chlorthalonil",
+          "Kupferfungizid"
+        ]
       }
     },
     "Potato___Late_blight": {
@@ -490,6 +702,18 @@
           "Mancozeb",
           "Metalaxyl"
         ]
+      },
+      "de": {
+        "name": "Krautfäule der Kartoffel",
+        "description": "Eine verheerende Pilzkrankheit, die durch Phytophthora infestans verursacht wird. Verursachte die Hungersnot in Irland.",
+        "symptoms": "Wassergetränkte dunkle Flecken auf den Blättern, die sich schnell ausbreiten, weißer Bewuchs auf der Unterseite, Knollenfäule.",
+        "treatment": "Befallene Pflanzen sofort entfernen, Kupferfungizide anwenden, Feuchtigkeit vermeiden.",
+        "prevention": "Wählen Sie resistente Sorten, entfernen Sie Kartoffelreste und vermeiden Sie Überkopfbewässerung.",
+        "products": [
+          "Kupferfungizid",
+          "Mancozeb",
+          "Metalaxyl"
+        ]
       }
     },
     "Potato___healthy": {
@@ -507,6 +731,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunde Kartoffel",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     },
@@ -526,6 +758,14 @@
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
         "products": []
+      },
+      "de": {
+        "name": "Gesunde Himbeere",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
+        "products": []
       }
     },
     "Soybean___healthy": {
@@ -543,6 +783,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunde Sojabohne",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     },
@@ -570,6 +818,18 @@
           "Potassium Bicarbonate",
           "Neem Oil"
         ]
+      },
+      "de": {
+        "name": "Kürbis-Echter Mehltau",
+        "description": "Eine häufige Pilzkrankheit, die als weiße, pudrige Schicht auf Kürbisblättern auftritt.",
+        "symptoms": "Weißer, pudriger Belag auf den Blättern, Blattverformung, früher Abfall.",
+        "treatment": "Schwefelfungizide anwenden, infizierte Blätter entfernen, Belüftung verbessern.",
+        "prevention": "An sonnigen Standorten pflanzen, gute Belüftung, vorbeugendes Besprühen.",
+        "products": [
+          "Schwefelfungizid",
+          "Kaliumbikarbonat",
+          "Neemöl"
+        ]
       }
     },
     "Strawberry___Leaf_scorch": {
@@ -596,6 +856,18 @@
           "Mancozeb",
           "Chlorothalonil"
         ]
+      },
+      "de": {
+        "name": "Erdbeerblatt-Scorch",
+        "description": "Eine Pilzkrankheit, die dunkelbraune Flecken auf Erdbeerblättern verursacht.",
+        "symptoms": "Dunkelbraune Flecken auf den Blättern, die in der Mitte hellbraun werden, Blattabfall.",
+        "treatment": "Tragen Sie Captan-Fungizide auf, entfernen Sie infizierte Blätter und vermeiden Sie Überkopfbewässerung.",
+        "prevention": "Blattreste entfernen, gute Belüftung, Fruchtfolge.",
+        "products": [
+          "Kapitän",
+          "Mancozeb",
+          "Chlorthalonil"
+        ]
       }
     },
     "Strawberry___healthy": {
@@ -613,6 +885,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunde Erdbeere",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     },
@@ -636,6 +916,17 @@
         "prevention": "Use certified seeds, avoid overhead watering, rotate crops annually.",
         "products": [
           "Copper Fungicide",
+          "Mancozeb"
+        ]
+      },
+      "de": {
+        "name": "Tomatenbakterienfleck",
+        "description": "Eine bakterielle Erkrankung, die durch Xanthomonas spp. verursacht wird. Auswirkungen auf Blätter, Stängel und Früchte.",
+        "symptoms": "Kleine wasserdurchtränkte Flecken auf den Blättern, die sich dunkelbraun mit gelbem Lichthof verfärben, Löcher in den Blättern.",
+        "treatment": "Tragen Sie Kupferfungizide auf, entfernen Sie infizierte Teile und vermeiden Sie Arbeiten an nassen Pflanzen.",
+        "prevention": "Verwenden Sie zertifiziertes Saatgut, vermeiden Sie Überkopfbewässerung und wechseln Sie die Ernte jährlich.",
+        "products": [
+          "Kupferfungizid",
           "Mancozeb"
         ]
       }
@@ -664,6 +955,18 @@
           "Chlorothalonil",
           "Copper Fungicide"
         ]
+      },
+      "de": {
+        "name": "Frühe Tomatenfäule",
+        "description": "Eine häufige Pilzkrankheit, die durch Alternaria solani verursacht wird. Beeinflusst Blätter, Stängel und Früchte.",
+        "symptoms": "Dunkelbraune Flecken auf den unteren Blättern mit konzentrischen, zielscheibenartigen Ringen, Blattabfall.",
+        "treatment": "Entfernen Sie infizierte Blätter und wenden Sie Mancozeb- oder Chlorothalonil-Fungizide an.",
+        "prevention": "Pflanzen alle 2-3 Jahre wechseln, auf Bodenhöhe gießen, Mulch verwenden.",
+        "products": [
+          "Mancozeb",
+          "Chlorthalonil",
+          "Kupferfungizid"
+        ]
       }
     },
     "Tomato___Late_blight": {
@@ -687,6 +990,18 @@
         "prevention": "Choose resistant varieties, remove tomato debris, avoid overhead watering.",
         "products": [
           "Copper Fungicide",
+          "Mancozeb",
+          "Metalaxyl"
+        ]
+      },
+      "de": {
+        "name": "Spätfäule der Tomate",
+        "description": "Eine verheerende Pilzkrankheit, die durch Phytophthora infestans verursacht wird. Verbreitet sich unter kühlen, nassen Bedingungen schnell.",
+        "symptoms": "Wassergetränkte dunkle Flecken auf den Blättern, die sich schnell ausbreiten, weißer Bewuchs auf der Unterseite, Fruchtfäule.",
+        "treatment": "Befallene Pflanzen sofort entfernen, Kupferfungizide anwenden, Feuchtigkeit vermeiden.",
+        "prevention": "Wählen Sie resistente Sorten, entfernen Sie Tomatenreste und vermeiden Sie Überkopfbewässerung.",
+        "products": [
+          "Kupferfungizid",
           "Mancozeb",
           "Metalaxyl"
         ]
@@ -714,6 +1029,17 @@
           "Sulfur Fungicide",
           "Chlorothalonil"
         ]
+      },
+      "de": {
+        "name": "Tomatenblattform",
+        "description": "Eine durch Passalora fulva verursachte Pilzkrankheit. Kommt in Gewächshäusern und feuchten Gebieten vor.",
+        "symptoms": "Gelbe Flecken auf der Blattoberseite, olivgrüne Schicht auf der Blattunterseite.",
+        "treatment": "Verbessern Sie die Belüftung, wenden Sie Schwefelfungizide an und entfernen Sie infizierte Blätter.",
+        "prevention": "Gute Belüftung, übermäßige Luftfeuchtigkeit vermeiden, vorbeugendes Sprühen.",
+        "products": [
+          "Schwefelfungizid",
+          "Chlorthalonil"
+        ]
       }
     },
     "Tomato___Septoria_leaf_spot": {
@@ -739,6 +1065,18 @@
           "Mancozeb",
           "Chlorothalonil",
           "Copper Fungicide"
+        ]
+      },
+      "de": {
+        "name": "Blattfleckenkrankheit der Tomate Septoria",
+        "description": "Eine häufige Pilzkrankheit, die durch Septoria lycopersici verursacht wird. Beginnt an den unteren Blättern.",
+        "symptoms": "Kleine graue Flecken mit dunklen Rändern und gelbem Ring, schwarze Punkte in der Mitte.",
+        "treatment": "Entfernen Sie infizierte Blätter und wenden Sie Mancozeb- oder Chlorothalonil-Fungizide an.",
+        "prevention": "Fruchtwechsel, Pflanzenreste entfernen, Überkopfbewässerung vermeiden.",
+        "products": [
+          "Mancozeb",
+          "Chlorthalonil",
+          "Kupferfungizid"
         ]
       }
     },
@@ -766,6 +1104,18 @@
           "Insecticidal Soap",
           "Abamectin"
         ]
+      },
+      "de": {
+        "name": "Tomaten-Zweipunktspinnmilbe",
+        "description": "Ein Schädling, der sich von Blättern ernährt und gelbe Flecken verursacht.",
+        "symptoms": "Kleine gelbe Flecken auf den Blättern, Spinnennetze unter den Blättern, trockene Blätter.",
+        "treatment": "Sprühen Sie starkes Wasser, um Milben zu entfernen, verwenden Sie Neemöl und befreien Sie natürliche Feinde.",
+        "prevention": "Regelmäßiges Gießen, hohe Luftfeuchtigkeit, regelmäßige Überwachung.",
+        "products": [
+          "Neemöl",
+          "Insektizide Seife",
+          "Abamectin"
+        ]
       }
     },
     "Tomato___Target_Spot": {
@@ -788,6 +1138,17 @@
         "prevention": "Good ventilation, avoid excess humidity.",
         "products": [
           "Chlorothalonil",
+          "Mancozeb"
+        ]
+      },
+      "de": {
+        "name": "Tomaten-Zielpunkt",
+        "description": "Eine Pilzkrankheit, die dunkle Flecken auf Tomatenblättern verursacht.",
+        "symptoms": "Dunkle Flecken auf Blättern mit konzentrischen Ringen, Blattabfall.",
+        "treatment": "Fungizide anwenden, infizierte Blätter entfernen.",
+        "prevention": "Gute Belüftung, übermäßige Luftfeuchtigkeit vermeiden.",
+        "products": [
+          "Chlorthalonil",
           "Mancozeb"
         ]
       }
@@ -814,6 +1175,17 @@
           "Imidacloprid",
           "Pyriproxyfen"
         ]
+      },
+      "de": {
+        "name": "Tomaten-Yellow-Leaf-Curl-Virus",
+        "description": "Eine durch Weiße Fliegen übertragene Viruserkrankung. Verursacht Kräuseln und Vergilben der Blätter.",
+        "symptoms": "Gelbe und nach oben gekräuselte Blätter, verkümmerter Wuchs, wenige Früchte.",
+        "treatment": "Keine Heilung, infizierte Pflanzen entfernen.",
+        "prevention": "Weiße Fliegen bekämpfen, Schutznetze verwenden, resistente Sorten.",
+        "products": [
+          "Imidacloprid",
+          "Pyriproxyfen"
+        ]
       }
     },
     "Tomato___Tomato_mosaic_virus": {
@@ -832,6 +1204,14 @@
         "treatment": "No cure, remove infected plants.",
         "prevention": "Sterilize tools, wash hands, use certified seeds.",
         "products": []
+      },
+      "de": {
+        "name": "Tomatenmosaikvirus",
+        "description": "Eine durch Werkzeuge und Hände übertragene Viruserkrankung. Verursacht Blattverzerrung.",
+        "symptoms": "Fleckige und verzerrte Blätter, helle und dunkle Flecken (Mosaik), verkümmerter Wuchs.",
+        "treatment": "Keine Heilung, infizierte Pflanzen entfernen.",
+        "prevention": "Werkzeuge sterilisieren, Hände waschen, zertifiziertes Saatgut verwenden.",
+        "products": []
       }
     },
     "Tomato___healthy": {
@@ -849,6 +1229,14 @@
         "symptoms": "No symptoms.",
         "treatment": "No treatment needed.",
         "prevention": "Regular care.",
+        "products": []
+      },
+      "de": {
+        "name": "Gesunde Tomate",
+        "description": "Das Blatt ist gesund.",
+        "symptoms": "Keine Symptome.",
+        "treatment": "Keine Behandlung erforderlich.",
+        "prevention": "Regelmäßige Pflege.",
         "products": []
       }
     }

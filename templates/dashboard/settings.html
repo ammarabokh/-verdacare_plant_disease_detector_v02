@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('Settings') }}{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto animate-fade-in">
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">{{ _('Settings') }}</h1>
+
+    <div class="space-y-6">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                <i class="fas fa-key text-primary"></i>{{ _('Change Password') }}
+            </h2>
+            <form method="POST" action="{{ url_for('dashboard.settings') }}">
+                {{ form.hidden_tag() }}
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">{{ _('Current Password') }}</label>
+                    {{ form.current_password(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition") }}
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">{{ _('New Password') }}</label>
+                        {{ form.new_password(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition") }}
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">{{ _('Confirm') }}</label>
+                        {{ form.confirm_password(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition") }}
+                    </div>
+                </div>
+                <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">{{ _('Update Password') }}</button>
+            </form>
+        </div>
+
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                <i class="fas fa-download text-primary"></i>{{ _('Export Data') }}
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{{ _('Download your diagnosis history as CSV') }}</p>
+            <a href="{{ url_for('dashboard.export_diagnoses') }}" class="inline-block px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">
+                <i class="fas fa-file-csv mr-2"></i>{{ _('Export Diagnoses (CSV)') }}
+            </a>
+        </div>
+
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6 border border-red-200 dark:border-red-900">
+            <h2 class="text-lg font-bold text-red-600 dark:text-red-400 mb-4 flex items-center gap-2">
+                <i class="fas fa-exclamation-triangle"></i>{{ _('Danger Zone') }}
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">{{ _('Once you delete your account, there is no going back. Please be certain.') }}</p>
+            <form method="POST" action="{{ url_for('dashboard.delete_account') }}" onsubmit="return confirm('{{ _('Are you sure? This will delete ALL your data permanently!') }}')">
+                <button type="submit" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                    <i class="fas fa-trash mr-2"></i>{{ _('Delete My Account') }}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

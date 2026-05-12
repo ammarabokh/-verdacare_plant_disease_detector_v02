@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('Chat History') }}{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto animate-fade-in">
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">{{ _('Chat History') }}</h1>
+    {% if sessions %}
+    <div class="space-y-3">
+        {% for s in sessions %}
+        <a href="{{ url_for('dashboard.chat_detail', session_id=s.session_id) }}" class="block bg-white dark:bg-dark-card rounded-xl shadow-md p-4 hover:shadow-lg transition">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                        <i class="fas fa-robot text-primary"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-gray-800 dark:text-white">{{ s.title or _('New Chat') }}</p>
+                        <p class="text-xs text-gray-500">{{ _('%(count)d messages', count=s.message_count) }} · {{ s.updated_at }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-gray-400">{{ s.created_at }}</span>
+                    <form method="POST" action="{{ url_for('dashboard.delete_chat', session_id=s.session_id) }}" onsubmit="return confirm('{{ _('Delete this chat?') }}')">
+                        <button type="submit" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    </form>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="bg-white dark:bg-dark-card rounded-xl shadow-md text-center py-12">
+        <i class="fas fa-robot text-5xl text-gray-300 mb-4"></i>
+        <p class="text-gray-500 mb-4">{{ _('No chat sessions yet. Start a conversation with the AI assistant!') }}</p>
+        <a href="{{ url_for('index') }}" class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition">{{ _('Start Chatting') }}</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

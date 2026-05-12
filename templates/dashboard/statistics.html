@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('Statistics') }}{% endblock %}
+{% block content %}
+<div class="max-w-6xl mx-auto animate-fade-in">
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">{{ _('Advanced Statistics') }}</h1>
+
+    <div class="grid md:grid-cols-4 gap-4 mb-8" id="stats-summary">
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md text-center">
+            <div class="text-3xl font-bold text-primary" id="total-count">0</div>
+            <p class="text-sm text-gray-500">{{ _('Total Diagnoses') }}</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md text-center">
+            <div class="text-3xl font-bold text-green-600" id="avg-conf">0%</div>
+            <p class="text-sm text-gray-500">{{ _('Avg Confidence') }}</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md text-center">
+            <div class="text-3xl font-bold text-blue-600" id="unique-diseases">0</div>
+            <p class="text-sm text-gray-500">{{ _('Unique Diseases') }}</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md text-center">
+            <div class="text-3xl font-bold text-purple-600" id="rated-count">0</div>
+            <p class="text-sm text-gray-500">{{ _('Rated Diagnoses') }}</p>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4">{{ _('Disease Distribution') }}</h2>
+            <canvas id="diseaseChart" height="250"></canvas>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4">{{ _('Monthly Trend') }}</h2>
+            <canvas id="trendChart" height="250"></canvas>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4">{{ _('Plant Types') }}</h2>
+            <canvas id="plantChart" height="250"></canvas>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4">{{ _('Confidence Distribution') }}</h2>
+            <canvas id="confidenceChart" height="250"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+fetch('/dashboard/api/statistics')
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById('total-count').textContent = data.total;
+        document.getElementById('avg-conf').textContent = data.avg_confidence + '%';
+        document.getElementById('unique-diseases').textContent = data.disease_distribution.length;
+        document.getElementById('rated-count').textContent = data.confidence_distribution.length;
+
+        new Chart(document.getElementById('diseaseChart'), {
+            type: 'pie',
+            data: {
+                labels: data.disease_distribution.map(d => d.label),
+                datasets: [{
+                    data: data.disease_distribution.map(d => d.value),
+                    backgroundColor: ['#4CAF50','#2196F3','#FF9800','#F44336','#9C27B0','#00BCD4','#FF5722','#3F51B5','#8BC34A','#E91E63']
+                }]
+            },
+            options: { plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } } }
+        });
+
+        new Chart(document.getElementById('trendChart'), {
+            type: 'line',
+            data: {
+                labels: data.monthly_trend.map(d => d.label),
+                datasets: [{
+                    label: '{{ _("Diagnoses") }}',
+                    data: data.monthly_trend.map(d => d.value),
+                    borderColor: '#4CAF50',
+                    backgroundColor: 'rgba(76,175,80,0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+        });
+
+        new Chart(document.getElementById('plantChart'), {
+            type: 'bar',
+            data: {
+                labels: data.plant_distribution.map(d => d.label),
+                datasets: [{
+                    label: '{{ _("Count") }}',
+                    data: data.plant_distribution.map(d => d.value),
+                    backgroundColor: '#4CAF50'
+                }]
+            },
+            options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+        });
+
+        new Chart(document.getElementById('confidenceChart'), {
+            type: 'histogram',
+            data: {
+                labels: ['0-20%','20-40%','40-60%','60-80%','80-100%'],
+                datasets: [{
+                    label: '{{ _("Count") }}',
+                    data: [
+                        data.confidence_distribution.filter(v => v < 20).length,
+                        data.confidence_distribution.filter(v => v >= 20 && v < 40).length,
+                        data.confidence_distribution.filter(v => v >= 40 && v < 60).length,
+                        data.confidence_distribution.filter(v => v >= 60 && v < 80).length,
+                        data.confidence_distribution.filter(v => v >= 80).length
+                    ],
+                    backgroundColor: ['#F44336','#FF9800','#FFC107','#8BC34A','#4CAF50']
+                }]
+            },
+            options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } } }
+        });
+    });
+</script>
+{% endblock %}

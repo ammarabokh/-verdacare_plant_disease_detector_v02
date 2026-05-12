@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('Register') }}{% endblock %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center px-4 py-8">
+    <div class="max-w-md w-full bg-white dark:bg-dark-card rounded-2xl shadow-lg p-8 animate-fade-in">
+        <div class="text-center mb-8">
+            <img src="{{ url_for('static', filename='images/logo_verdacare.png') }}" alt="VerdaCare" class="w-16 h-16 mx-auto mb-4">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ _('Create Account') }}</h1>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">{{ _('Join VerdaCare and start diagnosing plant diseases') }}</p>
+        </div>
+        <form method="POST" action="{{ url_for('auth.register') }}">
+            {{ form.hidden_tag() }}
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">{{ _('Username') }} *</label>
+                    {{ form.username(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition", placeholder=_('Username')) }}
+                    {% for error in form.username.errors %}<p class="text-red-500 text-xs mt-1">{{ error }}</p>{% endfor %}
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">{{ _('Full Name') }}</label>
+                    {{ form.full_name(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition", placeholder=_('Your name')) }}
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">Email *</label>
+                {{ form.email(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition", placeholder=_('your@email.com')) }}
+                {% for error in form.email.errors %}<p class="text-red-500 text-xs mt-1">{{ error }}</p>{% endfor %}
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">{{ _('Phone') }}</label>
+                {{ form.phone(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition", placeholder=_('+1234567890')) }}
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">{{ _('Password') }} *</label>
+                    {{ form.password(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition", placeholder=_('Min 6 characters')) }}
+                    {% for error in form.password.errors %}<p class="text-red-500 text-xs mt-1">{{ error }}</p>{% endfor %}
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">{{ _('Confirm Password') }} *</label>
+                    {{ form.confirm_password(class="w-full px-4 py-3 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary outline-none transition", placeholder=_('Repeat password')) }}
+                    {% for error in form.confirm_password.errors %}<p class="text-red-500 text-xs mt-1">{{ error }}</p>{% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="w-full py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition">{{ _('Create Account') }}</button>
+        </form>
+        <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+            {{ _('Already have an account?') }}
+            <a href="{{ url_for('auth.login') }}" class="text-primary hover:underline font-medium">{{ _('Sign In') }}</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

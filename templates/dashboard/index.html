@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('Dashboard') }}{% endblock %}
+{% block content %}
+<div class="max-w-6xl mx-auto animate-fade-in">
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{{ _('Dashboard') }}</h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">{{ _('Welcome back, %(name)s!', name=current_user.full_name or current_user.username) }}</p>
+        </div>
+        <div class="hidden md:flex gap-3">
+            <a href="{{ url_for('dashboard.settings') }}" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition"><i class="fas fa-cog"></i></a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md">
+            <div class="flex items-center justify-between mb-2">
+                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center"><i class="fas fa-stethoscope text-green-600 text-xl"></i></div>
+                <span class="text-3xl font-bold text-gray-800 dark:text-white">{{ total_diagnoses }}</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Total Diagnoses') }}</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md">
+            <div class="flex items-center justify-between mb-2">
+                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center"><i class="fas fa-leaf text-blue-600 text-xl"></i></div>
+                <span class="text-3xl font-bold text-gray-800 dark:text-white">{{ total_plants }}</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Plants Tracked') }}</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md">
+            <div class="flex items-center justify-between mb-2">
+                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center"><i class="fas fa-robot text-purple-600 text-xl"></i></div>
+                <span class="text-3xl font-bold text-gray-800 dark:text-white">{{ total_chats }}</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Chat Sessions') }}</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md">
+            <div class="flex items-center justify-between mb-2">
+                <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center"><i class="fas fa-calendar-check text-orange-600 text-xl"></i></div>
+                <span class="text-3xl font-bold text-gray-800 dark:text-white">{{ month_diagnoses }}</span>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('This Month') }}</p>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                <i class="fas fa-clock text-primary"></i>{{ _('Recent Diagnoses') }}
+            </h2>
+            {% if recent_diagnoses %}
+            <div class="space-y-3">
+                {% for d in recent_diagnoses %}
+                <a href="{{ url_for('result', diagnosis_id=d.id) }}" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-primary/5 transition">
+                    <div>
+                        <p class="font-medium text-gray-800 dark:text-white text-sm">{{ d.disease_name }}</p>
+                        <p class="text-xs text-gray-500">{{ d.timestamp }}</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs rounded-full {{ 'bg-green-100 text-green-700' if d.confidence >= 0.8 else 'bg-yellow-100 text-yellow-700' }}">
+                        {{ "%.0f"|format(d.confidence * 100) }}%
+                    </span>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="{{ url_for('dashboard.diagnoses') }}" class="block text-center mt-4 text-sm text-primary hover:underline">{{ _('View All') }} →</a>
+            {% else %}
+            <p class="text-gray-500 text-center py-8">{{ _('No diagnoses yet. Upload a plant image to get started!') }}</p>
+            <a href="{{ url_for('index') }}" class="block text-center text-primary hover:underline">{{ _('Diagnose Now') }} →</a>
+            {% endif %}
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+            <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                <i class="fas fa-seedling text-primary"></i>{{ _('My Plants') }}
+            </h2>
+            {% if recent_plants %}
+            <div class="grid grid-cols-2 gap-3">
+                {% for p in recent_plants %}
+                <a href="{{ url_for('dashboard.plant_detail', plant_id=p.id) }}" class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-primary/5 transition">
+                    <p class="font-medium text-gray-800 dark:text-white text-sm">{{ p.name }}</p>
+                    <p class="text-xs text-gray-500">{{ p.plant_type }}</p>
+                    <span class="inline-block mt-1 px-2 py-0.5 text-xs rounded-full {{ 'bg-green-100 text-green-700' if p.health_status == 'healthy' else 'bg-yellow-100 text-yellow-700' }}">
+                        {{ p.health_status }}
+                    </span>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="{{ url_for('dashboard.plants') }}" class="block text-center mt-4 text-sm text-primary hover:underline">{{ _('Manage Plants') }} →</a>
+            {% else %}
+            <p class="text-gray-500 text-center py-8">{{ _('No plants tracked yet.') }}</p>
+            <a href="{{ url_for('dashboard.add_plant') }}" class="block text-center text-primary hover:underline">{{ _('Add Your First Plant') }} →</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6 mb-8">
+        <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+            <i class="fas fa-chart-line text-primary"></i>{{ _('Quick Statistics') }}
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+                <div class="text-3xl font-bold text-primary">{{ avg_confidence }}%</div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Average Confidence') }}</p>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-primary">{{ total_diagnoses }}</div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">{{ _('Conditions Diagnosed') }}</p>
+            </div>
+            <div class="text-center">
+                <a href="{{ url_for('dashboard.statistics') }}" class="inline-block px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">
+                    <i class="fas fa-chart-pie mr-2"></i>{{ _('View Details') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

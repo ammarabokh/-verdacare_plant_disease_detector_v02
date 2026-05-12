@@ -25,7 +25,7 @@ class ChatbotLogic:
         Args:
             message: User's message text
             session_id: Session identifier for memory
-            lang: Language code ('ar' or 'en')
+            lang: Language code ('ar', 'en', or 'de')
             context: Optional context (e.g., last diagnosis)
 
         Returns:
@@ -34,8 +34,6 @@ class ChatbotLogic:
         history = chat_memory.get_history(session_id)
         system_prompt = self._build_system_prompt(lang, context)
 
-        # If user asks about treatment/symptoms/etc for the current diagnosis context,
-        # answer directly from local KB to avoid unnecessary remote LLM calls.
         context_response = self._answer_from_context_if_relevant(message, lang, context)
         if context_response:
             chat_memory.add_message(session_id, 'user', message)
@@ -64,7 +62,8 @@ class ChatbotLogic:
                 return context_response
             fallback = {
                 'ar': 'تعذر الاتصال بخدمة الذكاء حالياً. يمكنك كتابة اسم المرض وسأعطيك المعلومات المتاحة من قاعدة المعرفة المحلية.',
-                'en': 'LLM service is currently unavailable. You can type a disease name and I will answer from the local knowledge base.'
+                'en': 'LLM service is currently unavailable. You can type a disease name and I will answer from the local knowledge base.',
+                'de': 'Der KI-Dienst ist derzeit nicht verfügbar. Sie können einen Krankheitsnamen eingeben und ich werde aus der lokalen Wissensdatenbank antworten.'
             }
             return fallback.get(lang, fallback['en'])
 
@@ -84,7 +83,14 @@ class ChatbotLogic:
 - Good agricultural practices
 - Answering farming questions
 
-Be concise and practical. Answer in English."""
+Be concise and practical. Answer in English.""",
+            'de': """Sie sind ein erfahrener landwirtschaftlicher Assistent. Helfen Sie Landwirten bei:
+- Diagnose von Pflanzenkrankheiten
+- Behandlungs- und Präventionsratschläge
+- Gute landwirtschaftliche Praktiken
+- Beantwortung von Landwirtschaftsfragen
+
+Seien Sie prägnant und praktisch. Antworten Sie auf Deutsch."""
         }
 
         prompt = base_prompts.get(lang, base_prompts['en'])
@@ -112,6 +118,7 @@ Be concise and practical. Answer in English."""
     def _format_disease_info(self, info, lang):
         """Format disease information for chat response."""
         products = ', '.join(info.get('products', []))
+        
         if lang == 'ar':
             return f"""**{info.get('name', '')}**
 
@@ -120,8 +127,16 @@ Be concise and practical. Answer in English."""
 العلاج: {info.get('treatment', '')}
 الوقاية: {info.get('prevention', '')}
 المنتجات الموصى بها: {products}"""
+        elif lang == 'de':
+            return f"""**{info.get('name', '')}**
 
-        return f"""**{info.get('name', '')}**
+Beschreibung: {info.get('description', '')}
+Symptome: {info.get('symptoms', '')}
+Behandlung: {info.get('treatment', '')}
+Prävention: {info.get('prevention', '')}
+Empfohlene Produkte: {products}"""
+        else:
+            return f"""**{info.get('name', '')}**
 
 Description: {info.get('description', '')}
 Symptoms: {info.get('symptoms', '')}
@@ -152,7 +167,8 @@ Recommended Products: {products}"""
         message_lower = (message or "").lower()
         keywords = [
             "treatment", "prevention", "symptoms", "description", "what is",
-            "علاج", "الوقاية", "وقاية", "اعراض", "أعراض", "وصف", "ما الحل", "ما هو"
+            "علاج", "الوقاية", "وقاية", "اعراض", "أعراض", "وصف", "ما الحل", "ما هو",
+            "behandlung", "prävention", "symptome", "beschreibung", "was ist"
         ]
         if not any(k in message_lower for k in keywords):
             return None

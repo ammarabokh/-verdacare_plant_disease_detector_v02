@@ -1,153 +1,158 @@
-# 🌿 Plant Disease Detector v1.0
+﻿# VerdaCare Plant Disease Detector (v2.0)
 
-تطبيق ويب لاكتشاف أمراض النباتات باستخدام الذكاء الاصطناعي | AI-Powered Plant Disease Detection Web App
+تطبيق ويب ذكي لتشخيص أمراض النباتات من صور الأوراق، مع شات بوت زراعي، دعم تعدد اللغات، ولوحة تحكم للمستخدم.
 
-## ✨ الميزات | Features
+## Overview
 
-- 🤖 **تشخيص ذكي** - نموذج EfficientNetB0 للتعرف على 38 مرض نباتي
-- 📊 **تقارير مفصلة** - وصف المرض، الأعراض، العلاج، الوقاية، والمنتجات الموصى بها
-- 💬 **شات بوت ذكي** - مساعد زراعي يعمل بـ Hugging Face LLM مع ذاكرة محادثة
-- 🌙 **وضع داكن** - دعم الوضع الفاتح والداكن
-- 🌍 **تعدد اللغات** - العربية والإنجليزية
-- 📱 **تصميم متجاوب** - يعمل على جميع الأجهزة
+- AI diagnosis using TensorFlow/Keras model (EfficientNet-based).
+- Disease knowledge base with treatment and prevention guidance.
+- Chatbot powered by Hugging Face Inference API.
+- User accounts, dashboard, diagnosis history, plant tracking, and settings.
+- Multi-language UI: Arabic, English, German.
+- Image quality checks (blur/brightness/size) before diagnosis.
+- Optional geolocation + diagnosis rating.
 
-## 🚀 التثبيت | Installation
+## What Is Included in v2.0
 
-### 1. Clone the repository
+- Kaggle model integration with local cache in `models/cache/`.
+- Lazy singleton model loader (prevents reloading the model on every request).
+- Improved loader compatibility for `kagglehub` APIs.
+- Better runtime error handling when model is unavailable.
+- Updated SQLAlchemy user loading (`Session.get`).
+
+## Tech Stack
+
+- Backend: Flask, Flask-Login, Flask-Babel, Flask-Session, Flask-WTF
+- Database: SQLite via Flask-SQLAlchemy
+- ML: TensorFlow, NumPy, OpenCV
+- Chatbot: Hugging Face Inference API
+- Frontend: Jinja2 templates + JavaScript + Tailwind-style UI
+
+## Quick Start
+
+1. Create and activate a virtual environment:
+
 ```bash
-git clone <repository-url>
-cd plant_disease_detector_v01
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
-### 2. Create virtual environment
-```bash
-python -m venv venv
+2. Install dependencies:
 
-# Windows
-venv\Scripts\activate
-
-# Linux/Mac
-source venv/bin/activate
-```
-
-### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Set up environment variables
+3. Configure environment:
+
 ```bash
-cp .env.example .env
+copy .env.example .env
 ```
 
-Edit `.env` and add your Hugging Face token:
-```
-HF_TOKEN=hf_your_token_here
-SECRET_KEY=your-secret-key-here
+4. Edit `.env` (minimum required):
+
+```env
+HF_TOKEN=hf_your_token
+SECRET_KEY=your_secret_key
+KAGGLE_USERNAME=your_kaggle_username
+KAGGLE_KEY=your_kaggle_key
+KAGGLE_DATASET=username/dataset-name
+KAGGLE_MODEL_FILENAME=plant_disease_classifier_efficientnetb0.keras
 ```
 
-### 5. Add your model
-Place your trained model file in:
-```
-models/efficientnetb0.h5
-```
+5. Run the app:
 
-And metadata file:
-```
-models/metadata.json
-```
-
-Example `metadata.json`:
-```json
-{
-  "class_names": [
-    "Apple___Apple_scab",
-    "Apple___Black_rot",
-    "Tomato___Early_blight",
-    ...
-  ]
-}
-```
-
-### 6. Run the application
 ```bash
 python app.py
 ```
 
-Visit: http://localhost:5000
+Open: `http://127.0.0.1:5000`
 
-## 📁 هيكل المشروع | Project Structure
+## Model Loading Behavior
 
-```
-plant_disease_detector_v01/
-├── app.py                          # Flask application
-├── config.py                       # Configuration
-├── requirements.txt                # Dependencies
-├── .env                            # Environment variables
-├── .env.example                    # Example environment file
-├── .gitignore                      # Git ignore rules
-├── models/
-│   ├── efficientnetb0.h5          # Trained model (add yours)
-│   └── metadata.json              # Class names mapping
-├── static/
-│   ├── css/                        # Stylesheets
-│   ├── js/
-│   │   └── main.js                 # Frontend JavaScript
-│   └── uploads/                    # Uploaded images
-├── templates/
-│   ├── base.html                   # Base template
-│   ├── index.html                  # Home page
-│   ├── result.html                 # Diagnosis result
-│   └── includes/                  # Template components
-├── utils/
-│   ├── image_processor.py          # Image preprocessing
-│   ├── model_loader.py            # Model loading & prediction
-│   └── report_generator.py        # HTML report generation
+- Preferred path: model exists in `models/cache/` and loads مباشرة.
+- If not cached: app tries downloading from Kaggle, then caches locally.
+- Loader is lazy + singleton: one model instance per process (not per request).
+- If loading fails and `USE_MOCK_IF_MODEL_FAIL=false`, diagnosis endpoint returns `503` with `MODEL_NOT_READY`.
+
+## Main Environment Variables
+
+- `HF_TOKEN`: Hugging Face token (required for chatbot).
+- `KAGGLE_USERNAME`, `KAGGLE_KEY`, `KAGGLE_DATASET`, `KAGGLE_MODEL_FILENAME`: model download settings.
+- `USE_MOCK_IF_MODEL_FAIL`: `true/false` fallback behavior.
+- `SECRET_KEY`: Flask secret key.
+- `FLASK_ENV`, `FLASK_DEBUG`: runtime mode.
+
+## Project Structure
+
+```text
+verdacare_plant_disease_detector_v02/
+├── app.py
+├── config.py
+├── requirements.txt
 ├── chatbot/
-│   ├── huggingface_client.py      # Hugging Face API client
-│   ├── chat_memory.py             # Conversation memory
-│   ├── chatbot_logic.py           # Chatbot logic
-│   └── knowledge_base.json        # Disease knowledge base
-└── instance/
-    └── app.db                      # SQLite database
+├── forms/
+├── models/
+├── routes/
+├── static/
+├── templates/
+├── utils/
+├── instance/
+└── flask_session/
 ```
 
-## 🔑 الحصول على Hugging Face Token
+## Troubleshooting
 
-1. Visit [huggingface.co](https://huggingface.co)
-2. Create a free account
-3. Go to **Settings → Access Tokens**
-4. Click **New Token**
-5. Select **Read** role
-6. Copy the token and paste in `.env`
+### 1) `MODEL_NOT_READY` or "Model is not loaded"
 
-## 📝 ملاحظات | Notes
+- Verify Kaggle credentials in `.env`.
+- Confirm dataset path is correct (`username/dataset-name`).
+- Confirm `KAGGLE_MODEL_FILENAME` exactly matches file name inside dataset.
+- Ensure dependencies are installed:
 
-- The application uses a **mock prediction** if no model file is found (for testing)
-- Conversation memory is stored **in-memory** and resets when the server restarts
-- For production, consider using Redis for session and memory storage
-- The knowledge base contains information for **38 plant diseases**
+```bash
+pip install -r requirements.txt
+```
 
-## 🔧 Troubleshooting
+- Temporary dev fallback:
 
-### Hugging Face API errors
-- Check your token is valid
-- Ensure you have internet connection
-- The model used is `openai/gpt-oss-120b:groq` via Hugging Face Inference API
+```env
+USE_MOCK_IF_MODEL_FAIL=true
+```
 
-### Model not loading
-- Verify `efficientnetb0.h5` exists in `models/`
-- Check TensorFlow version compatibility
-- Use the mock mode for testing without a model
+### 2) Kaggle download/API issues
 
-## 📄 License
+- Make sure account has access to the dataset.
+- Check network connectivity.
+- Keep `kagglehub` and `kaggle` installed (both are in requirements).
 
-MIT License
+### 3) SQLAlchemy legacy warnings
 
-## 🤝 Contributing
+- Project now uses `db.session.get(...)` in user loader.
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Security Note
 
----
+إذا تم تسريب أي مفاتيح (`HF_TOKEN`, `KAGGLE_KEY`) يجب عمل rotate فورًا من مزود الخدمة وعدم مشاركتها في المستودع.
 
-**Developed with ❤️ for farmers worldwide**
+## Documentation Map (.md)
+
+- [README_NEW.md](README_NEW.md): دليل شامل محدث للإصدار 2.0.
+- [QUICK_START.md](QUICK_START.md): بدء سريع للإصدار القديم.
+- [QUICK_START_V2.md](QUICK_START_V2.md): بدء سريع للإصدار 2.0.
+- [DEPLOYMENT.md](DEPLOYMENT.md): خيارات النشر (Heroku/Docker/Railway/VPS).
+- [UPGRADE_GUIDE.md](UPGRADE_GUIDE.md): الترقية من الإصدارات السابقة.
+- [CHANGELOG.md](CHANGELOG.md): سجل التغييرات.
+- [CONTRIBUTING.md](CONTRIBUTING.md): إرشادات المساهمة.
+- [CHECKLIST.md](CHECKLIST.md): قائمة تحقق للتنفيذ.
+- [EXAMPLES.md](EXAMPLES.md): أمثلة استخدام.
+- [FINAL_REPORT.md](FINAL_REPORT.md): التقرير النهائي.
+- [FINAL_SUMMARY.md](FINAL_SUMMARY.md): ملخص تسليم الإصدار.
+- [PHASE1_COMPLETED.md](PHASE1_COMPLETED.md): إنجازات المرحلة الأولى.
+- [PHASE1_SUMMARY.md](PHASE1_SUMMARY.md): ملخص المرحلة الأولى.
+- [README_PHASE1.md](README_PHASE1.md): وثائق المرحلة الأولى.
+- [CHATBOT_FIX_SUMMARY.md](CHATBOT_FIX_SUMMARY.md): ملخص إصلاحات الشات بوت.
+- [chatbot/README_CHATBOT.md](chatbot/README_CHATBOT.md): توثيق الشات بوت بالتفصيل.
+
+## License
+
+MIT

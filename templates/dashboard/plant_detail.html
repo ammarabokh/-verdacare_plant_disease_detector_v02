@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ plant.name }}{% endblock %}
+{% block content %}
+<div class="max-w-6xl mx-auto animate-fade-in">
+    <a href="{{ url_for('dashboard.plants') }}" class="text-primary hover:underline text-sm mb-4 inline-block"><i class="fas fa-arrow-left mr-1"></i>{{ _('Back to Plants') }}</a>
+
+    <div class="bg-white dark:bg-dark-card rounded-2xl shadow-lg overflow-hidden mb-8">
+        <div class="bg-gradient-to-r from-primary to-primary-dark p-8">
+            <div class="flex items-center gap-4">
+                <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-seedling text-4xl text-white"></i>
+                </div>
+                <div class="text-white">
+                    <h1 class="text-2xl font-bold">{{ plant.name }}</h1>
+                    <p class="text-white/80">{{ plant.plant_type }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+                    <p class="text-sm text-gray-500">{{ _('Status') }}</p>
+                    <p class="text-lg font-semibold {{ 'text-green-600' if plant.health_status == 'healthy' else 'text-yellow-600' if plant.health_status == 'recovering' else 'text-red-600' }}">
+                        {{ plant.health_status }}
+                    </p>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+                    <p class="text-sm text-gray-500">{{ _('Planted') }}</p>
+                    <p class="text-lg font-semibold text-gray-800 dark:text-white">{{ plant.planting_date or '-' }}</p>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl text-center">
+                    <p class="text-sm text-gray-500">{{ _('Location') }}</p>
+                    <p class="text-lg font-semibold text-gray-800 dark:text-white">{{ plant.location or '-' }}</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4">{{ _('Diagnosis History') }}</h2>
+                    {% if diagnoses %}
+                    <div class="space-y-2">
+                        {% for d in diagnoses[:5] %}
+                        <a href="{{ url_for('result', diagnosis_id=d.id) }}" class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-primary/5 transition">
+                            <div>
+                                <p class="text-sm font-medium text-gray-800 dark:text-white">{{ d.disease_name }}</p>
+                                <p class="text-xs text-gray-500">{{ d.timestamp }}</p>
+                            </div>
+                            <span class="text-xs px-2 py-1 rounded-full {{ 'bg-green-100 text-green-700' if d.confidence >= 0.8 else 'bg-yellow-100 text-yellow-700' }}">
+                                {{ "%.0f"|format(d.confidence * 100) }}%
+                            </span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="text-gray-500 text-sm py-4">{{ _('No diagnoses for this plant yet.') }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <h2 class="text-lg font-bold text-gray-800 dark:text-white mb-4">{{ _('Care Log') }}</h2>
+                    <div class="space-y-2 mb-4" id="care-logs">
+                        {% for log in care_logs %}
+                        <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                                <i class="fas {{ 'fa-tint' if log.action_type == 'watering' else 'fa-flask' if log.action_type == 'fertilizing' else 'fa-cut' if log.action_type == 'pruning' else 'fa-pills' if log.action_type == 'treatment' else 'fa-box' }} text-primary text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-800 dark:text-white">{{ _(log.action_type.replace('_', ' ').title()) }}</p>
+                                <p class="text-xs text-gray-500">{{ log.notes }}</p>
+                            </div>
+                            <span class="text-xs text-gray-400">{{ log.timestamp }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <button onclick="showCareForm()" class="w-full py-2 border-2 border-dashed border-primary text-primary rounded-lg hover:bg-primary/5 transition text-sm">
+                        <i class="fas fa-plus mr-1"></i>{{ _('Add Care Entry') }}
+                    </button>
+
+                    <form id="care-form" class="hidden mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg" onsubmit="addCareLog(event)">
+                        <select id="care-action" class="w-full px-3 py-2 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm mb-2">
+                            <option value="watering">{{ _('Watering') }}</option>
+                            <option value="fertilizing">{{ _('Fertilizing') }}</option>
+                            <option value="pruning">{{ _('Pruning') }}</option>
+                            <option value="treatment">{{ _('Treatment') }}</option>
+                            <option value="other">{{ _('Other') }}</option>
+                        </select>
+                        <textarea id="care-notes" class="w-full px-3 py-2 rounded-lg border dark:border-gray-600 dark:bg-gray-700 dark:text-white text-sm mb-2" rows="2" placeholder="{{ _('What did you do?') }}" required></textarea>
+                        <button type="submit" class="w-full py-2 bg-primary text-white rounded-lg text-sm hover:bg-primary-dark transition">{{ _('Save Entry') }}</button>
+                    </form>
+                </div>
+            </div>
+
+            {% if plant.notes %}
+            <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{{ _('Notes') }}</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">{{ plant.notes }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+function showCareForm() {
+    document.getElementById('care-form').classList.toggle('hidden');
+}
+
+function addCareLog(event) {
+    event.preventDefault();
+    const action = document.getElementById('care-action').value;
+    const notes = document.getElementById('care-notes').value;
+    fetch('/dashboard/plants/{{ plant.id }}/care/add', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({action_type: action, notes: notes})
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        }
+    });
+}
+</script>
+{% endblock %}
