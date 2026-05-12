@@ -24,6 +24,7 @@ class ModelLoader:
         self.knowledge_base_by_normalized_key = {}
         self.mock_mode = True
         self.load_error = None
+        self.download_error = None
         self.load_model()
         self.load_model_metadata()
         self.load_knowledge_base()
@@ -46,7 +47,7 @@ class ModelLoader:
                     print("Model downloaded and loaded successfully!")
                 else:
                     print(f"Warning: Could not download model from Kaggle")
-                    self.load_error = "Model download failed"
+                    self.load_error = f"Model download failed: {self.download_error or 'unknown download error'}"
                     self.mock_mode = Config.USE_MOCK_IF_MODEL_FAIL
                     if self.mock_mode:
                         print("Using mock predictions for testing...")
@@ -61,21 +62,41 @@ class ModelLoader:
     def _download_model_from_kaggle(self):
         """Download only the configured .keras model file from Kaggle."""
         try:
+            self.download_error = None
             if not Config.KAGGLE_USERNAME or not Config.KAGGLE_KEY:
-                print("Kaggle credentials not configured. Set KAGGLE_USERNAME and KAGGLE_KEY in .env")
+                msg = "Kaggle credentials not configured. Set KAGGLE_USERNAME and KAGGLE_KEY."
+                print(msg)
+                self.download_error = msg
                 return False
             
             if not Config.KAGGLE_DATASET:
-                print("KAGGLE_DATASET not configured in .env")
+                msg = "KAGGLE_DATASET is not configured."
+                print(msg)
+                self.download_error = msg
+                return False
+
+            if not Config.KAGGLE_MODEL_FILENAME.lower().endswith(".keras"):
+                msg = f"KAGGLE_MODEL_FILENAME must be a .keras file. Got: {Config.KAGGLE_MODEL_FILENAME}"
+                print(msg)
+                self.download_error = msg
                 return False
             
             os.environ['KAGGLE_USERNAME'] = Config.KAGGLE_USERNAME
             os.environ['KAGGLE_KEY'] = Config.KAGGLE_KEY
 
-            return self._download_keras_file_with_kaggle_api()
+            # Strategy 1: kaggle API single-file download (best: downloads only .keras)
+            if self._download_keras_file_with_kaggle_api():
+                return True
+
+            # Strategy 2: kagglehub fallback for environments where kaggle API fails
+            if self._download_with_kagglehub_fallback():
+                return True
+
+            return False
 
         except Exception as e:
             print(f"Error downloading model from Kaggle: {e}")
+            self.download_error = str(e)
             return False
 
     def _download_keras_file_with_kaggle_api(self):
@@ -105,7 +126,9 @@ class ModelLoader:
             # Kaggle API downloads as <filename>.zip
             zip_path = os.path.join(download_dir, f"{filename}.zip")
             if not os.path.exists(zip_path):
-                print(f"Downloaded zip not found: {zip_path}")
+                msg = f"Downloaded zip not found: {zip_path}"
+                print(msg)
+                self.download_error = msg
                 return False
 
             with zipfile.ZipFile(zip_path, 'r') as zf:
@@ -113,17 +136,68 @@ class ModelLoader:
 
             source_model_path = os.path.join(download_dir, filename)
             if not os.path.exists(source_model_path):
-                print(f"Extracted model file not found: {source_model_path}")
+                msg = f"Extracted model file not found: {source_model_path}"
+                print(msg)
+                self.download_error = msg
                 return False
 
             shutil.copy2(source_model_path, Config.MODEL_PATH)
             print(f"Model file downloaded and cached at: {Config.MODEL_PATH}")
             return True
         except ImportError:
-            print("kaggle package not installed. Run: pip install kaggle")
+            msg = "kaggle package not installed. Run: pip install kaggle"
+            print(msg)
+            self.download_error = msg
             return False
         except Exception as e:
-            print(f"Error downloading model file with kaggle API: {e}")
+            msg = f"Error downloading model file with kaggle API: {e}"
+            print(msg)
+            self.download_error = msg
+            return False
+
+    def _download_with_kagglehub_fallback(self):
+        """Fallback: use kagglehub then locate/copy only the target .keras file."""
+        try:
+            import kagglehub
+            import shutil
+
+            dataset_path = None
+            if hasattr(kagglehub, "dataset_download"):
+                dataset_path = kagglehub.dataset_download(Config.KAGGLE_DATASET)
+            elif hasattr(kagglehub, "model_download"):
+                dataset_path = kagglehub.model_download(Config.KAGGLE_DATASET)
+            else:
+                self.download_error = "kagglehub has no supported download method"
+                return False
+
+            if not dataset_path or not os.path.exists(dataset_path):
+                self.download_error = f"kagglehub returned invalid path: {dataset_path}"
+                return False
+
+            target = Config.KAGGLE_MODEL_FILENAME
+            source_model_path = os.path.join(dataset_path, target)
+            if not os.path.exists(source_model_path):
+                found_path = None
+                for root, _, files in os.walk(dataset_path):
+                    if target in files:
+                        found_path = os.path.join(root, target)
+                        break
+                if found_path:
+                    source_model_path = found_path
+                else:
+                    self.download_error = f"Model file '{target}' not found in KaggleHub download"
+                    return False
+
+            shutil.copy2(source_model_path, Config.MODEL_PATH)
+            print(f"Model file copied from kagglehub to cache: {Config.MODEL_PATH}")
+            return True
+        except ImportError:
+            # keep previous detailed error from kaggle API path if available
+            if not self.download_error:
+                self.download_error = "kagglehub package not installed"
+            return False
+        except Exception as e:
+            self.download_error = f"kagglehub fallback failed: {e}"
             return False
 
     def load_model_metadata(self):
