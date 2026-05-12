@@ -33,7 +33,7 @@ class Config:
     # Model - Kaggle Integration
     KAGGLE_USERNAME = os.environ.get('KAGGLE_USERNAME')
     KAGGLE_KEY = os.environ.get('KAGGLE_KEY')
-    KAGGLE_DATASET = os.environ.get('KAGGLE_DATASET')
+    KAGGLE_NOTEBOOK = os.environ.get('KAGGLE_NOTEBOOK')
     KAGGLE_MODEL_FILENAME = os.environ.get('KAGGLE_MODEL_FILENAME', 'plant_disease_classifier_efficientnetb0.keras')
     
     MODEL_CACHE_DIR = os.path.join(basedir, 'models', 'cache')

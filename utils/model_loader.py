@@ -60,7 +60,7 @@ class ModelLoader:
                 print("Using mock predictions for testing...")
 
     def _download_model_from_kaggle(self):
-        """Download only the configured .keras model file from Kaggle."""
+        """Download only the configured .keras model file from Kaggle notebook output."""
         try:
             self.download_error = None
             if not Config.KAGGLE_USERNAME or not Config.KAGGLE_KEY:
@@ -69,8 +69,8 @@ class ModelLoader:
                 self.download_error = msg
                 return False
             
-            if not Config.KAGGLE_DATASET:
-                msg = "KAGGLE_DATASET is not configured."
+            if not Config.KAGGLE_NOTEBOOK:
+                msg = "KAGGLE_NOTEBOOK is not configured."
                 print(msg)
                 self.download_error = msg
                 return False
@@ -84,62 +84,49 @@ class ModelLoader:
             os.environ['KAGGLE_USERNAME'] = Config.KAGGLE_USERNAME
             os.environ['KAGGLE_KEY'] = Config.KAGGLE_KEY
 
-            # Strategy 1: kaggle API single-file download (best: downloads only .keras)
-            if self._download_keras_file_with_kaggle_api():
-                return True
-
-            # Strategy 2: kagglehub fallback for environments where kaggle API fails
-            if self._download_with_kagglehub_fallback():
-                return True
-
-            return False
+            return self._download_keras_file_from_notebook_output()
 
         except Exception as e:
             print(f"Error downloading model from Kaggle: {e}")
             self.download_error = str(e)
             return False
 
-    def _download_keras_file_with_kaggle_api(self):
-        """Download only one file from a Kaggle dataset: Config.KAGGLE_MODEL_FILENAME."""
+    def _download_keras_file_from_notebook_output(self):
+        """Download notebook outputs, then copy only the configured .keras model file."""
         try:
             from kaggle.api.kaggle_api_extended import KaggleApi
             import tempfile
-            import zipfile
             import shutil
 
-            dataset = Config.KAGGLE_DATASET
+            kernel_ref = Config.KAGGLE_NOTEBOOK
             filename = Config.KAGGLE_MODEL_FILENAME
-            download_dir = tempfile.mkdtemp(prefix="kaggle_model_file_")
+            download_dir = tempfile.mkdtemp(prefix="kaggle_notebook_output_")
 
             api = KaggleApi()
             api.authenticate()
 
-            print(f"Downloading file from Kaggle dataset: {dataset}/{filename}")
-            api.dataset_download_file(
-                dataset=dataset,
-                file_name=filename,
+            print(f"Downloading notebook output: {kernel_ref}")
+            api.kernels_output(
+                kernel=kernel_ref,
                 path=download_dir,
-                force=False,
+                force=True,
                 quiet=False
             )
 
-            # Kaggle API downloads as <filename>.zip
-            zip_path = os.path.join(download_dir, f"{filename}.zip")
-            if not os.path.exists(zip_path):
-                msg = f"Downloaded zip not found: {zip_path}"
-                print(msg)
-                self.download_error = msg
-                return False
-
-            with zipfile.ZipFile(zip_path, 'r') as zf:
-                zf.extractall(download_dir)
-
             source_model_path = os.path.join(download_dir, filename)
             if not os.path.exists(source_model_path):
-                msg = f"Extracted model file not found: {source_model_path}"
-                print(msg)
-                self.download_error = msg
-                return False
+                found_path = None
+                for root, _, files in os.walk(download_dir):
+                    if filename in files:
+                        found_path = os.path.join(root, filename)
+                        break
+                if found_path:
+                    source_model_path = found_path
+                else:
+                    msg = f"Model file '{filename}' not found in notebook output: {kernel_ref}"
+                    print(msg)
+                    self.download_error = msg
+                    return False
 
             shutil.copy2(source_model_path, Config.MODEL_PATH)
             print(f"Model file downloaded and cached at: {Config.MODEL_PATH}")
@@ -153,51 +140,6 @@ class ModelLoader:
             msg = f"Error downloading model file with kaggle API: {e}"
             print(msg)
             self.download_error = msg
-            return False
-
-    def _download_with_kagglehub_fallback(self):
-        """Fallback: use kagglehub then locate/copy only the target .keras file."""
-        try:
-            import kagglehub
-            import shutil
-
-            dataset_path = None
-            if hasattr(kagglehub, "dataset_download"):
-                dataset_path = kagglehub.dataset_download(Config.KAGGLE_DATASET)
-            elif hasattr(kagglehub, "model_download"):
-                dataset_path = kagglehub.model_download(Config.KAGGLE_DATASET)
-            else:
-                self.download_error = "kagglehub has no supported download method"
-                return False
-
-            if not dataset_path or not os.path.exists(dataset_path):
-                self.download_error = f"kagglehub returned invalid path: {dataset_path}"
-                return False
-
-            target = Config.KAGGLE_MODEL_FILENAME
-            source_model_path = os.path.join(dataset_path, target)
-            if not os.path.exists(source_model_path):
-                found_path = None
-                for root, _, files in os.walk(dataset_path):
-                    if target in files:
-                        found_path = os.path.join(root, target)
-                        break
-                if found_path:
-                    source_model_path = found_path
-                else:
-                    self.download_error = f"Model file '{target}' not found in KaggleHub download"
-                    return False
-
-            shutil.copy2(source_model_path, Config.MODEL_PATH)
-            print(f"Model file copied from kagglehub to cache: {Config.MODEL_PATH}")
-            return True
-        except ImportError:
-            # keep previous detailed error from kaggle API path if available
-            if not self.download_error:
-                self.download_error = "kagglehub package not installed"
-            return False
-        except Exception as e:
-            self.download_error = f"kagglehub fallback failed: {e}"
             return False
 
     def load_model_metadata(self):
