@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('Uploaded Images') }}{% endblock %}
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <nav class="text-sm text-gray-500 mb-1">
+                <a href="{{ url_for('admin.index') }}" class="hover:text-primary">{{ _('Admin') }}</a> ›
+                <span class="text-gray-800 dark:text-white font-medium">{{ _('Images') }}</span>
+            </nav>
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{{ _('Uploaded Images') }}</h1>
+        </div>
+        <div class="flex gap-3">
+            <span class="text-sm text-gray-500 self-center">{{ total }} {{ _('images') }}</span>
+            <a href="{{ url_for('admin.download_images') }}" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition text-sm"><i class="fas fa-download mr-1"></i>{{ _('Download Zip') }}</a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
+        {% for f in files %}
+        <div class="bg-white dark:bg-dark-card rounded-lg shadow-md overflow-hidden group relative">
+            <img src="{{ url_for('static', filename='uploads/' + f) }}" class="w-full h-40 object-cover" loading="lazy">
+            {% set diag = file_diagnoses[f] %}
+            <div class="p-2">
+                <p class="text-xs text-gray-500 truncate" title="{{ f }}">{{ f[:30] }}...</p>
+                {% if diag %}
+                <p class="text-xs text-gray-400">{{ '%.1f'|format(diag.confidence * 100) }}%</p>
+                <p class="text-xs text-green-600 truncate">{{ diag.disease_name_ar or diag.disease_name_en }}</p>
+                {% else %}
+                <p class="text-xs text-gray-400 italic">{{ _('No diagnosis') }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="col-span-full text-center py-12 text-gray-400">{{ _('No images uploaded yet') }}</div>
+        {% endfor %}
+    </div>
+
+    {% if total > per_page %}
+    <div class="mt-6 flex justify-center gap-2">
+        {% for p in range(1, ((total-1)//per_page + 2)) %}
+        <a href="?page={{ p }}" class="px-3 py-1 rounded {{ 'bg-primary text-white' if p==page else 'bg-gray-200 dark:bg-gray-700' }}">{{ p }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('User Management') }}{% endblock %}
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <nav class="text-sm text-gray-500 mb-1">
+                <a href="{{ url_for('admin.index') }}" class="hover:text-primary">{{ _('Admin') }}</a> ›
+                <span class="text-gray-800 dark:text-white font-medium">{{ _('Users') }}</span>
+            </nav>
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{{ _('User Management') }}</h1>
+        </div>
+        <div class="flex gap-3">
+            <a href="{{ url_for('admin.export_users') }}" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition text-sm"><i class="fas fa-download mr-1"></i>{{ _('Export CSV') }}</a>
+            <a href="{{ url_for('admin.index') }}" class="text-sm text-primary hover:underline self-center">&larr; {{ _('Back') }}</a>
+        </div>
+    </div>
+
+    <form class="mb-6" method="GET">
+        <input type="text" name="search" value="{{ search }}" placeholder="{{ _('Search by username, email, or name...') }}" class="w-full max-w-md px-4 py-2 border dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-white">
+        <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition ml-2">{{ _('Search') }}</button>
+    </form>
+
+    <div class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead><tr class="text-left text-gray-500 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                    <th class="p-3">{{ _('Username') }}</th><th class="p-3">{{ _('Email') }}</th><th class="p-3">{{ _('Name') }}</th>
+                    <th class="p-3">{{ _('Diagnoses') }}</th><th class="p-3">{{ _('Admin') }}</th><th class="p-3">{{ _('Joined') }}</th><th class="p-3">{{ _('Actions') }}</th>
+                </tr></thead>
+                <tbody>
+                {% for u in users %}
+                <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                    <td class="p-3 font-medium">{{ u.username }}</td>
+                    <td class="p-3 text-gray-500">{{ u.email }}</td>
+                    <td class="p-3">{{ u.full_name or '-' }}</td>
+                    <td class="p-3">{{ u.diagnoses.count() }}</td>
+                    <td class="p-3">
+                        <span class="px-2 py-1 rounded text-xs {{ 'bg-green-100 text-green-700' if u.is_admin else 'bg-gray-100 text-gray-500' }}">
+                            {{ 'Admin' if u.is_admin else _('User') }}
+                        </span>
+                    </td>
+                    <td class="p-3 text-xs text-gray-500">{{ u.created_at.strftime('%Y-%m-%d') }}</td>
+                    <td class="p-3 flex gap-2">
+                        {% if u.id != current_user.id %}
+                        <button onclick="toggleAdmin({{ u.id }}, this)" class="px-2 py-1 rounded text-xs {{ 'bg-orange-100 text-orange-700' if u.is_admin else 'bg-blue-100 text-blue-700' }}">
+                            {{ _('Revoke Admin') if u.is_admin else _('Make Admin') }}
+                        </button>
+                        <button onclick="deleteUser({{ u.id }}, this)" class="px-2 py-1 rounded text-xs bg-red-100 text-red-700 hover:bg-red-200">{{ _('Delete') }}</button>
+                        {% else %}
+                        <span class="text-xs text-gray-400 italic">{{ _('You') }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="7" class="p-6 text-center text-gray-400">{{ _('No users found') }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if pagination.pages > 1 %}
+        <div class="p-4 flex justify-center gap-2">
+            {% for p in range(1, pagination.pages + 1) %}
+            <a href="?page={{ p }}&search={{ search }}" class="px-3 py-1 rounded {{ 'bg-primary text-white' if p==pagination.page else 'bg-gray-200 dark:bg-gray-700' }}">{{ p }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+function toggleAdmin(userId, btn) {
+    fetch('/admin/users/toggle-admin/' + userId, { method: 'POST' })
+    .then(r => r.json()).then(d => {
+        if (d.success) location.reload();
+        else alert(d.error);
+    });
+}
+function deleteUser(userId, btn) {
+    if (!confirm('{{ _("Delete this user and all their data?") }}')) return;
+    fetch('/admin/users/delete/' + userId, { method: 'POST' })
+    .then(r => r.json()).then(d => {
+        if (d.success) btn.closest('tr').remove();
+        else alert(d.error);
+    });
+}
+</script>
+{% endblock %}

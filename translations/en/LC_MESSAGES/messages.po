@@ -1,0 +1,971 @@
+# English translations for VerdaCare.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the VerdaCare project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VerdaCare 2.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-05-14 14:27+0200\n"
+"PO-Revision-Date: 2026-05-14 14:22+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app.py:93
+msgid "No image uploaded"
+msgstr "No image uploaded"
+
+#: app.py:96
+msgid "No file selected"
+msgstr "No file selected"
+
+#: app.py:98
+msgid "Invalid file type. Please upload an image (PNG, JPG, JPEG, GIF, WEBP)"
+msgstr "Invalid file type. Please upload an image (PNG, JPG, JPEG, GIF, WEBP)"
+
+#: app.py:109
+msgid "Get closer to the leaf so it fills the frame"
+msgstr "Get closer to the leaf so it fills the frame"
+
+#: app.py:110
+msgid "Lighting is too weak. Photograph in daylight"
+msgstr "Lighting is too weak. Photograph in daylight"
+
+#: app.py:111
+msgid "Image is overexposed. Avoid direct sunlight or shoot in shade"
+msgstr "Image is overexposed. Avoid direct sunlight or shoot in shade"
+
+#: app.py:112
+msgid "Image is blurry. Steady the camera and avoid hand shake"
+msgstr "Image is blurry. Steady the camera and avoid hand shake"
+
+#: app.py:113
+msgid "Could not process the image. Try another photo"
+msgstr "Could not process the image. Try another photo"
+
+#: app.py:115
+msgid "Image quality is insufficient. Please try again."
+msgstr "Image quality is insufficient. Please try again."
+
+#: app.py:219 app.py:220 app.py:221 app.py:222
+msgid "No information available"
+msgstr "No information available"
+
+#: app.py:247 templates/result.html:187
+msgid "Thank you for your feedback!"
+msgstr "Thank you for your feedback!"
+
+#: app.py:264
+msgid "Empty message"
+msgstr "Empty message"
+
+#: app.py:327
+msgid "Internal server error"
+msgstr "Internal server error"
+
+#: routes/auth.py:29
+msgid "Registration successful! Welcome to VerdaCare!"
+msgstr "Registration successful! Welcome to VerdaCare!"
+
+#: routes/auth.py:46 templates/dashboard/index.html:8
+#, python-format
+msgid "Welcome back, %(name)s!"
+msgstr "Welcome back, %(name)s!"
+
+#: routes/auth.py:48
+msgid "Invalid username or password."
+msgstr "Invalid username or password."
+
+#: routes/auth.py:55
+msgid "You have been logged out."
+msgstr "You have been logged out."
+
+#: routes/auth.py:66 routes/dashboard.py:313
+msgid "Password changed successfully!"
+msgstr "Password changed successfully!"
+
+#: routes/auth.py:68 routes/dashboard.py:315
+msgid "Current password is incorrect."
+msgstr "Current password is incorrect."
+
+#: routes/dashboard.py:103
+msgid "Diagnosis deleted."
+msgstr "Diagnosis deleted."
+
+#: routes/dashboard.py:154
+msgid "Plant added successfully!"
+msgstr "Plant added successfully!"
+
+#: routes/dashboard.py:195
+msgid "Plant deleted."
+msgstr "Plant deleted."
+
+#: routes/dashboard.py:245
+msgid "Chat deleted."
+msgstr "Chat deleted."
+
+#: routes/dashboard.py:330
+msgid "Your account has been deleted."
+msgstr "Your account has been deleted."
+
+#: routes/profile.py:37
+msgid "Profile updated successfully!"
+msgstr "Profile updated successfully!"
+
+#: routes/profile.py:45 routes/profile.py:49
+msgid "No file selected."
+msgstr "No file selected."
+
+#: routes/profile.py:61
+msgid "Profile photo updated!"
+msgstr "Profile photo updated!"
+
+#: templates/base.html:6 templates/index.html:3
+msgid "Plant Disease Detector"
+msgstr "Plant Disease Detector"
+
+#: templates/index.html:9
+msgid "Detect Plant Diseases with AI"
+msgstr "Detect Plant Diseases with AI"
+
+#: templates/index.html:12
+msgid ""
+"Upload a photo of your plant leaf and our AI will diagnose the disease "
+"instantly."
+msgstr ""
+"Upload a photo of your plant leaf and our AI will diagnose the disease "
+"instantly."
+
+#: templates/index.html:21
+msgid "How to take a good photo"
+msgstr "How to take a good photo"
+
+#: templates/index.html:26
+msgid "Fill the frame"
+msgstr "Fill the frame"
+
+#: templates/index.html:26
+msgid "The leaf should cover most of the picture"
+msgstr "The leaf should cover most of the picture"
+
+#: templates/index.html:30
+msgid "Single leaf"
+msgstr "Single leaf"
+
+#: templates/index.html:30
+msgid "Photograph one leaf only"
+msgstr "Photograph one leaf only"
+
+#: templates/index.html:34
+msgid "Soft lighting"
+msgstr "Soft lighting"
+
+#: templates/index.html:34
+msgid "Shoot in shade or indirect light, not direct sun"
+msgstr "Shoot in shade or indirect light, not direct sun"
+
+#: templates/index.html:38
+msgid "Steady camera"
+msgstr "Steady camera"
+
+#: templates/index.html:38
+msgid "Keep the camera still for a sharp photo"
+msgstr "Keep the camera still for a sharp photo"
+
+#: templates/index.html:42
+msgid "Plain background"
+msgstr "Plain background"
+
+#: templates/index.html:42
+msgid "Avoid soil, other plants, or sky behind the leaf"
+msgstr "Avoid soil, other plants, or sky behind the leaf"
+
+#: templates/index.html:46
+msgid "Distance"
+msgstr "Distance"
+
+#: templates/index.html:46
+msgid "15-30 cm from the leaf"
+msgstr "15-30 cm from the leaf"
+
+#: templates/index.html:61
+msgid "Take Photo"
+msgstr "Take Photo"
+
+#: templates/index.html:66
+msgid "Upload Image"
+msgstr "Upload Image"
+
+#: templates/index.html:102
+msgid "Drag & drop your image here"
+msgstr "Drag & drop your image here"
+
+#: templates/index.html:105
+msgid "or click to browse"
+msgstr "or click to browse"
+
+#: templates/index.html:129
+msgid "Analyze Image"
+msgstr "Analyze Image"
+
+#: templates/index.html:132
+msgid "Analyzing..."
+msgstr "Analyzing..."
+
+#: templates/index.html:145
+msgid "AI Powered"
+msgstr "AI Powered"
+
+#: templates/index.html:146
+msgid "Deep learning model trained on thousands of plant images"
+msgstr "Deep learning model trained on thousands of plant images"
+
+#: templates/index.html:153
+msgid "Detailed Reports"
+msgstr "Detailed Reports"
+
+#: templates/index.html:154
+msgid "Get comprehensive disease information and treatment advice"
+msgstr "Get comprehensive disease information and treatment advice"
+
+#: templates/index.html:161
+msgid "Smart Chatbot"
+msgstr "Smart Chatbot"
+
+#: templates/index.html:162
+msgid "Ask our AI assistant for farming advice and disease information"
+msgstr "Ask our AI assistant for farming advice and disease information"
+
+#: templates/index.html:169
+msgid "Supported Plants"
+msgstr "Supported Plants"
+
+#: templates/index.html:173
+msgid "Apple"
+msgstr "Apple"
+
+#: templates/index.html:176
+msgid "Corn"
+msgstr "Corn"
+
+#: templates/index.html:179
+msgid "Grape"
+msgstr "Grape"
+
+#: templates/index.html:182
+msgid "Orange"
+msgstr "Orange"
+
+#: templates/index.html:185
+msgid "Potato"
+msgstr "Potato"
+
+#: templates/index.html:188
+msgid "Tomato"
+msgstr "Tomato"
+
+#: templates/index.html:191
+msgid "And 32 more..."
+msgstr "And 32 more..."
+
+#: templates/index.html:380
+msgid "Connection error. Please try again."
+msgstr "Connection error. Please try again."
+
+#: templates/dashboard/diagnoses.html:43 templates/index.html:418
+msgid "Confidence"
+msgstr "Confidence"
+
+#: templates/index.html:438
+msgid ""
+"The result is not very confident. Try uploading a clearer, closer photo "
+"of the leaf."
+msgstr ""
+
+#: templates/index.html:445 templates/result.html:95
+msgid "Description"
+msgstr "Description"
+
+#: templates/index.html:449 templates/result.html:106
+msgid "Symptoms"
+msgstr "Symptoms"
+
+#: templates/dashboard/plant_detail.html:85 templates/index.html:453
+#: templates/result.html:117
+msgid "Treatment"
+msgstr "Treatment"
+
+#: templates/index.html:457 templates/result.html:128
+msgid "Prevention"
+msgstr "Prevention"
+
+#: templates/index.html:463 templates/result.html:140
+msgid "Recommended Products"
+msgstr "Recommended Products"
+
+#: templates/index.html:471
+msgid "Upload Another"
+msgstr "Upload Another"
+
+#: templates/index.html:474
+msgid "Done"
+msgstr "Done"
+
+#: templates/result.html:3 templates/result.html:9
+msgid "Diagnosis Result"
+msgstr "Diagnosis Result"
+
+#: templates/result.html:12
+msgid "Here is what our AI found in your plant image"
+msgstr "Here is what our AI found in your plant image"
+
+#: templates/result.html:21
+msgid "Confidence Level"
+msgstr "Confidence Level"
+
+#: templates/result.html:25
+msgid "High Confidence - Result is reliable"
+msgstr "High Confidence - Result is reliable"
+
+#: templates/result.html:27
+msgid "Medium Confidence - Consider consulting an expert"
+msgstr "Medium Confidence - Consider consulting an expert"
+
+#: templates/result.html:29
+msgid "Low Confidence - Please try another image"
+msgstr "Low Confidence - Please try another image"
+
+#: templates/result.html:38
+msgid "Detected Disease"
+msgstr "Detected Disease"
+
+#: templates/result.html:48 templates/result.html:50
+msgid "Your Image"
+msgstr "Your Image"
+
+#: templates/result.html:56
+msgid "Detailed Report"
+msgstr "Detailed Report"
+
+#: templates/result.html:58
+msgid "View Report"
+msgstr "View Report"
+
+#: templates/result.html:68
+msgid "View Full Report"
+msgstr "View Full Report"
+
+#: templates/result.html:72
+msgid "Print"
+msgstr "Print"
+
+#: templates/result.html:76
+msgid "New Diagnosis"
+msgstr "New Diagnosis"
+
+#: templates/result.html:88
+msgid "Detailed Disease Report"
+msgstr "Detailed Disease Report"
+
+#: templates/result.html:157
+msgid ""
+"This diagnosis is generated by AI and should be used as a guide only. For"
+" critical cases, please consult a professional agricultural expert."
+msgstr ""
+"This diagnosis is generated by AI and should be used as a guide only. For"
+" critical cases, please consult a professional agricultural expert."
+
+#: templates/result.html:168
+msgid "Rate This Diagnosis"
+msgstr "Rate This Diagnosis"
+
+#: templates/result.html:171
+msgid "Help us improve by rating the accuracy of this diagnosis"
+msgstr "Help us improve by rating the accuracy of this diagnosis"
+
+#: templates/result.html:189
+msgid "1 = Very Inaccurate, 5 = Very Accurate"
+msgstr "1 = Very Inaccurate, 5 = Very Accurate"
+
+#: templates/result.html:199
+msgid "Have Questions?"
+msgstr "Have Questions?"
+
+#: templates/result.html:202
+msgid ""
+"Ask our AI assistant about this disease, treatment options, or general "
+"farming advice."
+msgstr ""
+"Ask our AI assistant about this disease, treatment options, or general "
+"farming advice."
+
+#: templates/result.html:207
+msgid "Ask AI Assistant"
+msgstr "Ask AI Assistant"
+
+#: templates/result.html:217
+msgid "Tell me more about"
+msgstr "Tell me more about"
+
+#: templates/auth/change_password.html:2 templates/auth/change_password.html:6
+#: templates/auth/change_password.html:21 templates/dashboard/settings.html:10
+#: templates/profile/edit.html:37
+msgid "Change Password"
+msgstr "Change Password"
+
+#: templates/auth/change_password.html:10 templates/dashboard/settings.html:15
+msgid "Current Password"
+msgstr "Current Password"
+
+#: templates/auth/change_password.html:14 templates/dashboard/settings.html:20
+msgid "New Password"
+msgstr "New Password"
+
+#: templates/auth/change_password.html:18
+msgid "Confirm New Password"
+msgstr "Confirm New Password"
+
+#: templates/auth/login.html:2 templates/auth/login.html:23
+#: templates/auth/register.html:49 templates/includes/header.html:51
+#: templates/includes/header.html:74
+msgid "Sign In"
+msgstr "Sign In"
+
+#: templates/auth/login.html:8
+msgid "Welcome Back"
+msgstr "Welcome Back"
+
+#: templates/auth/login.html:9
+msgid "Sign in to your VerdaCare account"
+msgstr "Sign in to your VerdaCare account"
+
+#: templates/auth/login.html:14 templates/auth/register.html:15
+#: templates/auth/register.html:16
+msgid "Username"
+msgstr "Username"
+
+#: templates/auth/login.html:15
+msgid "Enter your username"
+msgstr "Enter your username"
+
+#: templates/auth/login.html:19 templates/auth/register.html:35
+msgid "Password"
+msgstr "Password"
+
+#: templates/auth/login.html:20
+msgid "Enter your password"
+msgstr "Enter your password"
+
+#: templates/auth/login.html:26
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+#: templates/auth/login.html:27 templates/auth/register.html:2
+#: templates/includes/header.html:52 templates/includes/header.html:75
+msgid "Register"
+msgstr "Register"
+
+#: templates/auth/register.html:8 templates/auth/register.html:45
+msgid "Create Account"
+msgstr "Create Account"
+
+#: templates/auth/register.html:9
+msgid "Join VerdaCare and start diagnosing plant diseases"
+msgstr "Join VerdaCare and start diagnosing plant diseases"
+
+#: templates/auth/register.html:20 templates/profile/edit.html:10
+msgid "Full Name"
+msgstr "Full Name"
+
+#: templates/auth/register.html:21
+msgid "Your name"
+msgstr "Your name"
+
+#: templates/auth/register.html:26
+msgid "your@email.com"
+msgstr "your@email.com"
+
+#: templates/auth/register.html:30 templates/profile/edit.html:14
+#: templates/profile/view.html:40
+msgid "Phone"
+msgstr "Phone"
+
+#: templates/auth/register.html:31
+msgid "+1234567890"
+msgstr "+1234567890"
+
+#: templates/auth/register.html:36
+msgid "Min 6 characters"
+msgstr "Min 6 characters"
+
+#: templates/auth/register.html:40
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+#: templates/auth/register.html:41
+msgid "Repeat password"
+msgstr "Repeat password"
+
+#: templates/auth/register.html:48
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: templates/dashboard/add_plant.html:2 templates/dashboard/plants.html:8
+msgid "Add Plant"
+msgstr "Add Plant"
+
+#: templates/dashboard/add_plant.html:6
+msgid "Add New Plant"
+msgstr "Add New Plant"
+
+#: templates/dashboard/add_plant.html:10
+msgid "Plant Name"
+msgstr "Plant Name"
+
+#: templates/dashboard/add_plant.html:11
+msgid "e.g. Garden Tomato #1"
+msgstr "e.g. Garden Tomato #1"
+
+#: templates/dashboard/add_plant.html:15
+msgid "Plant Type"
+msgstr "Plant Type"
+
+#: templates/dashboard/add_plant.html:20
+msgid "Planting Date"
+msgstr "Planting Date"
+
+#: templates/dashboard/add_plant.html:24
+#: templates/dashboard/plant_detail.html:32
+msgid "Location"
+msgstr "Location"
+
+#: templates/dashboard/add_plant.html:25
+msgid "e.g. Backyard garden"
+msgstr "e.g. Backyard garden"
+
+#: templates/dashboard/add_plant.html:28
+#: templates/dashboard/plant_detail.html:96
+msgid "Notes"
+msgstr "Notes"
+
+#: templates/dashboard/add_plant.html:29
+msgid "Any additional notes..."
+msgstr "Any additional notes..."
+
+#: templates/dashboard/add_plant.html:32
+msgid "Save Plant"
+msgstr "Save Plant"
+
+#: templates/dashboard/add_plant.html:33 templates/profile/edit.html:32
+msgid "Cancel"
+msgstr "Cancel"
+
+#: templates/dashboard/chat_detail.html:2
+#: templates/dashboard/chat_detail.html:8 templates/includes/header.html:11
+#: templates/includes/header.html:68
+msgid "Chat"
+msgstr "Chat"
+
+#: templates/dashboard/chat_detail.html:5
+msgid "Back to Chats"
+msgstr "Back to Chats"
+
+#: templates/dashboard/chats.html:2 templates/dashboard/chats.html:5
+msgid "Chat History"
+msgstr "Chat History"
+
+#: templates/dashboard/chats.html:16
+msgid "New Chat"
+msgstr "New Chat"
+
+#: templates/dashboard/chats.html:17
+#, python-format
+msgid "%(count)d messages"
+msgstr "%(count)d messages"
+
+#: templates/dashboard/chats.html:22
+msgid "Delete this chat?"
+msgstr "Delete this chat?"
+
+#: templates/dashboard/chats.html:33
+msgid "No chat sessions yet. Start a conversation with the AI assistant!"
+msgstr "No chat sessions yet. Start a conversation with the AI assistant!"
+
+#: templates/dashboard/chats.html:34
+msgid "Start Chatting"
+msgstr "Start Chatting"
+
+#: templates/dashboard/diagnoses.html:2 templates/dashboard/diagnoses.html:7
+#: templates/dashboard/plant_detail.html:39
+msgid "Diagnosis History"
+msgstr "Diagnosis History"
+
+#: templates/dashboard/diagnoses.html:8
+msgid "Browse all your plant disease diagnoses"
+msgstr "Browse all your plant disease diagnoses"
+
+#: templates/dashboard/diagnoses.html:12
+msgid "Export CSV"
+msgstr "Export CSV"
+
+#: templates/dashboard/diagnoses.html:20
+msgid "Search diseases..."
+msgstr "Search diseases..."
+
+#: templates/dashboard/diagnoses.html:29
+msgid "Filter"
+msgstr "Filter"
+
+#: templates/dashboard/diagnoses.html:30
+msgid "Clear"
+msgstr "Clear"
+
+#: templates/dashboard/diagnoses.html:41
+msgid "Date"
+msgstr "Date"
+
+#: templates/dashboard/diagnoses.html:42
+msgid "Disease"
+msgstr "Disease"
+
+#: templates/dashboard/diagnoses.html:44
+msgid "Rating"
+msgstr "Rating"
+
+#: templates/dashboard/diagnoses.html:45
+msgid "Actions"
+msgstr "Actions"
+
+#: templates/dashboard/diagnoses.html:70
+msgid "View"
+msgstr "View"
+
+#: templates/dashboard/diagnoses.html:71
+msgid "Delete this diagnosis?"
+msgstr "Delete this diagnosis?"
+
+#: templates/dashboard/diagnoses.html:72
+msgid "Delete"
+msgstr "Delete"
+
+#: templates/dashboard/diagnoses.html:94
+msgid "No diagnoses found"
+msgstr "No diagnoses found"
+
+#: templates/dashboard/diagnoses.html:95
+msgid "Diagnose a plant now"
+msgstr "Diagnose a plant now"
+
+#: templates/dashboard/index.html:2 templates/dashboard/index.html:7
+#: templates/includes/header.html:13 templates/includes/header.html:44
+#: templates/includes/header.html:70 templates/profile/view.html:57
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: templates/dashboard/index.html:21 templates/dashboard/statistics.html:10
+msgid "Total Diagnoses"
+msgstr "Total Diagnoses"
+
+#: templates/dashboard/index.html:28
+msgid "Plants Tracked"
+msgstr "Plants Tracked"
+
+#: templates/dashboard/index.html:35
+msgid "Chat Sessions"
+msgstr "Chat Sessions"
+
+#: templates/dashboard/index.html:42
+msgid "This Month"
+msgstr "This Month"
+
+#: templates/dashboard/index.html:49
+msgid "Recent Diagnoses"
+msgstr "Recent Diagnoses"
+
+#: templates/dashboard/index.html:65
+msgid "View All"
+msgstr "View All"
+
+#: templates/dashboard/index.html:67
+msgid "No diagnoses yet. Upload a plant image to get started!"
+msgstr "No diagnoses yet. Upload a plant image to get started!"
+
+#: templates/dashboard/index.html:68
+msgid "Diagnose Now"
+msgstr "Diagnose Now"
+
+#: templates/dashboard/index.html:73 templates/dashboard/plants.html:2
+#: templates/dashboard/plants.html:6
+msgid "My Plants"
+msgstr "My Plants"
+
+#: templates/dashboard/index.html:87
+msgid "Manage Plants"
+msgstr "Manage Plants"
+
+#: templates/dashboard/index.html:89
+msgid "No plants tracked yet."
+msgstr "No plants tracked yet."
+
+#: templates/dashboard/index.html:90 templates/dashboard/plants.html:45
+msgid "Add Your First Plant"
+msgstr "Add Your First Plant"
+
+#: templates/dashboard/index.html:97
+msgid "Quick Statistics"
+msgstr "Quick Statistics"
+
+#: templates/dashboard/index.html:102
+msgid "Average Confidence"
+msgstr "Average Confidence"
+
+#: templates/dashboard/index.html:106
+msgid "Conditions Diagnosed"
+msgstr "Conditions Diagnosed"
+
+#: templates/dashboard/index.html:110 templates/dashboard/plants.html:34
+msgid "View Details"
+msgstr "View Details"
+
+#: templates/dashboard/plant_detail.html:5
+msgid "Back to Plants"
+msgstr "Back to Plants"
+
+#: templates/dashboard/plant_detail.html:22 templates/dashboard/plants.html:24
+msgid "Status"
+msgstr "Status"
+
+#: templates/dashboard/plant_detail.html:28
+msgid "Planted"
+msgstr "Planted"
+
+#: templates/dashboard/plant_detail.html:55
+msgid "No diagnoses for this plant yet."
+msgstr "No diagnoses for this plant yet."
+
+#: templates/dashboard/plant_detail.html:60
+msgid "Care Log"
+msgstr "Care Log"
+
+#: templates/dashboard/plant_detail.html:77
+msgid "Add Care Entry"
+msgstr "Add Care Entry"
+
+#: templates/dashboard/plant_detail.html:82
+msgid "Watering"
+msgstr "Watering"
+
+#: templates/dashboard/plant_detail.html:83
+msgid "Fertilizing"
+msgstr "Fertilizing"
+
+#: templates/dashboard/plant_detail.html:84
+msgid "Pruning"
+msgstr "Pruning"
+
+#: templates/dashboard/plant_detail.html:86
+msgid "Other"
+msgstr "Other"
+
+#: templates/dashboard/plant_detail.html:88
+msgid "What did you do?"
+msgstr "What did you do?"
+
+#: templates/dashboard/plant_detail.html:89
+msgid "Save Entry"
+msgstr "Save Entry"
+
+#: templates/dashboard/plants.html:30 templates/dashboard/statistics.html:76
+#: templates/profile/view.html:23
+msgid "Diagnoses"
+msgstr "Diagnoses"
+
+#: templates/dashboard/plants.html:43
+msgid "No Plants Yet"
+msgstr "No Plants Yet"
+
+#: templates/dashboard/plants.html:44
+msgid "Start tracking your plants to monitor their health!"
+msgstr "Start tracking your plants to monitor their health!"
+
+#: templates/dashboard/settings.html:2 templates/dashboard/settings.html:5
+#: templates/includes/header.html:46
+msgid "Settings"
+msgstr "Settings"
+
+#: templates/dashboard/settings.html:24
+msgid "Confirm"
+msgstr "Confirm"
+
+#: templates/dashboard/settings.html:28
+msgid "Update Password"
+msgstr "Update Password"
+
+#: templates/dashboard/settings.html:34
+msgid "Export Data"
+msgstr "Export Data"
+
+#: templates/dashboard/settings.html:36
+msgid "Download your diagnosis history as CSV"
+msgstr "Download your diagnosis history as CSV"
+
+#: templates/dashboard/settings.html:38
+msgid "Export Diagnoses (CSV)"
+msgstr "Export Diagnoses (CSV)"
+
+#: templates/dashboard/settings.html:44
+msgid "Danger Zone"
+msgstr "Danger Zone"
+
+#: templates/dashboard/settings.html:46
+msgid "Once you delete your account, there is no going back. Please be certain."
+msgstr "Once you delete your account, there is no going back. Please be certain."
+
+#: templates/dashboard/settings.html:47
+msgid "Are you sure? This will delete ALL your data permanently!"
+msgstr "Are you sure? This will delete ALL your data permanently!"
+
+#: templates/dashboard/settings.html:49
+msgid "Delete My Account"
+msgstr "Delete My Account"
+
+#: templates/dashboard/statistics.html:2
+msgid "Statistics"
+msgstr "Statistics"
+
+#: templates/dashboard/statistics.html:5
+msgid "Advanced Statistics"
+msgstr "Advanced Statistics"
+
+#: templates/dashboard/statistics.html:14
+msgid "Avg Confidence"
+msgstr "Avg Confidence"
+
+#: templates/dashboard/statistics.html:18
+msgid "Unique Diseases"
+msgstr "Unique Diseases"
+
+#: templates/dashboard/statistics.html:22
+msgid "Rated Diagnoses"
+msgstr "Rated Diagnoses"
+
+#: templates/dashboard/statistics.html:28
+msgid "Disease Distribution"
+msgstr "Disease Distribution"
+
+#: templates/dashboard/statistics.html:32
+msgid "Monthly Trend"
+msgstr "Monthly Trend"
+
+#: templates/dashboard/statistics.html:39
+msgid "Plant Types"
+msgstr "Plant Types"
+
+#: templates/dashboard/statistics.html:43
+msgid "Confidence Distribution"
+msgstr "Confidence Distribution"
+
+#: templates/dashboard/statistics.html:92
+#: templates/dashboard/statistics.html:105
+msgid "Count"
+msgstr "Count"
+
+#: templates/includes/chat_widget.html:14
+msgid "Agricultural Assistant"
+msgstr "Agricultural Assistant"
+
+#: templates/includes/chat_widget.html:17
+msgid "Clear chat"
+msgstr "Clear chat"
+
+#: templates/includes/chat_widget.html:34
+msgid ""
+"Hello! I am your agricultural assistant. Ask me about plant diseases, "
+"treatments, or farming tips."
+msgstr ""
+"Hello! I am your agricultural assistant. Ask me about plant diseases, "
+"treatments, or farming tips."
+
+#: templates/includes/chat_widget.html:46
+msgid "Ask me anything..."
+msgstr "Ask me anything..."
+
+#: templates/includes/footer.html:7
+msgid "Plant Disease Detector v1.0"
+msgstr "Plant Disease Detector v1.0"
+
+#: templates/includes/footer.html:11
+msgid "Powered by AI & Hugging Face"
+msgstr "Powered by AI & Hugging Face"
+
+#: templates/includes/header.html:10 templates/includes/header.html:67
+msgid "Home"
+msgstr "Home"
+
+#: templates/includes/header.html:43 templates/profile/view.html:2
+msgid "My Profile"
+msgstr "My Profile"
+
+#: templates/includes/header.html:47 templates/includes/header.html:72
+msgid "Sign Out"
+msgstr "Sign Out"
+
+#: templates/includes/header.html:71
+msgid "Profile"
+msgstr "Profile"
+
+#: templates/profile/edit.html:2 templates/profile/edit.html:6
+#: templates/profile/view.html:54
+msgid "Edit Profile"
+msgstr "Edit Profile"
+
+#: templates/profile/edit.html:18 templates/profile/view.html:44
+msgid "Language"
+msgstr "Language"
+
+#: templates/profile/edit.html:22
+msgid "Profile Photo"
+msgstr "Profile Photo"
+
+#: templates/profile/edit.html:31
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#: templates/profile/view.html:27
+msgid "Plants"
+msgstr "Plants"
+
+#: templates/profile/view.html:31
+msgid "Chats"
+msgstr "Chats"
+
+#: templates/profile/view.html:36
+msgid "Email"
+msgstr "Email"
+
+#: templates/profile/view.html:48
+msgid "Member Since"
+msgstr "Member Since"
+
+#~ msgid "Image Requirements"
+#~ msgstr "Image Requirements"
+
+#~ msgid "Use a clear, well-lit photo"
+#~ msgstr "Use a clear, well-lit photo"
+
+#~ msgid "Capture only ONE diseased or infected leaf"
+#~ msgstr "Capture only ONE diseased or infected leaf"
+
+#~ msgid "Use a clean background or solid color"
+#~ msgstr "Use a clean background or solid color"
+
+#~ msgid "Avoid blurry or dark images"
+#~ msgstr "Avoid blurry or dark images"
+

@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}VerdaCare - {{ _('Plant Disease Detector') }}{% endblock %}</title>
 
+    <!-- PWA -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="VerdaCare">
+    <link rel="apple-touch-icon" sizes="192x192" href="{{ url_for('static', filename='images/pwa-192.png') }}">
+    <link rel="apple-touch-icon" sizes="512x512" href="{{ url_for('static', filename='images/pwa-512.png') }}">
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo_verdacare.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon.ico') }}">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -198,7 +208,31 @@
     <!-- Chat Widget -->
     {% include 'includes/chat_widget.html' %}
 
+    <!-- Floating Back Button -->
+    <button id="back-button" onclick="history.back()" class="fixed bottom-20 {{ 'left-4' if lang == 'ar' else 'right-4' }} z-40 w-12 h-12 bg-white dark:bg-gray-800 shadow-lg rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition border dark:border-gray-600 hidden">
+        <i class="fas fa-arrow-{{ 'right' if lang == 'ar' else 'left' }} text-gray-600 dark:text-gray-300"></i>
+    </button>
+
+    <script>
+    // Show back button on non-index pages
+    if (!window.location.pathname.endsWith('/') || window.location.pathname !== '/') {
+        document.getElementById('back-button')?.classList.remove('hidden');
+    }
+    </script>
+
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/static/sw.js').then(reg => {
+                console.log('SW registered:', reg.scope);
+            }).catch(err => {
+                console.log('SW registration failed:', err);
+            });
+        });
+    }
+    </script>
 
     {% block extra_js %}{% endblock %}
 </body>

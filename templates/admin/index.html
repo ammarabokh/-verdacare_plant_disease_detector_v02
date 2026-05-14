@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}VerdaCare - {{ _('Admin Dashboard') }}{% endblock %}
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8">
+        <div>
+            <nav class="text-sm text-gray-500 mb-1">
+                <a href="{{ url_for('index') }}" class="hover:text-primary">{{ _('Home') }}</a> ›
+                <span class="text-gray-800 dark:text-white font-medium">{{ _('Admin Dashboard') }}</span>
+            </nav>
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">{{ _('Admin Dashboard') }}</h1>
+        </div>
+        <div class="flex gap-3">
+            <a href="{{ url_for('admin.diagnoses') }}" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition">{{ _('Diagnoses') }}</a>
+            <a href="{{ url_for('admin.images') }}" class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-blue-600 transition">{{ _('Images') }}</a>
+            <a href="{{ url_for('admin.users') }}" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">{{ _('Users') }}</a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center"><i class="fas fa-users text-blue-600 text-xl"></i></div>
+                <div><p class="text-2xl font-bold text-gray-800 dark:text-white">{{ total_users }}</p><p class="text-sm text-gray-500">{{ _('Users') }}</p></div>
+            </div>
+            <p class="text-xs text-green-600 mt-2">+{{ users_today }} {{ _('today') }}</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center"><i class="fas fa-leaf text-green-600 text-xl"></i></div>
+                <div><p class="text-2xl font-bold text-gray-800 dark:text-white">{{ total_diagnoses }}</p><p class="text-sm text-gray-500">{{ _('Diagnoses') }}</p></div>
+            </div>
+            <p class="text-xs text-green-600 mt-2">+{{ diagnoses_today }} {{ _('today') }}</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center"><i class="fas fa-image text-purple-600 text-xl"></i></div>
+                <div><p class="text-2xl font-bold text-gray-800 dark:text-white">{{ total_images }}</p><p class="text-sm text-gray-500">{{ _('Images') }}</p></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">{{ '%0.1f'|format(upload_size / (1024*1024)) }} MB</p>
+        </div>
+        <div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-md">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center"><i class="fas fa-comments text-orange-600 text-xl"></i></div>
+                <div><p class="text-2xl font-bold text-gray-800 dark:text-white">{{ total_chats }}</p><p class="text-sm text-gray-500">{{ _('Chats') }}</p></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">{{ total_plants }} {{ _('Plants') }}</p>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6 mb-8">
+        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">{{ _('Recent Diagnoses') }}</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead><tr class="text-left text-gray-500 border-b dark:border-gray-700">
+                    <th class="pb-3">{{ _('Disease') }}</th><th class="pb-3">{{ _('Confidence') }}</th><th class="pb-3">{{ _('User') }}</th><th class="pb-3">{{ _('Date') }}</th>
+                </tr></thead>
+                <tbody>
+                {% for d in recent_diagnoses %}
+                <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                    <td class="py-3">{{ d.disease_name_ar or d.disease_name_en }}</td>
+                    <td class="py-3"><span class="px-2 py-1 rounded text-xs {{ 'bg-green-100 text-green-700' if d.confidence>=0.8 else 'bg-yellow-100 text-yellow-700' if d.confidence>=0.5 else 'bg-red-100 text-red-700' }}">{{ (d.confidence*100)|round(1) }}%</span></td>
+                    <td class="py-3">{{ d.user.username if d.user else _('Guest') }}</td>
+                    <td class="py-3 text-gray-500">{{ d.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-dark-card rounded-xl shadow-md p-6">
+        <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">{{ _('Quick Actions') }}</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="{{ url_for('admin.diagnoses') }}" class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-center hover:bg-blue-100 dark:hover:bg-blue-900/40 transition"><i class="fas fa-list text-blue-600 text-2xl mb-2"></i><p class="text-sm">{{ _('All Diagnoses') }}</p></a>
+            <a href="{{ url_for('admin.images') }}" class="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg text-center hover:bg-green-100 dark:hover:bg-green-900/40 transition"><i class="fas fa-images text-green-600 text-2xl mb-2"></i><p class="text-sm">{{ _('All Images') }}</p></a>
+            <a href="{{ url_for('admin.users') }}" class="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-center hover:bg-purple-100 dark:hover:bg-purple-900/40 transition"><i class="fas fa-user-cog text-purple-600 text-2xl mb-2"></i><p class="text-sm">{{ _('Manage Users') }}</p></a>
+            <a href="{{ url_for('admin.download_images') }}" class="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-center hover:bg-orange-100 dark:hover:bg-orange-900/40 transition"><i class="fas fa-file-archive text-orange-600 text-2xl mb-2"></i><p class="text-sm">{{ _('Download All Images') }}</p></a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+            <a href="{{ url_for('admin.export_users') }}" class="p-4 bg-teal-50 dark:bg-teal-900/20 rounded-lg text-center hover:bg-teal-100 dark:hover:bg-teal-900/40 transition"><i class="fas fa-file-csv text-teal-600 text-2xl mb-2"></i><p class="text-sm">{{ _('Export Users CSV') }}</p></a>
+            <a href="{{ url_for('dashboard.index') }}" class="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg text-center hover:bg-gray-100 dark:hover:bg-gray-800 transition"><i class="fas fa-arrow-left text-gray-600 text-2xl mb-2"></i><p class="text-sm">{{ _('User Dashboard') }}</p></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,7 @@
 import os
 import uuid
+import traceback
+import logging
 from datetime import datetime
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 from flask_babel import Babel, gettext as _
@@ -10,7 +12,11 @@ from dotenv import load_dotenv
 
 from config import Config
 from models.models import db, User, Diagnosis, ChatSession, ChatMessage
-from utils.image_processor import preprocess_image, check_image_quality
+from utils.image_processor import (
+    preprocess_image,
+    enhanced_preprocess_image,
+    check_image_quality,
+)
 from utils.model_loader import get_model_loader
 from utils.report_generator import generate_report
 from chatbot.chatbot_logic import chatbot
@@ -19,6 +25,27 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+# Persist server-side errors when terminal output is not visible (e.g., IDE run panel).
+log_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), "instance")
+os.makedirs(log_dir, exist_ok=True)
+log_file = os.path.join(log_dir, "app_errors.log")
+file_handler = logging.FileHandler(log_file, encoding="utf-8")
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter(
+    "%(asctime)s [%(levelname)s] %(message)s"
+))
+app.logger.addHandler(file_handler)
+app.logger.setLevel(logging.INFO)
+
+
+def _is_ajax():
+    """Check if request is AJAX (via form field or X-Requested-With header)."""
+    return (
+        request.form.get('_ajax') == '1' or
+        request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    )
+
 
 os.makedirs('flask_session', exist_ok=True)
 os.makedirs('instance', exist_ok=True)
@@ -56,10 +83,12 @@ babel.init_app(app, locale_selector=get_locale)
 from routes.auth import auth_bp
 from routes.profile import profile_bp
 from routes.dashboard import dashboard_bp
+from routes.admin import admin_bp
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(dashboard_bp)
+app.register_blueprint(admin_bp)
 
 with app.app_context():
     db.create_all()
@@ -85,6 +114,7 @@ def set_language(lang):
 
 @app.route('/diagnose', methods=['POST'])
 def diagnose():
+    request_id = str(uuid.uuid4())
     if 'image' not in request.files:
         return jsonify({'error': _('No image uploaded')}), 400
     file = request.files['image']
@@ -95,17 +125,47 @@ def diagnose():
 
     filename = secure_filename(f"{uuid.uuid4()}_{file.filename}")
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    app.logger.info(f"[diagnose:{request_id}] saving upload to: {filepath}")
     file.save(filepath)
 
-    is_valid, message = check_image_quality(filepath)
+    is_valid, reason = check_image_quality(filepath)
     if not is_valid:
         os.remove(filepath)
-        return jsonify({'error': message}), 400
+        quality_tips = {
+            'too_small': '📏 ' + _('Get closer to the leaf so it fills the frame'),
+            'too_dark': '🌑 ' + _('Lighting is too weak. Photograph in daylight'),
+            'too_bright': '☀️ ' + _('Image is overexposed. Avoid direct sunlight or shoot in shade'),
+            'blurry': '📷 ' + _('Image is blurry. Steady the camera and avoid hand shake'),
+            'error': '⚠️ ' + _('Could not process the image. Try another photo'),
+        }
+        error_message = quality_tips.get(reason, _('Image quality is insufficient. Please try again.'))
+        if _is_ajax():
+            return jsonify({'error': error_message, 'code': reason}), 400
+        return jsonify({'error': error_message}), 400
 
     try:
+        app.logger.info(f"[diagnose:{request_id}] quality ok, start preprocessing")
         model_loader = get_model_loader()
-        preprocessed = preprocess_image(filepath)
+        preprocessed = enhanced_preprocess_image(
+            filepath,
+            max_dim=Config.MAX_IMAGE_DIMENSION,
+            working_size=Config.WORKING_IMAGE_SIZE,
+            use_segmentation=Config.USE_BACKGROUND_SEGMENTATION,
+            green_hue_low=Config.GREEN_HUE_LOW,
+            green_hue_high=Config.GREEN_HUE_HIGH,
+            saturation_min=Config.SATURATION_THRESHOLD,
+            value_min=Config.VALUE_THRESHOLD,
+            padding_ratio=Config.PADDING_RATIO,
+            min_contour_ratio=Config.MIN_CONTOUR_AREA_RATIO,
+            background_color=Config.BACKGROUND_COLOR,
+            clahe_clip=Config.CLAHE_CLIP_LIMIT,
+            clahe_tile=Config.CLAHE_TILE_SIZE,
+            gaussian_ksize=Config.GAUSSIAN_BLUR_KSIZE,
+            gaussian_sigma=Config.GAUSSIAN_BLUR_SIGMA,
+        )
+        app.logger.info(f"[diagnose:{request_id}] preprocessing done, start prediction")
         predicted_class, confidence, disease_info = model_loader.predict(preprocessed)
+        app.logger.info(f"[diagnose:{request_id}] prediction done class={predicted_class} confidence={confidence}")
 
         info_ar = disease_info.get('ar', {}) if disease_info else {}
         info_en = disease_info.get('en', {}) if disease_info else {}
@@ -113,7 +173,25 @@ def diagnose():
 
         latitude = request.form.get('latitude', type=float)
         longitude = request.form.get('longitude', type=float)
+        location_name = request.form.get('location_name', '').strip()
         plant_id = request.form.get('plant_id', type=int)
+
+        # Reverse geocode if we have coordinates but no location_name
+        if latitude and longitude and not location_name:
+            try:
+                import requests
+                resp = requests.get(
+                    'https://nominatim.openstreetmap.org/reverse',
+                    params={'format': 'json', 'lat': latitude, 'lon': longitude,
+                            'accept-language': get_locale()},
+                    headers={'User-Agent': 'VerdaCare/2.0'},
+                    timeout=5
+                )
+                if resp.ok:
+                    data = resp.json()
+                    location_name = data.get('display_name', '')
+            except Exception:
+                pass
 
         diagnosis = Diagnosis(
             user_id=current_user.id if current_user.is_authenticated else None,
@@ -125,7 +203,8 @@ def diagnose():
             confidence=confidence,
             image_path=filename,
             latitude=latitude,
-            longitude=longitude
+            longitude=longitude,
+            location_name=location_name or None
         )
         db.session.add(diagnosis)
         db.session.commit()
@@ -139,15 +218,36 @@ def diagnose():
             'confidence': confidence
         }
 
+        if _is_ajax():
+            return jsonify({
+                'success': True,
+                'diagnosis_id': diagnosis.id,
+                'disease_class': predicted_class,
+                'disease_name_ar': info_ar.get('name', predicted_class),
+                'disease_name_en': info_en.get('name', predicted_class),
+                'disease_name_de': info_de.get('name', predicted_class),
+                'confidence': confidence,
+                'location_name': location_name or '',
+                'description': info_ar.get('description', '') if get_locale() == 'ar' else info_en.get('description', ''),
+                'symptoms': info_ar.get('symptoms', '') if get_locale() == 'ar' else info_en.get('symptoms', ''),
+                'treatment': info_ar.get('treatment', '') if get_locale() == 'ar' else info_en.get('treatment', ''),
+                'prevention': info_ar.get('prevention', '') if get_locale() == 'ar' else info_en.get('prevention', ''),
+                'products': info_ar.get('products', []) if get_locale() == 'ar' else info_en.get('products', []),
+            })
+
         return redirect(url_for('result', diagnosis_id=diagnosis.id))
     except RuntimeError as e:
+        app.logger.error(f"[diagnose:{request_id}] runtime error: {e}")
+        app.logger.error(traceback.format_exc())
         if os.path.exists(filepath):
             os.remove(filepath)
-        return jsonify({'error': str(e), 'code': 'MODEL_NOT_READY'}), 503
+        return jsonify({'error': str(e), 'code': 'MODEL_NOT_READY', 'request_id': request_id}), 503
     except Exception as e:
+        app.logger.error(f"[diagnose:{request_id}] unexpected error: {e}")
+        app.logger.error(traceback.format_exc())
         if os.path.exists(filepath):
             os.remove(filepath)
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e), 'request_id': request_id}), 500
 
 @app.route('/result/<diagnosis_id>')
 def result(diagnosis_id):
@@ -279,7 +379,7 @@ def internal_error(error):
     return jsonify({'error': _('Internal server error')}), 500
 
 if __name__ == '__main__':
-    debug_mode = True
+    debug_mode = os.environ.get('FLASK_DEBUG', 'false').lower() == 'true'
     # In debug mode, initialize once only in Werkzeug's reloader child process.
     if not debug_mode or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
         get_model_loader()

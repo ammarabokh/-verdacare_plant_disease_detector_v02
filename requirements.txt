@@ -21,4 +21,6 @@ kagglehub==0.2.5
 kaggle>=1.6.17
 deep-translator==1.11.4
 
+opencv-python-headless==4.9.0.80
+
 gunicorn==21.2.0

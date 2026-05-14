@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import tensorflow as tf
 from config import Config
 from threading import Lock
@@ -22,6 +23,7 @@ class ModelLoader:
         self.class_names = []
         self.knowledge_base = None
         self.knowledge_base_by_normalized_key = {}
+        self.knowledge_base_by_simplified_key = {}
         self.mock_mode = True
         self.load_error = None
         self.download_error = None
@@ -164,10 +166,14 @@ class ModelLoader:
                 self.knowledge_base_by_normalized_key = {
                     self._normalize_label(k): k for k in self.knowledge_base.keys()
                 }
+                self.knowledge_base_by_simplified_key = {
+                    self._simplify_label(k): k for k in self.knowledge_base.keys()
+                }
         except Exception as e:
             print(f"Error loading knowledge base: {e}")
             self.knowledge_base = {}
             self.knowledge_base_by_normalized_key = {}
+            self.knowledge_base_by_simplified_key = {}
 
     def predict(self, preprocessed_image):
         """
@@ -222,6 +228,28 @@ class ModelLoader:
         if matched_key:
             return self.knowledge_base.get(matched_key)
 
+        simplified = self._simplify_label(class_name)
+        matched_key = self.knowledge_base_by_simplified_key.get(simplified)
+        if matched_key:
+            return self.knowledge_base.get(matched_key)
+
+        # Fuzzy fallback for labels such as:
+        # "Grape_Leaf_Blight" vs "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)"
+        query_tokens = self._tokenize_label(class_name)
+        if query_tokens:
+            best_key = None
+            best_score = 0
+            for kb_key in self.knowledge_base.keys():
+                kb_tokens = self._tokenize_label(kb_key)
+                if not kb_tokens:
+                    continue
+                common = len(query_tokens & kb_tokens)
+                if common > best_score and common >= 2:
+                    best_score = common
+                    best_key = kb_key
+            if best_key:
+                return self.knowledge_base.get(best_key)
+
         return None
 
     def _normalize_label(self, label):
@@ -232,6 +260,22 @@ class ModelLoader:
         while "__" in normalized:
             normalized = normalized.replace("__", "_")
         return normalized
+
+    def _simplify_label(self, label):
+        """Aggressive normalization to support minor naming format differences."""
+        if not label:
+            return ""
+        normalized = self._normalize_label(label)
+        normalized = re.sub(r"\([^)]*\)", "", normalized)  # remove (...) segments
+        normalized = re.sub(r"[^a-z0-9_]", "_", normalized)
+        normalized = re.sub(r"_+", "_", normalized).strip("_")
+        return normalized
+
+    def _tokenize_label(self, label):
+        simplified = self._simplify_label(label)
+        if not simplified:
+            return set()
+        return {t for t in simplified.split("_") if t}
 
 def get_model_loader():
     """Thread-safe singleton accessor with lazy initialization."""

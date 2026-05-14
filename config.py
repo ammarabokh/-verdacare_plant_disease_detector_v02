@@ -55,3 +55,19 @@ class Config:
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024
     UPLOAD_FOLDER = os.path.join(basedir, 'static', 'uploads')
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+
+    # Image preprocessing settings
+    MAX_IMAGE_DIMENSION = 2000          # downscale if longest side exceeds this
+    WORKING_IMAGE_SIZE = 800            # target size after downscale
+    USE_BACKGROUND_SEGMENTATION = True  # enable leaf isolation
+    GREEN_HUE_LOW = 30                  # HSV hue lower bound for green
+    GREEN_HUE_HIGH = 90                 # HSV hue upper bound for green
+    SATURATION_THRESHOLD = 40           # minimum saturation for green mask
+    VALUE_THRESHOLD = 40                # minimum value (brightness) for green mask
+    PADDING_RATIO = 0.125               # padding around leaf bounding box (~80% coverage)
+    MIN_CONTOUR_AREA_RATIO = 0.05       # minimum leaf area ratio (5%)
+    BACKGROUND_COLOR = (128, 128, 128)  # background fill color (gray)
+    CLAHE_CLIP_LIMIT = 3.0              # CLAHE contrast clip limit
+    CLAHE_TILE_SIZE = 8                 # CLAHE tile grid size (8x8)
+    GAUSSIAN_BLUR_KSIZE = 3             # Gaussian kernel size (must be odd)
+    GAUSSIAN_BLUR_SIGMA = 0.5           # Gaussian sigma value

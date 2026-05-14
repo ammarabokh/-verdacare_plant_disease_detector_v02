@@ -1,9 +1,8 @@
 <header class="bg-white dark:bg-dark-card shadow-md sticky top-0 z-50 transition-colors duration-300">
     <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-            <a href="{{ url_for('index') }}" class="flex items-center gap-3">
-                <img src="{{ url_for('static', filename='images/logo_verdacare.png') }}" alt="VerdaCare" class="w-10 h-10 object-contain">
-                <span class="text-xl font-bold text-gray-800 dark:text-white">VerdaCare</span>
+            <a href="{{ url_for('index') }}" class="flex items-center gap-2">
+                <img src="{{ url_for('static', filename='images/logo_header.png') }}" alt="VerdaCare" class="h-10 w-auto object-contain">
             </a>
 
             <nav class="hidden md:flex items-center gap-6">
@@ -11,6 +10,9 @@
                 <a href="#" onclick="toggleChat()" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">{{ _('Chat') }}</a>
                 {% if current_user.is_authenticated %}
                 <a href="{{ url_for('dashboard.index') }}" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">{{ _('Dashboard') }}</a>
+                {% if current_user.is_admin %}
+                <a href="{{ url_for('admin.index') }}" class="text-red-600 hover:text-red-800 transition font-medium"><i class="fas fa-shield-alt mr-1"></i>{{ _('Admin') }}</a>
+                {% endif %}
                 {% endif %}
             </nav>
 
@@ -21,9 +23,9 @@
                         <span class="uppercase">{{ lang }}</span>
                     </button>
                     <div id="language-menu" class="hidden absolute {{ 'left-0' if lang == 'ar' else 'right-0' }} mt-2 w-40 bg-white dark:bg-dark-card rounded-lg shadow-lg border dark:border-gray-700">
-                        <a href="{{ url_for('set_language', lang='ar') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 {{ 'text-primary font-bold' if lang == 'ar' else '' }}">🇸🇦 العربية</a>
-                        <a href="{{ url_for('set_language', lang='en') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 {{ 'text-primary font-bold' if lang == 'en' else '' }}">🇬🇧 English</a>
-                        <a href="{{ url_for('set_language', lang='de') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 {{ 'text-primary font-bold' if lang == 'de' else '' }}">🇩🇪 Deutsch</a>
+                        <a href="{{ url_for('set_language', lang='ar') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 {{ 'text-primary font-bold' if lang == 'ar' else '' }}">العربية</a>
+                        <a href="{{ url_for('set_language', lang='en') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 {{ 'text-primary font-bold' if lang == 'en' else '' }}">English</a>
+                        <a href="{{ url_for('set_language', lang='de') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 {{ 'text-primary font-bold' if lang == 'de' else '' }}">Deutsch</a>
                     </div>
                 </div>
 
@@ -42,6 +44,9 @@
                     <div id="user-menu" class="hidden absolute {{ 'left-0' if lang == 'ar' else 'right-0' }} mt-2 w-48 bg-white dark:bg-dark-card rounded-lg shadow-lg border dark:border-gray-700">
                         <a href="{{ url_for('profile.view') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"><i class="fas fa-user mr-2"></i>{{ _('My Profile') }}</a>
                         <a href="{{ url_for('dashboard.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"><i class="fas fa-chart-bar mr-2"></i>{{ _('Dashboard') }}</a>
+                        {% if current_user.is_admin %}
+                        <a href="{{ url_for('admin.index') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm text-red-600"><i class="fas fa-shield-alt mr-2"></i>{{ _('Admin Panel') }}</a>
+                        {% endif %}
                         <hr class="dark:border-gray-700">
                         <a href="{{ url_for('dashboard.settings') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"><i class="fas fa-cog mr-2"></i>{{ _('Settings') }}</a>
                         <a href="{{ url_for('auth.logout') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm text-red-600"><i class="fas fa-sign-out-alt mr-2"></i>{{ _('Sign Out') }}</a>
@@ -68,6 +73,9 @@
             <a href="#" onclick="toggleChat(); toggleMobileMenu();" class="block py-2 text-gray-600 dark:text-gray-300">{{ _('Chat') }}</a>
             {% if current_user.is_authenticated %}
             <a href="{{ url_for('dashboard.index') }}" class="block py-2 text-gray-600 dark:text-gray-300">{{ _('Dashboard') }}</a>
+            {% if current_user.is_admin %}
+            <a href="{{ url_for('admin.index') }}" class="block py-2 text-red-600 font-medium">{{ _('Admin Panel') }}</a>
+            {% endif %}
             <a href="{{ url_for('profile.view') }}" class="block py-2 text-gray-600 dark:text-gray-300">{{ _('Profile') }}</a>
             <a href="{{ url_for('auth.logout') }}" class="block py-2 text-red-600">{{ _('Sign Out') }}</a>
             {% else %}

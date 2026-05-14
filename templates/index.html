@@ -15,31 +15,35 @@
 
 <!-- Image Requirements -->
 <section class="max-w-2xl mx-auto mb-6">
-    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
-        <h3 class="font-semibold text-blue-800 dark:text-blue-300 mb-3 flex items-center gap-2">
-            <i class="fas fa-info-circle"></i>
-            {{ _('Image Requirements') }}
+    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+        <h3 class="font-semibold text-green-800 dark:text-green-300 mb-3 flex items-center gap-2">
+            <i class="fas fa-camera"></i>
+            {{ _('How to take a good photo') }}
         </h3>
-        <ul class="text-sm text-blue-700 dark:text-blue-400 space-y-2">
+        <ul class="text-sm text-green-700 dark:text-green-400 space-y-2">
             <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle mt-0.5"></i>
-                <span>{{ _('Use a clear, well-lit photo') }}</span>
+                <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                <span><strong>{{ _('Fill the frame') }}</strong> — {{ _('The leaf should cover most of the picture') }}</span>
             </li>
             <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle mt-0.5"></i>
-                <span>{{ _('Capture only ONE diseased or infected leaf') }}</span>
+                <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                <span><strong>{{ _('Single leaf') }}</strong> — {{ _('Photograph one leaf only') }}</span>
             </li>
             <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle mt-0.5"></i>
-                <span>{{ _('Use a clean background or solid color') }}</span>
+                <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                <span><strong>{{ _('Soft lighting') }}</strong> — {{ _('Shoot in shade or indirect light, not direct sun') }}</span>
             </li>
             <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle mt-0.5"></i>
-                <span>{{ _('Avoid blurry or dark images') }}</span>
+                <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                <span><strong>{{ _('Steady camera') }}</strong> — {{ _('Keep the camera still for a sharp photo') }}</span>
             </li>
             <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle mt-0.5"></i>
-                <span>{{ _('Fill the frame with the leaf') }}</span>
+                <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                <span><strong>{{ _('Plain background') }}</strong> — {{ _('Avoid soil, other plants, or sky behind the leaf') }}</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
+                <span><strong>{{ _('Distance') }}</strong> — {{ _('15-30 cm from the leaf') }}</span>
             </li>
         </ul>
     </div>
@@ -91,6 +95,13 @@
                 >
                 <input type="hidden" id="latitude" name="latitude">
                 <input type="hidden" id="longitude" name="longitude">
+                <input type="hidden" id="location_name" name="location_name">
+
+                <!-- Manual location input (shown when GPS fails) -->
+                <div id="manual-location" class="hidden mt-4">
+                    <label class="block text-sm text-gray-600 dark:text-gray-400 mb-1">{{ _('Where was this photo taken?') }}</label>
+                    <input type="text" id="manual-location-input" placeholder="{{ _('e.g. Riyadh, Saudi Arabia') }}" class="w-full px-4 py-2 border dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-white text-sm">
+                </div>
                 
                 <div id="upload-placeholder">
                     <i class="fas fa-cloud-upload-alt text-6xl text-primary mb-4"></i>
@@ -188,6 +199,49 @@
         </span>
     </div>
 </section>
+
+<!-- Result Modal inside content block -->
+<div id="result-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4 overflow-y-auto">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="sticky top-0 bg-white dark:bg-gray-800 rounded-t-2xl p-6 border-b dark:border-gray-700 flex items-start justify-between">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white" id="modal-disease-name"></h2>
+                <div class="flex items-center gap-3 mt-2">
+                    <span class="text-sm text-gray-500">{{ _('Confidence') }}:</span>
+                    <span class="text-lg font-bold text-primary" id="modal-confidence">0%</span>
+                </div>
+            </div>
+            <button onclick="closeResultModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition p-2">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <div class="px-6 pt-4">
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                <div id="modal-confidence-bar" class="rounded-full h-3 transition-all duration-700 bg-green-500" style="width:0%"></div>
+            </div>
+        </div>
+        <div id="modal-location-row" class="hidden mx-6 mt-3 pb-2 border-b dark:border-gray-700">
+            <p class="text-xs text-gray-500"><i class="fas fa-map-marker-alt text-primary mr-1"></i> <span id="modal-location"></span></p>
+        </div>
+        <div id="modal-low-confidence" class="hidden mx-6 mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+            <p class="text-sm text-yellow-700 dark:text-yellow-400 flex items-start gap-2">
+                <i class="fas fa-lightbulb mt-0.5"></i>
+                <span>{{ _('The result is not very confident. Try uploading a clearer, closer photo of the leaf.') }}</span>
+            </p>
+        </div>
+        <div class="p-6 space-y-4">
+            <div><h3 class="font-semibold text-gray-800 dark:text-white mb-1">{{ _('Description') }}</h3><p class="text-sm text-gray-600 dark:text-gray-400" id="modal-description"></p></div>
+            <div><h3 class="font-semibold text-gray-800 dark:text-white mb-1">{{ _('Symptoms') }}</h3><p class="text-sm text-gray-600 dark:text-gray-400" id="modal-symptoms"></p></div>
+            <div><h3 class="font-semibold text-gray-800 dark:text-white mb-1">{{ _('Treatment') }}</h3><p class="text-sm text-gray-600 dark:text-gray-400" id="modal-treatment"></p></div>
+            <div><h3 class="font-semibold text-gray-800 dark:text-white mb-1">{{ _('Prevention') }}</h3><p class="text-sm text-gray-600 dark:text-gray-400" id="modal-prevention"></p></div>
+            <div id="modal-products" class="hidden"><h3 class="font-semibold text-gray-800 dark:text-white mb-1">{{ _('Recommended Products') }}</h3><ul id="modal-products-list" class="space-y-1"></ul></div>
+        </div>
+        <div class="sticky bottom-0 bg-gray-50 dark:bg-gray-900 rounded-b-2xl p-4 border-t dark:border-gray-700 flex flex-wrap gap-3 justify-end">
+            <button onclick="retryUpload()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 rounded-lg text-sm transition flex items-center gap-2">{{ _('Upload Another') }}</button>
+            <button onclick="closeResultModal()" class="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg text-sm transition flex items-center gap-2">{{ _('Done') }}</button>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block extra_js %}
@@ -203,12 +257,27 @@
                 };
                 document.getElementById('latitude').value = userLocation.lat;
                 document.getElementById('longitude').value = userLocation.lng;
+                // Reverse geocode
+                fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + userLocation.lat + '&lon=' + userLocation.lng + '&accept-language={{ lang }}')
+                    .then(r => r.json())
+                    .then(data => {
+                        const loc = data.display_name || data.address?.city || data.address?.country || '';
+                        if (loc) {
+                            document.getElementById('location_name').value = loc;
+                            console.log('Location:', loc);
+                        }
+                    })
+                    .catch(() => {});
                 console.log('Location captured:', userLocation);
             },
             error => {
                 console.log('Location access denied or unavailable');
+                // Show manual input
+                document.getElementById('manual-location').classList.remove('hidden');
             }
         );
+    } else {
+        document.getElementById('manual-location').classList.remove('hidden');
     }
 
     if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
@@ -263,10 +332,158 @@
         reader.readAsDataURL(file);
     }
 
+    // ── AJAX Upload ──
     document.getElementById('upload-form').addEventListener('submit', function(e) {
-        document.getElementById('btn-text').classList.add('hidden');
-        document.getElementById('btn-loading').classList.remove('hidden');
-        document.getElementById('submit-btn').disabled = true;
+        e.preventDefault();
+
+        const form = this;
+        const formData = new FormData(form);
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoading = document.getElementById('btn-loading');
+        const errorDiv = document.getElementById('error-message');
+        const errorText = document.getElementById('error-text');
+        const resultModal = document.getElementById('result-modal');
+
+        // Hide previous results/errors
+        errorDiv.classList.add('hidden');
+        if (resultModal) resultModal.classList.add('hidden');
+
+        // Show loading
+        btnText.classList.add('hidden');
+        btnLoading.classList.remove('hidden');
+        submitBtn.disabled = true;
+
+        // Capture manual location if GPS failed
+        const manualLoc = document.getElementById('manual-location-input').value.trim();
+        if (manualLoc) formData.set('location_name', manualLoc);
+
+        // Mark request as AJAX
+        formData.append('_ajax', '1');
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(async response => {
+            const text = await response.text();
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch (e) {
+                throw new Error(
+                    'Server returned status ' + response.status +
+                    ' (expected JSON). Response: ' + text.substring(0, 300)
+                );
+            }
+            return data;
+        })
+        .then(data => {
+            btnLoading.classList.add('hidden');
+            btnText.classList.remove('hidden');
+            submitBtn.disabled = false;
+
+            if (data.error) {
+                errorText.textContent = data.error;
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            if (data.success && resultModal) {
+                const confidence = (data.confidence * 100).toFixed(1);
+                const confidenceNum = parseFloat(confidence);
+                const isArabic = document.documentElement.lang === 'ar';
+                const diseaseName = isArabic ? data.disease_name_ar : data.disease_name_en;
+
+                document.getElementById('modal-disease-name').textContent = diseaseName;
+                document.getElementById('modal-confidence').textContent = confidence + '%';
+
+                const confBar = document.getElementById('modal-confidence-bar');
+                if (confBar) {
+                    confBar.style.width = confidence + '%';
+                    confBar.className = 'rounded-full h-3 transition-all duration-700 ' +
+                        (confidenceNum >= 80 ? 'bg-green-500' :
+                         confidenceNum >= 50 ? 'bg-yellow-500' : 'bg-red-500');
+                }
+
+                const lowConfEl = document.getElementById('modal-low-confidence');
+                if (lowConfEl) {
+                    lowConfEl.classList.toggle('hidden', confidenceNum >= 70);
+                }
+
+                document.getElementById('modal-description').textContent = data.description || '';
+                document.getElementById('modal-symptoms').textContent = data.symptoms || '';
+                document.getElementById('modal-treatment').textContent = data.treatment || '';
+                document.getElementById('modal-prevention').textContent = data.prevention || '';
+
+                // Location
+                const locRow = document.getElementById('modal-location-row');
+                const locSpan = document.getElementById('modal-location');
+                if (data.location_name && locRow && locSpan) {
+                    locSpan.textContent = data.location_name;
+                    locRow.classList.remove('hidden');
+                } else if (locRow) {
+                    locRow.classList.add('hidden');
+                }
+
+                const productsDiv = document.getElementById('modal-products');
+                const productsList = document.getElementById('modal-products-list');
+                if (productsDiv && productsList) {
+                    if (data.products && data.products.length > 0) {
+                        productsList.innerHTML = '';
+                        data.products.forEach(p => {
+                            const li = document.createElement('li');
+                            li.className = 'flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300';
+                            li.innerHTML = '<i class=\"fas fa-check-circle text-green-500\"></i>' +
+                                (typeof p === 'object' ? (p.name || p) : p);
+                            productsList.appendChild(li);
+                        });
+                        productsDiv.classList.remove('hidden');
+                    } else {
+                        productsDiv.classList.add('hidden');
+                    }
+                }
+
+                sessionStorage.setItem('lastDiagnosisClass', data.disease_class);
+                sessionStorage.setItem('lastDiagnosisName', diseaseName);
+
+                resultModal.classList.remove('hidden');
+                resultModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        })
+        .catch(error => {
+            btnLoading.classList.add('hidden');
+            btnText.classList.remove('hidden');
+            submitBtn.disabled = false;
+            errorText.textContent = error.message || '{{ _("Connection error. Please try again.") }}';
+            errorDiv.classList.remove('hidden');
+            console.error('Upload error:', error);
+        });
+    });
+
+    function closeResultModal() {
+        const modal = document.getElementById('result-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function retryUpload() {
+        closeResultModal();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Close modal on ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeResultModal();
+    });
+
+    // Close modal on backdrop click
+    document.getElementById('result-modal')?.addEventListener('click', function(e) {
+        if (e.target === this) closeResultModal();
     });
 </script>
 {% endblock %}

@@ -1,0 +1,974 @@
+# Arabic translations for VerdaCare.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the VerdaCare project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: VerdaCare 2.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-05-14 14:27+0200\n"
+"PO-Revision-Date: 2026-05-14 14:22+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ar\n"
+"Language-Team: ar <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app.py:93
+msgid "No image uploaded"
+msgstr "لم يتم تحميل أي صورة"
+
+#: app.py:96
+msgid "No file selected"
+msgstr "لم يتم تحديد أي ملف"
+
+#: app.py:98
+msgid "Invalid file type. Please upload an image (PNG, JPG, JPEG, GIF, WEBP)"
+msgstr "نوع الملف غير صالح. يرجى تحميل صورة (PNG، JPG، JPEG، GIF، WEBP)"
+
+#: app.py:109
+msgid "Get closer to the leaf so it fills the frame"
+msgstr "اقترب من الورقة حتى تملأ الإطار"
+
+#: app.py:110
+msgid "Lighting is too weak. Photograph in daylight"
+msgstr "الإضاءة ضعيفة جداً. التصوير في وضح النهار"
+
+#: app.py:111
+msgid "Image is overexposed. Avoid direct sunlight or shoot in shade"
+msgstr "تم تعريض الصورة بشكل زائد. تجنب أشعة الشمس المباشرة أو التصوير في الظل"
+
+#: app.py:112
+msgid "Image is blurry. Steady the camera and avoid hand shake"
+msgstr "الصورة ضبابية. ثبت الكاميرا وتجنب اهتزازها باليد"
+
+#: app.py:113
+msgid "Could not process the image. Try another photo"
+msgstr "لا يمكن معالجة الصورة. حاول صورة أخرى"
+
+#: app.py:115
+msgid "Image quality is insufficient. Please try again."
+msgstr "جودة الصورة غير كافية. يرجى المحاولة مرة أخرى."
+
+#: app.py:219 app.py:220 app.py:221 app.py:222
+msgid "No information available"
+msgstr "لا توجد معلومات متاحة"
+
+#: app.py:247 templates/result.html:187
+msgid "Thank you for your feedback!"
+msgstr "شكرا لتعليقاتك!"
+
+#: app.py:264
+msgid "Empty message"
+msgstr "رسالة فارغة"
+
+#: app.py:327
+msgid "Internal server error"
+msgstr "خطأ في الخادم الداخلي"
+
+#: routes/auth.py:29
+msgid "Registration successful! Welcome to VerdaCare!"
+msgstr "التسجيل ناجح! مرحبًا بك في فيردا كير!"
+
+#: routes/auth.py:46 templates/dashboard/index.html:8
+#, python-format
+msgid "Welcome back, %(name)s!"
+msgstr "مرحبًا بك مرة أخرى، %(name)s!"
+
+#: routes/auth.py:48
+msgid "Invalid username or password."
+msgstr "اسم المستخدم أو كلمة المرور غير صالحة."
+
+#: routes/auth.py:55
+msgid "You have been logged out."
+msgstr "لقد تم تسجيل خروجك."
+
+#: routes/auth.py:66 routes/dashboard.py:313
+msgid "Password changed successfully!"
+msgstr "تم تغيير كلمة المرور بنجاح!"
+
+#: routes/auth.py:68 routes/dashboard.py:315
+msgid "Current password is incorrect."
+msgstr "كلمة المرور الحالية غير صحيحة."
+
+#: routes/dashboard.py:103
+msgid "Diagnosis deleted."
+msgstr "تم حذف التشخيص."
+
+#: routes/dashboard.py:154
+msgid "Plant added successfully!"
+msgstr "تمت إضافة النبات بنجاح!"
+
+#: routes/dashboard.py:195
+msgid "Plant deleted."
+msgstr "تم حذف النبات."
+
+#: routes/dashboard.py:245
+msgid "Chat deleted."
+msgstr "تم حذف الدردشة."
+
+#: routes/dashboard.py:330
+msgid "Your account has been deleted."
+msgstr "لقد تم حذف حسابك."
+
+#: routes/profile.py:37
+msgid "Profile updated successfully!"
+msgstr "تم تحديث الملف الشخصي بنجاح!"
+
+#: routes/profile.py:45 routes/profile.py:49
+msgid "No file selected."
+msgstr "لم يتم تحديد أي ملف."
+
+#: routes/profile.py:61
+msgid "Profile photo updated!"
+msgstr "تم تحديث صورة الملف الشخصي!"
+
+#: templates/base.html:6 templates/index.html:3
+msgid "Plant Disease Detector"
+msgstr "كاشف أمراض النبات"
+
+#: templates/index.html:9
+msgid "Detect Plant Diseases with AI"
+msgstr "كشف أمراض النبات باستخدام الذكاء الاصطناعي"
+
+#: templates/index.html:12
+msgid ""
+"Upload a photo of your plant leaf and our AI will diagnose the disease "
+"instantly."
+msgstr ""
+"قم بتحميل صورة لأوراق نباتك وسيقوم الذكاء الاصطناعي لدينا بتشخيص المرض "
+"على الفور."
+
+#: templates/index.html:21
+msgid "How to take a good photo"
+msgstr "كيفية التقاط صورة جيدة"
+
+#: templates/index.html:26
+msgid "Fill the frame"
+msgstr "املأ الإطار بالورقة"
+
+#: templates/index.html:26
+msgid "The leaf should cover most of the picture"
+msgstr "يجب أن تغطي الورقة معظم الصورة"
+
+#: templates/index.html:30
+msgid "Single leaf"
+msgstr "ورقة واحدة"
+
+#: templates/index.html:30
+msgid "Photograph one leaf only"
+msgstr "تصوير ورقة واحدة فقط"
+
+#: templates/index.html:34
+msgid "Soft lighting"
+msgstr "إضاءة ناعمة"
+
+#: templates/index.html:34
+msgid "Shoot in shade or indirect light, not direct sun"
+msgstr "التصوير في الظل أو الضوء غير المباشر، وليس الشمس المباشرة"
+
+#: templates/index.html:38
+msgid "Steady camera"
+msgstr "كاميرا ثابتة"
+
+#: templates/index.html:38
+msgid "Keep the camera still for a sharp photo"
+msgstr "أبقِ الكاميرا ثابتة للحصول على صورة حادة"
+
+#: templates/index.html:42
+msgid "Plain background"
+msgstr "تتبع النباتات"
+
+#: templates/index.html:42
+msgid "Avoid soil, other plants, or sky behind the leaf"
+msgstr "تجنب التربة أو النباتات الأخرى أو السماء خلف الورقة"
+
+#: templates/index.html:46
+msgid "Distance"
+msgstr "مسافة"
+
+#: templates/index.html:46
+msgid "15-30 cm from the leaf"
+msgstr "15-30 سم من الورقة"
+
+#: templates/index.html:61
+msgid "Take Photo"
+msgstr "التقط صورة"
+
+#: templates/index.html:66
+msgid "Upload Image"
+msgstr "تحميل الصورة"
+
+#: templates/index.html:102
+msgid "Drag & drop your image here"
+msgstr "اسحب وأسقط صورتك هنا"
+
+#: templates/index.html:105
+msgid "or click to browse"
+msgstr "أو انقر للتصفح"
+
+#: templates/index.html:129
+msgid "Analyze Image"
+msgstr "تحليل الصورة"
+
+#: templates/index.html:132
+msgid "Analyzing..."
+msgstr "جارٍ التحليل..."
+
+#: templates/index.html:145
+msgid "AI Powered"
+msgstr "مدعوم بالذكاء الاصطناعي"
+
+#: templates/index.html:146
+msgid "Deep learning model trained on thousands of plant images"
+msgstr "تم تدريب نموذج التعلم العميق على آلاف الصور النباتية"
+
+#: templates/index.html:153
+msgid "Detailed Reports"
+msgstr "تقارير مفصلة"
+
+#: templates/index.html:154
+msgid "Get comprehensive disease information and treatment advice"
+msgstr "احصل على معلومات شاملة عن المرض ونصائح علاجية"
+
+#: templates/index.html:161
+msgid "Smart Chatbot"
+msgstr "روبوت الدردشة الذكي"
+
+#: templates/index.html:162
+msgid "Ask our AI assistant for farming advice and disease information"
+msgstr "اطلب من مساعد الذكاء الاصطناعي لدينا الحصول على النصائح الزراعية والمعلومات المتعلقة بالأمراض"
+"اطلب من مساعد الذكاء الاصطناعي لدينا الحصول على النصائح الزراعية "
+"والمعلومات المتعلقة بالأمراض"
+
+#: templates/index.html:169
+msgid "Supported Plants"
+msgstr "النباتات المدعومة"
+
+#: templates/index.html:173
+msgid "Apple"
+msgstr "تفاحة"
+
+#: templates/index.html:176
+msgid "Corn"
+msgstr "حبوب ذرة"
+
+#: templates/index.html:179
+msgid "Grape"
+msgstr "العنب"
+
+#: templates/index.html:182
+msgid "Orange"
+msgstr "البرتقالي"
+
+#: templates/index.html:185
+msgid "Potato"
+msgstr "البطاطس"
+
+#: templates/index.html:188
+msgid "Tomato"
+msgstr "طماطم"
+
+#: templates/index.html:191
+msgid "And 32 more..."
+msgstr "و32 آخرين.."
+
+#: templates/index.html:380
+msgid "Connection error. Please try again."
+msgstr "خطأ في الاتصال. يرجى المحاولة مرة أخرى."
+
+#: templates/dashboard/diagnoses.html:43 templates/index.html:418
+msgid "Confidence"
+msgstr "ثقة"
+
+#: templates/index.html:438
+msgid ""
+"The result is not very confident. Try uploading a clearer, closer photo "
+"of the leaf."
+msgstr ""
+
+#: templates/index.html:445 templates/result.html:95
+msgid "Description"
+msgstr "وصف"
+
+#: templates/index.html:449 templates/result.html:106
+msgid "Symptoms"
+msgstr "أعراض"
+
+#: templates/dashboard/plant_detail.html:85 templates/index.html:453
+#: templates/result.html:117
+msgid "Treatment"
+msgstr "علاج"
+
+#: templates/index.html:457 templates/result.html:128
+msgid "Prevention"
+msgstr "وقاية"
+
+#: templates/index.html:463 templates/result.html:140
+msgid "Recommended Products"
+msgstr "المنتجات الموصى بها"
+
+#: templates/index.html:471
+msgid "Upload Another"
+msgstr "تحميل الصورة"
+
+#: templates/index.html:474
+msgid "Done"
+msgstr "هاتف"
+
+#: templates/result.html:3 templates/result.html:9
+msgid "Diagnosis Result"
+msgstr "نتيجة التشخيص"
+
+#: templates/result.html:12
+msgid "Here is what our AI found in your plant image"
+msgstr "إليك ما وجده الذكاء الاصطناعي في صورة نباتك"
+
+#: templates/result.html:21
+msgid "Confidence Level"
+msgstr "مستوى الثقة"
+
+#: templates/result.html:25
+msgid "High Confidence - Result is reliable"
+msgstr "ثقة عالية - النتيجة موثوقة"
+
+#: templates/result.html:27
+msgid "Medium Confidence - Consider consulting an expert"
+msgstr "ثقة متوسطة – فكر في استشارة أحد الخبراء"
+
+#: templates/result.html:29
+msgid "Low Confidence - Please try another image"
+msgstr "ثقة منخفضة - يرجى تجربة صورة أخرى"
+
+#: templates/result.html:38
+msgid "Detected Disease"
+msgstr "المرض المكتشف"
+
+#: templates/result.html:48 templates/result.html:50
+msgid "Your Image"
+msgstr "صورتك"
+
+#: templates/result.html:56
+msgid "Detailed Report"
+msgstr "تقرير مفصل"
+
+#: templates/result.html:58
+msgid "View Report"
+msgstr "عرض التقرير"
+
+#: templates/result.html:68
+msgid "View Full Report"
+msgstr "عرض التقرير الكامل"
+
+#: templates/result.html:72
+msgid "Print"
+msgstr "مطبعة"
+
+#: templates/result.html:76
+msgid "New Diagnosis"
+msgstr "تشخيص جديد"
+
+#: templates/result.html:88
+msgid "Detailed Disease Report"
+msgstr "تقرير مفصل عن المرض"
+
+#: templates/result.html:157
+msgid ""
+"This diagnosis is generated by AI and should be used as a guide only. For"
+" critical cases, please consult a professional agricultural expert."
+msgstr ""
+"يتم إنشاء هذا التشخيص بواسطة الذكاء الاصطناعي ويجب استخدامه كدليل فقط. في"
+" الحالات الحرجة، يرجى استشارة خبير زراعي محترف."
+
+#: templates/result.html:168
+msgid "Rate This Diagnosis"
+msgstr "قيم هذا التشخيص"
+
+#: templates/result.html:171
+msgid "Help us improve by rating the accuracy of this diagnosis"
+msgstr "ساعدنا على التحسن من خلال تقييم دقة هذا التشخيص"
+
+#: templates/result.html:189
+msgid "1 = Very Inaccurate, 5 = Very Accurate"
+msgstr "1 = غير دقيق جدًا، 5 = دقيق جدًا"
+
+#: templates/result.html:199
+msgid "Have Questions?"
+msgstr "هل لديك أسئلة؟"
+
+#: templates/result.html:202
+msgid ""
+"Ask our AI assistant about this disease, treatment options, or general "
+"farming advice."
+msgstr ""
+"اسأل مساعد الذكاء الاصطناعي الخاص بنا عن هذا المرض أو خيارات العلاج أو "
+"النصائح الزراعية العامة."
+
+#: templates/result.html:207
+msgid "Ask AI Assistant"
+msgstr "اسأل مساعد الذكاء الاصطناعي"
+
+#: templates/result.html:217
+msgid "Tell me more about"
+msgstr "أخبرني المزيد عنه"
+
+#: templates/auth/change_password.html:2 templates/auth/change_password.html:6
+#: templates/auth/change_password.html:21 templates/dashboard/settings.html:10
+#: templates/profile/edit.html:37
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+#: templates/auth/change_password.html:10 templates/dashboard/settings.html:15
+msgid "Current Password"
+msgstr "كلمة المرور الحالية"
+
+#: templates/auth/change_password.html:14 templates/dashboard/settings.html:20
+msgid "New Password"
+msgstr "كلمة المرور الجديدة"
+
+#: templates/auth/change_password.html:18
+msgid "Confirm New Password"
+msgstr "تأكيد كلمة المرور الجديدة"
+
+#: templates/auth/login.html:2 templates/auth/login.html:23
+#: templates/auth/register.html:49 templates/includes/header.html:51
+#: templates/includes/header.html:74
+msgid "Sign In"
+msgstr "تسجيل الدخول"
+
+#: templates/auth/login.html:8
+msgid "Welcome Back"
+msgstr "مرحبًا بعودتك"
+
+#: templates/auth/login.html:9
+msgid "Sign in to your VerdaCare account"
+msgstr "قم بتسجيل الدخول إلى حساب VerdaCare الخاص بك"
+
+#: templates/auth/login.html:14 templates/auth/register.html:15
+#: templates/auth/register.html:16
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#: templates/auth/login.html:15
+msgid "Enter your username"
+msgstr "أدخل اسم المستخدم الخاص بك"
+
+#: templates/auth/login.html:19 templates/auth/register.html:35
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: templates/auth/login.html:20
+msgid "Enter your password"
+msgstr "أدخل كلمة المرور الخاصة بك"
+
+#: templates/auth/login.html:26
+msgid "Don't have an account?"
+msgstr "ليس لديك حساب؟"
+
+#: templates/auth/login.html:27 templates/auth/register.html:2
+#: templates/includes/header.html:52 templates/includes/header.html:75
+msgid "Register"
+msgstr "يسجل"
+
+#: templates/auth/register.html:8 templates/auth/register.html:45
+msgid "Create Account"
+msgstr "إنشاء حساب"
+
+#: templates/auth/register.html:9
+msgid "Join VerdaCare and start diagnosing plant diseases"
+msgstr "انضم إلى VerdaCare وابدأ في تشخيص أمراض النبات"
+
+#: templates/auth/register.html:20 templates/profile/edit.html:10
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+#: templates/auth/register.html:21
+msgid "Your name"
+msgstr "اسمك"
+
+#: templates/auth/register.html:26
+msgid "your@email.com"
+msgstr "your@email.com"
+
+#: templates/auth/register.html:30 templates/profile/edit.html:14
+#: templates/profile/view.html:40
+msgid "Phone"
+msgstr "هاتف"
+
+#: templates/auth/register.html:31
+msgid "+1234567890"
+msgstr "+1234567890"
+
+#: templates/auth/register.html:36
+msgid "Min 6 characters"
+msgstr "الحد الأدنى 6 أحرف"
+
+#: templates/auth/register.html:40
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+#: templates/auth/register.html:41
+msgid "Repeat password"
+msgstr "كرر كلمة المرور"
+
+#: templates/auth/register.html:48
+msgid "Already have an account?"
+msgstr "هل لديك حساب بالفعل؟"
+
+#: templates/dashboard/add_plant.html:2 templates/dashboard/plants.html:8
+msgid "Add Plant"
+msgstr "أضف النبات"
+
+#: templates/dashboard/add_plant.html:6
+msgid "Add New Plant"
+msgstr "إضافة مصنع جديد"
+
+#: templates/dashboard/add_plant.html:10
+msgid "Plant Name"
+msgstr "اسم النبات"
+
+#: templates/dashboard/add_plant.html:11
+msgid "e.g. Garden Tomato #1"
+msgstr "على سبيل المثال حديقة الطماطم رقم 1"
+
+#: templates/dashboard/add_plant.html:15
+msgid "Plant Type"
+msgstr "نوع النبات"
+
+#: templates/dashboard/add_plant.html:20
+msgid "Planting Date"
+msgstr "تاريخ الزراعة"
+
+#: templates/dashboard/add_plant.html:24
+#: templates/dashboard/plant_detail.html:32
+msgid "Location"
+msgstr "موقع"
+
+#: templates/dashboard/add_plant.html:25
+msgid "e.g. Backyard garden"
+msgstr "على سبيل المثال حديقة الفناء الخلفي"
+
+#: templates/dashboard/add_plant.html:28
+#: templates/dashboard/plant_detail.html:96
+msgid "Notes"
+msgstr "ملحوظات"
+
+#: templates/dashboard/add_plant.html:29
+msgid "Any additional notes..."
+msgstr "أي ملاحظات إضافية..."
+
+#: templates/dashboard/add_plant.html:32
+msgid "Save Plant"
+msgstr "حفظ النبات"
+
+#: templates/dashboard/add_plant.html:33 templates/profile/edit.html:32
+msgid "Cancel"
+msgstr "يلغي"
+
+#: templates/dashboard/chat_detail.html:2
+#: templates/dashboard/chat_detail.html:8 templates/includes/header.html:11
+#: templates/includes/header.html:68
+msgid "Chat"
+msgstr "محادثة"
+
+#: templates/dashboard/chat_detail.html:5
+msgid "Back to Chats"
+msgstr "العودة إلى الدردشات"
+
+#: templates/dashboard/chats.html:2 templates/dashboard/chats.html:5
+msgid "Chat History"
+msgstr "تاريخ الدردشة"
+
+#: templates/dashboard/chats.html:16
+msgid "New Chat"
+msgstr "دردشة جديدة"
+
+#: templates/dashboard/chats.html:17
+#, python-format
+msgid "%(count)d messages"
+msgstr "%(عدد)د من الرسائل"
+
+#: templates/dashboard/chats.html:22
+msgid "Delete this chat?"
+msgstr "هل تريد حذف هذه الدردشة؟"
+
+#: templates/dashboard/chats.html:33
+msgid "No chat sessions yet. Start a conversation with the AI assistant!"
+msgstr "لا توجد جلسات دردشة حتى الآن. ابدأ محادثة مع مساعد الذكاء الاصطناعي!"
+
+#: templates/dashboard/chats.html:34
+msgid "Start Chatting"
+msgstr "ابدأ الدردشة"
+
+#: templates/dashboard/diagnoses.html:2 templates/dashboard/diagnoses.html:7
+#: templates/dashboard/plant_detail.html:39
+msgid "Diagnosis History"
+msgstr "تاريخ التشخيص"
+
+#: templates/dashboard/diagnoses.html:8
+msgid "Browse all your plant disease diagnoses"
+msgstr "تصفح جميع تشخيصات الأمراض النباتية الخاصة بك"
+
+#: templates/dashboard/diagnoses.html:12
+msgid "Export CSV"
+msgstr "تصدير CSV"
+
+#: templates/dashboard/diagnoses.html:20
+msgid "Search diseases..."
+msgstr "بحث عن الأمراض..."
+
+#: templates/dashboard/diagnoses.html:29
+msgid "Filter"
+msgstr "فلتر"
+
+#: templates/dashboard/diagnoses.html:30
+msgid "Clear"
+msgstr "واضح"
+
+#: templates/dashboard/diagnoses.html:41
+msgid "Date"
+msgstr "تاريخ"
+
+#: templates/dashboard/diagnoses.html:42
+msgid "Disease"
+msgstr "مرض"
+
+#: templates/dashboard/diagnoses.html:44
+msgid "Rating"
+msgstr "تصنيف"
+
+#: templates/dashboard/diagnoses.html:45
+msgid "Actions"
+msgstr "الإجراءات"
+
+#: templates/dashboard/diagnoses.html:70
+msgid "View"
+msgstr "منظر"
+
+#: templates/dashboard/diagnoses.html:71
+msgid "Delete this diagnosis?"
+msgstr "هل تريد حذف هذا التشخيص؟"
+
+#: templates/dashboard/diagnoses.html:72
+msgid "Delete"
+msgstr "يمسح"
+
+#: templates/dashboard/diagnoses.html:94
+msgid "No diagnoses found"
+msgstr "لم يتم العثور على تشخيصات"
+
+#: templates/dashboard/diagnoses.html:95
+msgid "Diagnose a plant now"
+msgstr "تشخيص النبات الآن"
+
+#: templates/dashboard/index.html:2 templates/dashboard/index.html:7
+#: templates/includes/header.html:13 templates/includes/header.html:44
+#: templates/includes/header.html:70 templates/profile/view.html:57
+msgid "Dashboard"
+msgstr "لوحة القيادة"
+
+#: templates/dashboard/index.html:21 templates/dashboard/statistics.html:10
+msgid "Total Diagnoses"
+msgstr "التشخيص الإجمالي"
+
+#: templates/dashboard/index.html:28
+msgid "Plants Tracked"
+msgstr "تتبع النباتات"
+
+#: templates/dashboard/index.html:35
+msgid "Chat Sessions"
+msgstr "جلسات الدردشة"
+
+#: templates/dashboard/index.html:42
+msgid "This Month"
+msgstr "هذا الشهر"
+
+#: templates/dashboard/index.html:49
+msgid "Recent Diagnoses"
+msgstr "التشخيصات الأخيرة"
+
+#: templates/dashboard/index.html:65
+msgid "View All"
+msgstr "عرض الكل"
+
+#: templates/dashboard/index.html:67
+msgid "No diagnoses yet. Upload a plant image to get started!"
+msgstr "لا يوجد تشخيصات حتى الآن. قم بتحميل صورة النبات للبدء!"
+
+#: templates/dashboard/index.html:68
+msgid "Diagnose Now"
+msgstr "تشخيص الآن"
+
+#: templates/dashboard/index.html:73 templates/dashboard/plants.html:2
+#: templates/dashboard/plants.html:6
+msgid "My Plants"
+msgstr "نباتاتي"
+
+#: templates/dashboard/index.html:87
+msgid "Manage Plants"
+msgstr "إدارة النباتات"
+
+#: templates/dashboard/index.html:89
+msgid "No plants tracked yet."
+msgstr "لم يتم تعقب أي نباتات حتى الآن."
+
+#: templates/dashboard/index.html:90 templates/dashboard/plants.html:45
+msgid "Add Your First Plant"
+msgstr "أضف مصنعك الأول"
+
+#: templates/dashboard/index.html:97
+msgid "Quick Statistics"
+msgstr "إحصائيات سريعة"
+
+#: templates/dashboard/index.html:102
+msgid "Average Confidence"
+msgstr "متوسط ​​الثقة"
+
+#: templates/dashboard/index.html:106
+msgid "Conditions Diagnosed"
+msgstr "تم تشخيص الحالات"
+
+#: templates/dashboard/index.html:110 templates/dashboard/plants.html:34
+msgid "View Details"
+msgstr "عرض التفاصيل"
+
+#: templates/dashboard/plant_detail.html:5
+msgid "Back to Plants"
+msgstr "العودة إلى النباتات"
+
+#: templates/dashboard/plant_detail.html:22 templates/dashboard/plants.html:24
+msgid "Status"
+msgstr "حالة"
+
+#: templates/dashboard/plant_detail.html:28
+msgid "Planted"
+msgstr "زرعت"
+
+#: templates/dashboard/plant_detail.html:55
+msgid "No diagnoses for this plant yet."
+msgstr "لا يوجد تشخيص لهذا النبات حتى الآن."
+
+#: templates/dashboard/plant_detail.html:60
+msgid "Care Log"
+msgstr "سجل الرعاية"
+
+#: templates/dashboard/plant_detail.html:77
+msgid "Add Care Entry"
+msgstr "إضافة إدخال الرعاية"
+
+#: templates/dashboard/plant_detail.html:82
+msgid "Watering"
+msgstr "سقي"
+
+#: templates/dashboard/plant_detail.html:83
+msgid "Fertilizing"
+msgstr "تسميد"
+
+#: templates/dashboard/plant_detail.html:84
+msgid "Pruning"
+msgstr "تشذيب"
+
+#: templates/dashboard/plant_detail.html:86
+msgid "Other"
+msgstr "آخر"
+
+#: templates/dashboard/plant_detail.html:88
+msgid "What did you do?"
+msgstr "ماذا فعلت؟"
+
+#: templates/dashboard/plant_detail.html:89
+msgid "Save Entry"
+msgstr "حفظ الإدخال"
+
+#: templates/dashboard/plants.html:30 templates/dashboard/statistics.html:76
+#: templates/profile/view.html:23
+msgid "Diagnoses"
+msgstr "التشخيص"
+
+#: templates/dashboard/plants.html:43
+msgid "No Plants Yet"
+msgstr "لا توجد نباتات حتى الآن"
+
+#: templates/dashboard/plants.html:44
+msgid "Start tracking your plants to monitor their health!"
+msgstr "ابدأ بتتبع نباتاتك لمراقبة صحتها!"
+
+#: templates/dashboard/settings.html:2 templates/dashboard/settings.html:5
+#: templates/includes/header.html:46
+msgid "Settings"
+msgstr "إعدادات"
+
+#: templates/dashboard/settings.html:24
+msgid "Confirm"
+msgstr "يتأكد"
+
+#: templates/dashboard/settings.html:28
+msgid "Update Password"
+msgstr "تحديث كلمة المرور"
+
+#: templates/dashboard/settings.html:34
+msgid "Export Data"
+msgstr "تصدير البيانات"
+
+#: templates/dashboard/settings.html:36
+msgid "Download your diagnosis history as CSV"
+msgstr "قم بتنزيل سجل التشخيص الخاص بك كملف CSV"
+
+#: templates/dashboard/settings.html:38
+msgid "Export Diagnoses (CSV)"
+msgstr "تصدير التشخيصات (CSV)"
+
+#: templates/dashboard/settings.html:44
+msgid "Danger Zone"
+msgstr "منطقة الخطر"
+
+#: templates/dashboard/settings.html:46
+msgid "Once you delete your account, there is no going back. Please be certain."
+msgstr "بمجرد حذف حسابك، لن يكون هناك عودة. يرجى التأكد."
+
+#: templates/dashboard/settings.html:47
+msgid "Are you sure? This will delete ALL your data permanently!"
+msgstr "هل أنت متأكد؟ سيؤدي هذا إلى حذف جميع بياناتك نهائيًا!"
+
+#: templates/dashboard/settings.html:49
+msgid "Delete My Account"
+msgstr "حذف حسابي"
+
+#: templates/dashboard/statistics.html:2
+msgid "Statistics"
+msgstr "إحصائيات"
+
+#: templates/dashboard/statistics.html:5
+msgid "Advanced Statistics"
+msgstr "الإحصائيات المتقدمة"
+
+#: templates/dashboard/statistics.html:14
+msgid "Avg Confidence"
+msgstr "متوسط ​​الثقة"
+
+#: templates/dashboard/statistics.html:18
+msgid "Unique Diseases"
+msgstr "أمراض فريدة من نوعها"
+
+#: templates/dashboard/statistics.html:22
+msgid "Rated Diagnoses"
+msgstr "التشخيصات المقدرة"
+
+#: templates/dashboard/statistics.html:28
+msgid "Disease Distribution"
+msgstr "توزيع المرض"
+
+#: templates/dashboard/statistics.html:32
+msgid "Monthly Trend"
+msgstr "الاتجاه الشهري"
+
+#: templates/dashboard/statistics.html:39
+msgid "Plant Types"
+msgstr "أنواع النباتات"
+
+#: templates/dashboard/statistics.html:43
+msgid "Confidence Distribution"
+msgstr "توزيع الثقة"
+
+#: templates/dashboard/statistics.html:92
+#: templates/dashboard/statistics.html:105
+msgid "Count"
+msgstr "عدد"
+
+#: templates/includes/chat_widget.html:14
+msgid "Agricultural Assistant"
+msgstr "مساعد زراعي"
+
+#: templates/includes/chat_widget.html:17
+msgid "Clear chat"
+msgstr "مسح الدردشة"
+
+#: templates/includes/chat_widget.html:34
+msgid ""
+"Hello! I am your agricultural assistant. Ask me about plant diseases, "
+"treatments, or farming tips."
+msgstr ""
+"مرحبًا! أنا مساعدك الزراعي. اسألني عن الأمراض النباتية أو العلاجات أو "
+"النصائح الزراعية."
+
+#: templates/includes/chat_widget.html:46
+msgid "Ask me anything..."
+msgstr "اسألني أي شيء..."
+
+#: templates/includes/footer.html:7
+msgid "Plant Disease Detector v1.0"
+msgstr "كاشف أمراض النبات v1.0"
+
+#: templates/includes/footer.html:11
+msgid "Powered by AI & Hugging Face"
+msgstr "مدعوم من الذكاء الاصطناعي وعناق الوجه"
+
+#: templates/includes/header.html:10 templates/includes/header.html:67
+msgid "Home"
+msgstr "بيت"
+
+#: templates/includes/header.html:43 templates/profile/view.html:2
+msgid "My Profile"
+msgstr "ملفي الشخصي"
+
+#: templates/includes/header.html:47 templates/includes/header.html:72
+msgid "Sign Out"
+msgstr "تسجيل الخروج"
+
+#: templates/includes/header.html:71
+msgid "Profile"
+msgstr "حساب تعريفي"
+
+#: templates/profile/edit.html:2 templates/profile/edit.html:6
+#: templates/profile/view.html:54
+msgid "Edit Profile"
+msgstr "تحرير الملف الشخصي"
+
+#: templates/profile/edit.html:18 templates/profile/view.html:44
+msgid "Language"
+msgstr "لغة"
+
+#: templates/profile/edit.html:22
+msgid "Profile Photo"
+msgstr "صورة الملف الشخصي"
+
+#: templates/profile/edit.html:31
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+#: templates/profile/view.html:27
+msgid "Plants"
+msgstr "النباتات"
+
+#: templates/profile/view.html:31
+msgid "Chats"
+msgstr "الدردشات"
+
+#: templates/profile/view.html:36
+msgid "Email"
+msgstr "بريد إلكتروني"
+
+#: templates/profile/view.html:48
+msgid "Member Since"
+msgstr "عضو منذ"
+
+#~ msgid "Image Requirements"
+#~ msgstr "متطلبات الصورة"
+
+#~ msgid "Use a clear, well-lit photo"
+#~ msgstr "استخدم صورة واضحة ومضاءة جيدًا"
+
+#~ msgid "Capture only ONE diseased or infected leaf"
+#~ msgstr "التقط ورقة واحدة فقط مريضة أو مصابة"
+
+#~ msgid "Use a clean background or solid color"
+#~ msgstr "استخدم خلفية نظيفة أو لون خالص"
+
+#~ msgid "Avoid blurry or dark images"
+#~ msgstr "تجنب الصور الباهتة أو الداكنة"
+

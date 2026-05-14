@@ -16,6 +16,7 @@ class User(UserMixin, db.Model):
     phone = db.Column(db.String(20))
     profile_image = db.Column(db.String(255))
     language_preference = db.Column(db.String(5), default='ar')
+    is_admin = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     last_login = db.Column(db.DateTime)
 
