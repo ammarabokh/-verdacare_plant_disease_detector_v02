@@ -50,6 +50,13 @@ class Config:
 
     # Behavior flags
     USE_MOCK_IF_MODEL_FAIL = os.environ.get('USE_MOCK_IF_MODEL_FAIL', 'false').lower() == 'true'
+
+    # One-time admin bootstrap (safe alternative to hardcoded admin credentials)
+    ADMIN_BOOTSTRAP_ENABLED = os.environ.get('ADMIN_BOOTSTRAP_ENABLED', 'false').lower() == 'true'
+    ADMIN_BOOTSTRAP_USERNAME = os.environ.get('ADMIN_BOOTSTRAP_USERNAME', '').strip()
+    ADMIN_BOOTSTRAP_EMAIL = os.environ.get('ADMIN_BOOTSTRAP_EMAIL', '').strip()
+    ADMIN_BOOTSTRAP_PASSWORD = os.environ.get('ADMIN_BOOTSTRAP_PASSWORD', '')
+    ADMIN_BOOTSTRAP_FULL_NAME = os.environ.get('ADMIN_BOOTSTRAP_FULL_NAME', '').strip()
     
     # Upload settings
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024

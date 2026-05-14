@@ -90,8 +90,58 @@ app.register_blueprint(profile_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(admin_bp)
 
+
+def bootstrap_admin_user():
+    """Create or promote an admin user once using environment variables."""
+    if not Config.ADMIN_BOOTSTRAP_ENABLED:
+        return
+
+    if User.query.filter_by(is_admin=True).first():
+        app.logger.info("[admin-bootstrap] skipped: admin already exists")
+        return
+
+    username = Config.ADMIN_BOOTSTRAP_USERNAME
+    email = Config.ADMIN_BOOTSTRAP_EMAIL
+    password = Config.ADMIN_BOOTSTRAP_PASSWORD
+    full_name = Config.ADMIN_BOOTSTRAP_FULL_NAME
+
+    if not username or not email or not password:
+        app.logger.warning(
+            "[admin-bootstrap] skipped: missing required env vars "
+            "(ADMIN_BOOTSTRAP_USERNAME/EMAIL/PASSWORD)"
+        )
+        return
+
+    user = User.query.filter(
+        db.or_(User.username == username, User.email == email)
+    ).first()
+
+    if user:
+        user.is_admin = True
+        user.username = username
+        user.email = email
+        user.set_password(password)
+        if full_name:
+            user.full_name = full_name
+        db.session.commit()
+        app.logger.info(f"[admin-bootstrap] existing user promoted to admin: {username}")
+        return
+
+    user = User(
+        username=username,
+        email=email,
+        full_name=full_name or None,
+        is_admin=True
+    )
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+    app.logger.info(f"[admin-bootstrap] admin user created: {username}")
+
+
 with app.app_context():
     db.create_all()
+    bootstrap_admin_user()
 
 @app.before_request
 def before_request():
