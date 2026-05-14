@@ -123,12 +123,13 @@ function addMessage(text, role) {
             </div>
         `;
     } else {
+        const assistantHtml = renderMarkdownSafe(text);
         messageDiv.innerHTML = `
             <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                 <i class="fas fa-robot text-white text-sm"></i>
             </div>
             <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-3 max-w-[80%]">
-                <p class="text-gray-700 dark:text-gray-300 text-sm whitespace-pre-wrap">${escapeHtml(text)}</p>
+                <div class="text-gray-700 dark:text-gray-300 text-sm leading-7">${assistantHtml}</div>
             </div>
         `;
     }
@@ -174,6 +175,50 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+function renderMarkdownSafe(text) {
+    const escaped = escapeHtml(text || '');
+    const lines = escaped.split('\n');
+    const html = [];
+    let inList = false;
+
+    for (const rawLine of lines) {
+        const line = rawLine.trim();
+        const listMatch = line.match(/^([-*]|\d+\.)\s+(.+)$/);
+
+        if (listMatch) {
+            if (!inList) {
+                html.push('<ul class="list-disc list-inside space-y-1 my-2">');
+                inList = true;
+            }
+            html.push(`<li>${formatInlineMarkdown(listMatch[2])}</li>`);
+            continue;
+        }
+
+        if (inList) {
+            html.push('</ul>');
+            inList = false;
+        }
+
+        if (!line) {
+            html.push('<br>');
+        } else {
+            html.push(`<p class="mb-2">${formatInlineMarkdown(line)}</p>`);
+        }
+    }
+
+    if (inList) {
+        html.push('</ul>');
+    }
+
+    return html.join('');
+}
+
+function formatInlineMarkdown(line) {
+    return line
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/__(.+?)__/g, '<strong>$1</strong>');
 }
 
 // Handle Enter key in chat

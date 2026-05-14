@@ -393,7 +393,8 @@ def chat():
         else:
             context = last_diag['name_en']
 
-    response = chatbot.process_message(message, session_id, get_locale(), context)
+    user_name = current_user.full_name or current_user.username if current_user.is_authenticated else None
+    response = chatbot.process_message(message, session_id, get_locale(), context, user_name)
 
     if db_session:
         for role, content in [('user', message), ('assistant', response)]:
