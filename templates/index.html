@@ -87,7 +87,6 @@
                 <input 
                     type="file" 
                     id="camera-input" 
-                    name="image" 
                     accept="image/*"
                     capture="environment"
                     class="hidden"
@@ -292,6 +291,12 @@
     function handleFileSelect(event) {
         const file = event.target.files[0];
         if (file) {
+            // Ensure backend always receives the selected file under `image`
+            if (event.target.id === 'camera-input') {
+                const dt = new DataTransfer();
+                dt.items.add(file);
+                document.getElementById('file-input').files = dt.files;
+            }
             displayPreview(file);
         }
     }
